@@ -1,0 +1,3 @@
+/* articulationNavigator / Lv.3 : 問題文・選択肢・ヒントを編集できます。 */
+window.KotobaLevelFiles=window.KotobaLevelFiles||{};
+(window.KotobaLevelFiles["articulationNavigator"]=window.KotobaLevelFiles["articulationNavigator"]||{})[3]=[{"question":"唇を閉じて出す「ま」を練習しましょう。","answer":"ま","voiceText":"ま","navPlace":"lips","navTitle":"唇を使う音「ま」","navLabel":"上下の唇","navGuide":"唇を閉じ、声を鼻に響かせるように「ま」と言います。","navSteps":["上下の唇を軽く閉じます。","力を抜いて「ま」と声に出します。"],"hint":"音声認識の結果は目安です。聞き取りにくい場合はお手本と聞き比べましょう。","difficultyLevel":3},{"question":"舌先を意識して「た」を練習しましょう。","answer":"た","voiceText":"た","navPlace":"front","navTitle":"舌先を使う音「た」","navLabel":"舌先","navGuide":"舌先を上の歯のすぐ後ろ付近につけ、離す動きを意識します。","navSteps":["舌先を上の歯のすぐ後ろ付近へ近づけます。","舌先を離しながら「た」と言います。"],"hint":"舌の位置は音や人によって異なることがあります。無理に動かさないでください。","difficultyLevel":3}];

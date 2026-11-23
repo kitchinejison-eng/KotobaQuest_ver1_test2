@@ -1,0 +1,3 @@
+/* articulationNavigator / Lv.4 : 問題文・選択肢・ヒントを編集できます。 */
+window.KotobaLevelFiles=window.KotobaLevelFiles||{};
+(window.KotobaLevelFiles["articulationNavigator"]=window.KotobaLevelFiles["articulationNavigator"]||{})[4]=[{"question":"舌先を軽く使う「ら」を練習しましょう。","answer":"ら","voiceText":"ら","navPlace":"front","navTitle":"舌先を使う音「ら」","navLabel":"舌先","navGuide":"舌先を上の歯のすぐ後ろ付近に軽く触れて、すぐ離すイメージです。","navSteps":["舌先を軽く上へ動かします。","「ら」と声に出します。"],"hint":"舌先を強く押しつける必要はありません。","difficultyLevel":4},{"question":"舌の奥を意識して「か」を練習しましょう。","answer":"か","voiceText":"か","navPlace":"back","navTitle":"舌の奥を使う音「か」","navLabel":"舌の奥","navGuide":"舌の奥の方を口の天井の奥へ近づけるイメージで声を出します。","navSteps":["舌の奥の方を意識します。","「か」とゆっくり声に出します。"],"hint":"図は位置の目安です。実際の舌の動きは音によって異なります。","difficultyLevel":4}];

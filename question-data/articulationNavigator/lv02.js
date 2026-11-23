@@ -1,0 +1,3 @@
+/* articulationNavigator / Lv.2 : 問題文・選択肢・ヒントを編集できます。 */
+window.KotobaLevelFiles=window.KotobaLevelFiles||{};
+(window.KotobaLevelFiles["articulationNavigator"]=window.KotobaLevelFiles["articulationNavigator"]||{})[2]=[{"question":"唇の形を意識して「う」を練習しましょう。","answer":"う","voiceText":"う","navPlace":"lips","navTitle":"母音「う」","navLabel":"唇の形","navGuide":"唇を軽くすぼめます。強く突き出しすぎなくて大丈夫です。","navSteps":["唇を軽くすぼめます。","「う」と短く声に出します。"],"hint":"唇の形には個人差があります。楽な動かし方で練習しましょう。","difficultyLevel":2},{"question":"上下の唇を使う「ぱ」を練習しましょう。","answer":"ぱ","voiceText":"ぱ","navPlace":"lips","navTitle":"唇を使う音「ぱ」","navLabel":"上下の唇","navGuide":"上下の唇を一度閉じ、軽く開くときに「ぱ」と声を出します。","navSteps":["上下の唇を軽く閉じます。","唇を開きながら「ぱ」と言います。"],"hint":"息を強く出しすぎず、楽に発音します。","difficultyLevel":2}];

@@ -1,0 +1,3 @@
+/* articulationNavigator / Lv.1 : 問題文・選択肢・ヒントを編集できます。 */
+window.KotobaLevelFiles=window.KotobaLevelFiles||{};
+(window.KotobaLevelFiles["articulationNavigator"]=window.KotobaLevelFiles["articulationNavigator"]||{})[1]=[{"question":"口の開き方を見ながら「あ」を練習しましょう。","answer":"あ","voiceText":"あ","navPlace":"mouth","navTitle":"母音「あ」","navLabel":"口の開き","navGuide":"口を開き、あごや舌に力を入れすぎず、自然に声を出します。","navSteps":["口を開く様子を鏡で確認します。","「あ」と短く、無理のない声で言います。"],"hint":"痛みや疲れがあるときは無理をせず休みましょう。","difficultyLevel":1},{"question":"唇と舌の前の方を意識して「い」を練習しましょう。","answer":"い","voiceText":"い","navPlace":"front","navTitle":"母音「い」","navLabel":"口の前の方","navGuide":"口を横に軽く開き、舌の前の方を意識して声を出します。","navSteps":["口を軽く横に開きます。","「い」とゆっくり声に出します。"],"hint":"口の形を見ながら、自分のペースで行います。","difficultyLevel":1}];

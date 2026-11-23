@@ -1,0 +1,3 @@
+/* aac / Lv.7 : 問題文・選択肢・ヒントを編集できます。 */
+window.KotobaLevelFiles=window.KotobaLevelFiles||{};
+(window.KotobaLevelFiles["aac"]=window.KotobaLevelFiles["aac"]||{})[7]=[{"question":"場面を考えて、相手に伝えたいことを選びましょう。","prompt":"おなかがすいて、何か食べたいと思っています。","emoji":"🍽️","answer":"何か食べたいです","hint":"今ほしいものが、食べ物・飲み物・休憩のどれに近いか考えましょう。","choices":["何か食べたいです","トイレに行きたいです","もう大丈夫です","さようなら"],"difficultyLevel":7},{"question":"場面を考えて、相手に伝えたいことを選びましょう。","prompt":"相手が荷物を運ぶのを手伝ってくれました。","emoji":"🤝","answer":"ありがとうございます","hint":"相手がしてくれたことへの気持ちを考えましょう。","choices":["ありがとうございます","いりません","もう一度お願いします","頭が痛いです"],"difficultyLevel":7}];

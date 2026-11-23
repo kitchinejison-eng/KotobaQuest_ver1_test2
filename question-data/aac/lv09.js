@@ -1,0 +1,3 @@
+/* aac / Lv.9 : 問題文・選択肢・ヒントを編集できます。 */
+window.KotobaLevelFiles=window.KotobaLevelFiles||{};
+(window.KotobaLevelFiles["aac"]=window.KotobaLevelFiles["aac"]||{})[9]=[{"question":"場面を考えて、相手に伝えたいことを選びましょう。","prompt":"返事を考えるのに、少し時間が必要です。","emoji":"⏳","answer":"少し待ってください","hint":"すぐに返事ができないとき、相手にどうお願いできるでしょう。","choices":["少し待ってください","もう帰ります","ありがとう","いりません"],"difficultyLevel":9},{"question":"場面を考えて、相手に伝えたいことを選びましょう。","prompt":"説明を聞くより、文字を見たほうが分かりやすいです。","emoji":"📝","answer":"文字で書いてください","hint":"自分にとって分かりやすい伝え方を相手にお願いしましょう。","choices":["文字で書いてください","もっと早く話してください","帰りたいです","おなかがすきました"],"difficultyLevel":9}];
