@@ -1,0 +1,26 @@
+/* Kotoba Quest Ver.2.0.0: trial activities shown inside existing genres. */
+.kq-trial-activity-card {border:2px dashed #c79b39!important;background:linear-gradient(120deg,#fffdf6,#f4faff)!important;}
+.kq-trial-status {display:inline-flex;align-items:center;align-self:flex-start;padding:4px 10px;margin-top:7px;border:1px solid #bd822b;border-radius:999px;background:#fff1ce;color:#694208;font-weight:850;font-size:12px;line-height:1.5;}
+.kq-trial-description {display:block;color:#52616e;font-size:12px;line-height:1.6;margin-top:4px;}
+html[data-kq-plan="premium"] .kq-trial-activity-card {background:linear-gradient(120deg,#fffbeb,#fff2c2)!important;border-color:#a57814!important;}
+html[data-kq-plan="premium"] .kq-trial-status {background:#f3d778;color:#3e2c00;border-color:#a57814;}
+@media (max-width:540px){.kq-trial-status{font-size:12px;padding:4px 8px}}
+
+/* Ver.2.1.0 | 同一のトレーニング画面で試作キャッチを表示 */
+.kq-integrated-trial-note {font-size:.92rem;line-height:1.65;color:var(--text-secondary,#526575);margin:.65rem 0;}
+.kq-integrated-question{font-weight:700;line-height:1.75;font-size:clamp(1.05rem,2.4vw,1.4rem);margin:.6rem 0 1rem;}
+.kq-integrated-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:.7rem;margin-top:1rem;}
+.kq-integrated-choice{min-height:52px;white-space:normal;overflow-wrap:anywhere;}
+.kq-integrated-moving .choice{animation:kq-catch-float 3.5s ease-in-out infinite alternate;}
+.kq-integrated-moving .choice:nth-child(2n){animation-delay:.7s;}
+@keyframes kq-catch-float{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+.kq-integrated-falling{font-size:clamp(3.2rem,10vw,5.8rem);text-align:center;animation:kq-catch-fall 2.6s ease-in-out infinite alternate;}
+@keyframes kq-catch-fall{from{transform:translateY(-8px);opacity:.75}to{transform:translateY(8px);opacity:1}}
+.kq-integrated-dialogue{display:flex;flex-direction:column;align-items:stretch;gap:.7rem;}
+.kq-integrated-bubble{border:1px solid #d6e6ef;border-radius:12px;padding:.8rem 1rem;background:rgba(184,219,239,.19);font-size:1.06rem;line-height:1.75;}
+.kq-integrated-taps{font-weight:700;font-size:1.2rem;padding:.5rem 0;}
+@media(prefers-reduced-motion:reduce){.kq-integrated-moving .choice,.kq-integrated-falling{animation:none!important}}
+@media(max-width:500px){.kq-integrated-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.kq-integrated-choice{min-width:0;padding:.8rem .5rem;font-size:.96rem}}
+
+/* 試作5課題は共通のゲーム画面に専用の絵と回答UIを表示 */
+.kq-catch-integrated-mode #visualArea{display:none!important}

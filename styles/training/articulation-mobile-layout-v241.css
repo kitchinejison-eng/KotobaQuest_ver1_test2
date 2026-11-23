@@ -1,0 +1,174 @@
+/* ことばクエスト Ver.2.4.1: 構音ナビのスマートフォン専用レイアウト
+   PC/タブレットの既存3カラム表示、音声認識、出題と熟練度の処理は変更しない。 */
+.artnav-mobile-quick{display:none}
+/* スマートフォン縦/横。画面幅で切り替え、縦横の固定には依存しない。 */
+@media (max-width:720px){
+  #game.articulation-nav-mode .quiz-card{max-width:100%;min-width:0;overflow:visible}
+  #game.articulation-nav-mode #answerArea{min-width:0;max-width:100%;padding:0}
+  .artnav-v1{width:100%;min-width:0;max-width:100%;overflow-wrap:break-word}
+  .artnav-v1-banner{min-height:0;padding:9px 10px!important;border-radius:16px;gap:3px;box-shadow:none;border-width:2px}
+  .artnav-v1-banner h2{font-size:clamp(17px,4.7vw,21px);line-height:1.3;margin:2px 0}
+  .artnav-v1-banner p{font-size:12px;font-weight:700}
+  .artnav-v1-banner .artnav-v1-quest{font-size:10px;padding:3px 9px;margin-bottom:2px}
+  .artnav-v1-grid{display:flex!important;flex-direction:column;gap:12px;margin-top:10px}
+  .artnav-v1-practice{order:0;padding:10px!important;gap:0;border-radius:16px}
+  .artnav-v1-middle{order:1;padding:10px!important;border-radius:16px}
+  .artnav-v1-groups{order:2;padding:10px!important;border-radius:16px}
+
+  /* 口形と今回の音を先頭に。元の「分類」欄は後半へ。 */
+  .artnav-mobile-quick{display:grid;grid-template-columns:clamp(110px,31vw,136px) minmax(0,1fr);gap:11px;align-items:center;
+     min-width:0;padding:11px;background:linear-gradient(125deg,#fff7cd 0%,#fffcf0 68%,#eaf8ff 100%);
+     border:2px solid #deb14d;border-radius:17px;margin:0 0 10px}
+  .artnav-mobile-quick .artnav-mobile-mouth{display:grid;place-items:center;overflow:hidden;
+     width:100%;height:clamp(112px,32vw,140px);border-radius:16px;border:2px solid #d5a132;
+     background:#fff;box-shadow:0 2px 9px rgba(69,51,8,.12);font-size:38px}
+  .artnav-mobile-quick .artnav-v4-mouth-image{display:block;width:100%;height:100%;object-fit:contain}
+  .artnav-mobile-quick-body{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+  .artnav-mobile-quick-kicker{font-size:13px;font-weight:900;color:#365a66;line-height:1.3}
+  .artnav-mobile-kana{font-size:clamp(47px,12vw,64px);font-weight:900;line-height:1.18;color:#443d18;overflow-wrap:anywhere}
+  .artnav-mobile-group{font-size:clamp(15px,4vw,19px);line-height:1.4;font-weight:900;color:#214c5d;overflow-wrap:anywhere}
+  .artnav-mobile-quick-hint{margin:3px 0 0;font-size:12px;line-height:1.5;color:#536879}
+  .artnav-mobile-quick-progress{font-size:12px;color:#226d80;font-weight:800}
+  .artnav-mobile-quick-link{display:inline-flex;align-items:center;min-height:33px;margin-top:3px;font-size:13px;font-weight:900;color:#136e9d;text-decoration:underline;text-underline-offset:3px}
+  .artnav-v1-practice>h3{order:1;margin:0 0 7px;padding:9px 10px;font-size:17px}
+  .artnav-mobile-quick{order:0}
+  .artnav-v1-target{order:2;margin:2px 0 7px!important;padding:9px!important;font-size:clamp(17px,5vw,22px)!important;line-height:1.4;border-radius:12px}
+  .artnav-v1-voice-slot{order:3;flex:0 0 auto;min-width:0}
+  .artnav-v1-voice-slot .foundation-voice-panel{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:9px!important}
+  .artnav-v1-voice-slot .voice-read-action-card,.artnav-v1-voice-slot .voice-read-result-card{
+     width:100%;max-width:100%;min-width:0;height:auto;margin:0!important;padding:10px!important}
+  .artnav-v1-voice-slot .voice-read-example-btn,.artnav-v1-voice-slot .voice-read-mic-button,
+  .artnav-v1-voice-slot .voice-read-check-button{width:100%;min-width:0;min-height:54px;font-size:16px;
+     line-height:1.4;overflow-wrap:anywhere;touch-action:manipulation}
+  .artnav-v1-voice-slot .voice-read-mic-main{font-size:18px}
+  .artnav-v4-auto-notice{order:4;margin:9px 0 0;min-height:44px;padding:9px;font-size:13px}
+  .artnav-v1-skip{order:5;margin:8px 0 5px;min-height:50px;font-size:15px}
+  .artnav-v1-flow-label{order:6;padding:9px 0 6px;font-size:13px}
+  .artnav-v1-sounds{order:7;gap:6px;margin:0 0 4px}
+  .artnav-v1-sound{min-height:49px!important;font-size:clamp(20px,6vw,26px);border-radius:10px}
+  .artnav-v1-progress{order:8;margin-top:9px;padding:10px}
+  .artnav-v1-middle h3{font-size:17px;line-height:1.4;margin-bottom:7px}
+  .artnav-v1-diagram{padding:0}
+  .artnav-v1-part-label{font-size:clamp(9px,2.6vw,12px)!important;padding:3px 5px!important;line-height:1.1}
+  .artnav-v1-action,.artnav-v1-guide{font-size:14px;line-height:1.6}
+  .artnav-v1 .articulation-nav-live-status{font-size:14px;line-height:1.6}
+  .artnav-v1-groups>h3{font-size:17px}
+  /* 先頭で大きく表示するため、分類欄の重複した小さい口形カードは省く。 */
+  .artnav-v1-groups .artnav-v4-current-card{display:none!important}
+  .artnav-v1-groups .artnav-v5-mouth-note{margin-top:1px}
+  .artnav-v5-sound-card,.artnav-v5-detail-card{padding:12px}
+  .artnav-v5-field-label{font-size:14px}
+  .artnav-v5-current-kana{font-size:42px}
+  .artnav-v4-guide-description,.artnav-v4-guide-tip{font-size:14px;line-height:1.65}
+  .artnav-v1-footnote{font-size:12px;line-height:1.65;margin:11px 1px}
+  .artnav-mobile-quick-link:focus-visible{outline:3px solid #0b74bd;outline-offset:3px;border-radius:4px}
+}
+/* 小型スマートフォン(320px程度)も2列を維持し、口形を優先する。 */
+@media (max-width:365px){
+ .artnav-mobile-quick{grid-template-columns:100px minmax(0,1fr);gap:8px;padding:8px}
+ .artnav-mobile-quick .artnav-mobile-mouth{height:108px}
+ .artnav-mobile-kana{font-size:43px}
+ .artnav-mobile-group{font-size:15px}
+ .artnav-mobile-quick-hint{font-size:11px}
+ .artnav-v1-practice{padding:8px!important}
+}
+/* PCブラウザの「モバイル表示モード」も実端末と同じ順番にする。 */
+html.kq-pc-mobile-view .artnav-mobile-quick{display:grid;grid-template-columns:126px minmax(0,1fr)}
+html.kq-pc-mobile-view .artnav-mobile-quick .artnav-mobile-mouth{height:128px}
+html.kq-pc-mobile-view .artnav-v1-grid{display:flex!important;flex-direction:column!important;gap:12px}
+html.kq-pc-mobile-view .artnav-v1-practice{order:0}
+html.kq-pc-mobile-view .artnav-v1-middle{order:1}
+html.kq-pc-mobile-view .artnav-v1-groups{order:2}
+html.kq-pc-mobile-view .artnav-v1-groups .artnav-v4-current-card{display:none!important}
+html.kq-pc-mobile-view .artnav-v1-practice>h3{order:1}
+html.kq-pc-mobile-view .artnav-mobile-quick{order:0}
+html.kq-pc-mobile-view .artnav-v1-target{order:2}
+html.kq-pc-mobile-view .artnav-v1-voice-slot{order:3}
+html.kq-pc-mobile-view .artnav-v4-auto-notice{order:4}
+html.kq-pc-mobile-view .artnav-v1-skip{order:5}
+html.kq-pc-mobile-view .artnav-v1-flow-label{order:6}
+html.kq-pc-mobile-view .artnav-v1-sounds{order:7}
+html.kq-pc-mobile-view .artnav-v1-progress{order:8}
+
+/* タブレット縦：もともと1列になる幅では、マイクを最後にしない。 */
+@media (min-width:721px) and (max-width:950px) and (orientation:portrait){
+ .artnav-v1-grid{display:flex!important;flex-direction:column;gap:14px}
+ .artnav-v1-practice{order:0}
+ .artnav-v1-middle{order:1}
+ .artnav-v1-groups{order:2}
+ .artnav-v1-practice>h3{order:1}
+ .artnav-mobile-quick{display:grid;grid-template-columns:140px minmax(0,1fr);gap:15px;align-items:center;
+   border:2px solid #deb14d;border-radius:18px;background:#fff9dd;padding:14px;margin-bottom:12px}
+ .artnav-mobile-quick .artnav-mobile-mouth{height:140px;display:grid;place-items:center;background:#fff;
+   border:2px solid #d5a132;border-radius:16px;overflow:hidden}
+ .artnav-mobile-quick .artnav-v4-mouth-image{max-width:100%;max-height:100%;object-fit:contain}
+ .artnav-mobile-quick-body{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+ .artnav-mobile-quick-kicker{font-size:14px;font-weight:900}
+ .artnav-mobile-kana{font-size:62px;line-height:1.12;color:#443d18}
+ .artnav-mobile-group{font-size:22px;font-weight:900;color:#214c5d}
+ .artnav-mobile-quick-progress{font-size:14px;color:#226d80;font-weight:800}
+ .artnav-mobile-quick-hint{font-size:14px;line-height:1.5;margin:2px 0}
+ .artnav-mobile-quick-link{font-size:14px;color:#136e9d;text-decoration:underline;min-height:34px}
+ .artnav-v1-practice{display:flex;flex-direction:column}
+ .artnav-v1-target{order:2}
+ .artnav-v1-voice-slot{order:3;flex:0 0 auto}
+ .artnav-v4-auto-notice{order:4}
+ .artnav-v1-skip{order:5}
+ .artnav-v1-flow-label{order:6}
+ .artnav-v1-sounds{order:7}
+ .artnav-v1-progress{order:8}
+ .artnav-v1-groups .artnav-v4-current-card{display:none!important}
+}
+/* PCのモバイル表示モード: 広いディスプレイ上でも同じカード配置を再現 */
+html.kq-pc-mobile-view .artnav-v1-practice{display:flex;flex-direction:column;padding:10px!important}
+html.kq-pc-mobile-view .artnav-v1-banner{min-height:0;padding:10px!important;border-radius:16px}
+html.kq-pc-mobile-view .artnav-mobile-quick{align-items:center;gap:11px;min-width:0;
+  padding:12px;margin:0 0 10px;border:2px solid #deb14d;border-radius:17px;
+  background:linear-gradient(125deg,#fff7cd,#eaf8ff)}
+html.kq-pc-mobile-view .artnav-mobile-mouth{display:grid;place-items:center;overflow:hidden;width:100%;
+  border:2px solid #d5a132;border-radius:16px;background:#fff}
+html.kq-pc-mobile-view .artnav-mobile-quick .artnav-v4-mouth-image{display:block;width:100%;height:100%;object-fit:contain}
+html.kq-pc-mobile-view .artnav-mobile-quick-body{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
+html.kq-pc-mobile-view .artnav-mobile-quick-kicker{font-size:13px;font-weight:900;color:#365a66}
+html.kq-pc-mobile-view .artnav-mobile-kana{font-size:54px;font-weight:900;line-height:1.2;color:#443d18}
+html.kq-pc-mobile-view .artnav-mobile-group{font-size:18px;font-weight:900;color:#214c5d}
+html.kq-pc-mobile-view .artnav-mobile-quick-progress{font-size:12px;font-weight:800;color:#226d80}
+html.kq-pc-mobile-view .artnav-mobile-quick-hint{font-size:12px;line-height:1.5;color:#536879;margin:3px 0}
+html.kq-pc-mobile-view .artnav-mobile-quick-link{font-size:13px;min-height:34px;color:#136e9d;text-decoration:underline}
+html.kq-pc-mobile-view .artnav-v1-voice-slot .foundation-voice-panel{display:grid!important;grid-template-columns:minmax(0,1fr)!important}
+html.kq-pc-mobile-view .artnav-v1-voice-slot .voice-read-example-btn,
+html.kq-pc-mobile-view .artnav-v1-voice-slot .voice-read-mic-button{width:100%;min-height:54px}
+html.kq-pc-mobile-view .artnav-v1-voice-slot .voice-read-action-card{margin:0!important}
+
+/* 横向きのスマートフォン（例: 844×390）も、3列の縮小表示を避ける。 */
+@media (orientation:landscape) and (max-height:480px) and (min-width:721px) and (max-width:950px){
+ .artnav-v1-grid{display:flex!important;flex-direction:column;gap:10px}
+ .artnav-v1-practice{order:0;display:flex;flex-direction:column;padding:10px}
+ .artnav-v1-middle{order:1}
+ .artnav-v1-groups{order:2}
+ .artnav-mobile-quick{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;
+   padding:10px;margin-bottom:10px;border-radius:16px;border:2px solid #deb14d;background:#fff9dd}
+ .artnav-mobile-quick .artnav-mobile-mouth{width:118px;height:118px;display:grid;place-items:center;
+   background:white;border:2px solid #d5a132;border-radius:16px;overflow:hidden}
+ .artnav-mobile-quick .artnav-v4-mouth-image{max-width:100%;max-height:100%;object-fit:contain}
+ .artnav-mobile-quick-body{display:flex;flex-direction:column;gap:3px}
+ .artnav-mobile-quick-kicker{font-size:13px;font-weight:900}
+ .artnav-mobile-kana{font-size:48px;font-weight:900;line-height:1.15}
+ .artnav-mobile-group{font-size:18px;font-weight:900}
+ .artnav-mobile-quick-progress{font-size:12px;font-weight:800}
+ .artnav-mobile-quick-hint{font-size:12px;margin:0}
+ .artnav-mobile-quick-link{font-size:13px;min-height:30px}
+ .artnav-v1-practice>h3{order:1}
+ .artnav-v1-target{order:2}
+ .artnav-v1-voice-slot{order:3;flex:0 0 auto}
+ .artnav-v4-auto-notice{order:4}
+ .artnav-v1-skip{order:5}
+ .artnav-v1-flow-label{order:6}
+ .artnav-v1-sounds{order:7}
+ .artnav-v1-progress{order:8}
+ .artnav-v1-groups .artnav-v4-current-card{display:none!important}
+}
+
+/* 発音の動作を短い太字で提示。長文になっても折り返す。 */
+.artnav-mobile-action{display:block;font-size:14px;line-height:1.45;font-weight:900;color:#7b5109;overflow-wrap:anywhere}
+@media (max-width:365px){.artnav-mobile-action{font-size:12px}}

@@ -1,0 +1,67 @@
+/* Ver2.5.0: 〜600px スマートフォン、601〜1024px タブレット、1025px〜 PC */
+@media(max-width:600px){
+ .app{width:100%;max-width:100%;min-width:0;padding-left:max(9px,env(safe-area-inset-left,0px));padding-right:max(9px,env(safe-area-inset-right,0px))}
+ #game .quiz-card,#settings .settings-panel{min-width:0;max-width:100%}
+ #answerArea button{touch-action:manipulation}
+ #game .screen-head-title{overflow-wrap:anywhere}
+ .artnav-v1-voice-slot button{min-height:54px}
+}
+/* タブレット用レイアウト。スマホの単純拡大ではなく、2カラム＋大きなタッチ領域。 */
+@media(min-width:601px) and (max-width:1024px){
+ .app{width:100%;max-width:1000px;margin:0 auto;padding-left:clamp(16px,3vw,28px);padding-right:clamp(16px,3vw,28px)}
+ #titleScreen.title-screen.active{display:flex;flex-direction:column;gap:18px;justify-content:center}
+ #titleScreen .title-layout{display:grid!important;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important;gap:22px!important;max-width:900px;width:100%;margin:auto;align-items:center}
+ #titleScreen .title-identity{min-width:0}
+ #titleScreen .title-actions{min-width:0}
+ #home .category-grid,#home .genre-grid,.category-grid,.genre-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #game .quiz-card{max-width:940px;margin-inline:auto;padding:20px!important}
+ #game #answerArea{min-width:0}
+ .artnav-v1-grid{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)!important;gap:14px!important}
+ .artnav-v1-practice{grid-column:1/-1;grid-row:1;display:flex;flex-direction:column}
+ .artnav-v1-middle{grid-column:1;grid-row:2;min-width:0}
+ .artnav-v1-groups{grid-column:2;grid-row:2;min-width:0}
+ .artnav-mobile-quick{display:grid!important;grid-template-columns:clamp(138px,22vw,186px) minmax(0,1fr)!important;gap:16px!important;max-width:100%;align-items:center}
+ .artnav-mobile-quick .artnav-mobile-mouth{height:170px!important;min-width:0}
+ .artnav-mobile-kana{font-size:clamp(48px,6vw,70px)!important}
+ .artnav-mobile-group{font-size:clamp(19px,2.5vw,25px)!important}
+ .artnav-v1-practice .foundation-voice-panel{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .artnav-v1-voice-slot .voice-read-example-btn,.artnav-v1-voice-slot .voice-read-mic-button{min-height:58px}
+ .artnav-v1-groups .artnav-v4-current-card{display:none!important}
+ .kq-catch-track{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .kq-catch-target{min-height:96px!important}
+}
+/* PCブラウザのタブレット表示確認モードだけ。実際のタブレットは上記の自動判定を使用。 */
+html.kq-pc-tablet-view body{max-width:850px!important;min-width:0;margin:0 auto;box-shadow:0 0 0 8px #dbe5ef,0 0 25px #899aaa45;overflow-x:hidden}
+html.kq-pc-tablet-view .app{max-width:850px!important;width:100%!important;padding:16px 18px 30px!important}
+html.kq-pc-tablet-view #titleScreen .title-layout{display:grid!important;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important;gap:20px!important}
+html.kq-pc-tablet-view #home .category-grid,html.kq-pc-tablet-view #home .genre-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+html.kq-pc-tablet-view .artnav-v1-grid{display:grid!important;grid-template-columns:1.1fr 1fr!important;gap:14px!important}
+html.kq-pc-tablet-view .artnav-v1-practice{grid-column:1/-1!important;grid-row:1}
+html.kq-pc-tablet-view .artnav-v1-middle{grid-column:1!important;grid-row:2}
+html.kq-pc-tablet-view .artnav-v1-groups{grid-column:2!important;grid-row:2}
+html.kq-pc-tablet-view .artnav-mobile-quick{display:grid!important;grid-template-columns:160px minmax(0,1fr)!important;gap:15px}
+html.kq-pc-tablet-view .artnav-mobile-quick .artnav-mobile-mouth{height:160px!important}
+html.kq-pc-tablet-view .artnav-v1-groups .artnav-v4-current-card{display:none!important}
+#kqSePreviewBtn{margin-top:8px;border:2px solid var(--app-border,#b4d0e0);background:var(--app-main-soft,#eef7ff);color:var(--app-main-dark,#15528c);border-radius:12px;min-height:46px;padding:9px 14px;font-size:15px;font-weight:800}
+#kqSePreviewStatus{margin:4px 0 10px;font-size:13px;color:#4b5e70;line-height:1.5}
+/* 横向きのスマートフォンは幅が広くてもタブレット扱いにしない。 */
+@media (orientation:landscape) and (max-height:560px) and (pointer:coarse){
+ #titleScreen .title-layout{display:flex!important;flex-direction:column!important;max-width:520px!important;gap:8px!important}
+ #home .category-grid,#home .genre-grid,.category-grid,.genre-grid{grid-template-columns:minmax(0,1fr)!important}
+ .artnav-v1-grid{display:flex!important;flex-direction:column!important}
+ .artnav-v1-practice,.artnav-v1-middle,.artnav-v1-groups{grid-column:auto!important;grid-row:auto!important}
+ .artnav-mobile-quick{grid-template-columns:110px minmax(0,1fr)!important}
+ .artnav-mobile-quick .artnav-mobile-mouth{height:115px!important}
+}
+/* iPad Proなど横幅の広いタッチ式タブレットもタブレットレイアウトにする。 */
+@media (pointer:coarse) and (min-width:1025px) and (max-width:1400px) and (min-height:600px){
+ #titleScreen .title-layout{display:grid!important;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important;gap:28px!important}
+ #home .category-grid,#home .genre-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .artnav-v1-grid{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:16px!important}
+ .artnav-v1-practice{grid-column:1/-1;grid-row:1}
+ .artnav-v1-middle{grid-column:1;grid-row:2}
+ .artnav-v1-groups{grid-column:2;grid-row:2}
+ .artnav-mobile-quick{display:grid!important;grid-template-columns:190px minmax(0,1fr)!important}
+ .artnav-mobile-quick .artnav-mobile-mouth{height:180px!important}
+ .artnav-v1-groups .artnav-v4-current-card{display:none!important}
+}

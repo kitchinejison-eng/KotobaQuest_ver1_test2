@@ -1,0 +1,51 @@
+/* Ver2.5.0: メイントレーニング内部で動作する5つのキャッチ系ゲーム用。 */
+.kq-catch-game-area{width:100%;min-width:0}
+.kq-catch-game-stage{--catch-accent:var(--app-main,#1976d2);--catch-soft:var(--app-main-soft,#e7f4ff);border:2px solid var(--app-border,#bdd9ec);border-radius:20px;padding:clamp(12px,2vw,20px);background:linear-gradient(160deg,#fff,var(--catch-soft));position:relative;isolation:isolate;overflow:hidden;min-width:0}
+.kq-catch-game-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--app-border,#cde0ef);padding-bottom:10px}
+.kq-catch-game-head-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.kq-catch-game-head-copy small{font-size:12px;font-weight:700;color:#56697c}
+.kq-catch-game-head-copy strong{font-size:clamp(17px,2.6vw,22px);color:var(--app-main-dark,#124b75)}
+.kq-catch-combo{border:2px solid var(--app-border,#bdd9ec);border-radius:22px;padding:7px 12px;font-size:13px;font-weight:800;color:var(--app-main-dark,#124b75);background:#fff}
+.kq-catch-instruction{font-size:clamp(13px,1.7vw,16px);line-height:1.65;color:#3c5367;margin:10px 0}
+.kq-catch-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.kq-catch-mode-btn{min-height:42px;border-radius:12px;padding:8px 13px;border:2px solid var(--app-border,#bad5e4);background:#fff;color:#264e69;font-size:14px;font-weight:850;cursor:pointer}
+.kq-catch-access-note{font-size:12px;color:#53697c}
+.kq-catch-scene{display:grid;place-items:center;min-height:clamp(125px,22vw,215px);border-radius:16px;background:repeating-linear-gradient(0deg,transparent 0 29px,rgba(72,145,185,.08) 30px 31px),linear-gradient(135deg,#fff,#e1eff9);border:2px solid var(--app-border,#bdd9ec);overflow:hidden}
+.kq-catch-sprite{display:block;font-size:clamp(70px,12vw,118px);line-height:1.3;animation:kq250-bounce 2.1s ease-in-out infinite alternate}
+.kq-catch-question{font-size:clamp(18px,3vw,25px);font-weight:900;line-height:1.6;color:#243d50;margin:14px 0}
+.kq-catch-track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:13px;min-height:80px;align-items:stretch}
+.kq-catch-target{width:100%;min-width:0;min-height:clamp(72px,11vw,102px)!important;border:3px solid var(--app-border,#bdd9ec)!important;border-radius:18px!important;background:#fff!important;color:#193c59!important;font-weight:900!important;font-size:clamp(17px,2.3vw,23px)!important;box-shadow:0 4px 0 rgba(36,80,105,.12);overflow-wrap:anywhere;cursor:pointer;touch-action:manipulation;transition:box-shadow .15s,border-color .15s}
+.kq-catch-target:not(:disabled):focus-visible{outline:4px solid var(--catch-accent);outline-offset:3px}
+.kq-catch-target:not(:disabled):active{box-shadow:0 1px 0 #9daeba;filter:brightness(.95)}
+.kq-catch-game-stage:not(.kq-catch-calm) .kq-catch-target:not(:disabled){animation:kq250-drift 3.8s ease-in-out infinite alternate;animation-delay:calc(var(--track-i,0)*-.45s)}
+.kq-catch-game-stage:not(.kq-catch-calm) .kq-catch-track{background-image:linear-gradient(90deg,transparent,rgba(60,145,204,.11),transparent);background-size:210% 100%;animation:kq250-lane 7s linear infinite}
+.kq-catch-target-hit{border-color:#16864e!important;background:#dcf9e9!important;animation:none!important;transform:scale(1.04)!important}
+.kq-catch-target-miss{border-color:#b04f54!important;background:#ffe9eb!important;animation:none!important}
+.kq-catch-hit .kq-catch-combo{background:#e3fae8;border-color:#208a50;color:#155b32}
+.kq-catch-miss .kq-catch-combo{background:#fff1ee;border-color:#cb8888}
+.kq-catch-speech{padding:18px;background:#fff;border:2px solid var(--app-border,#bdd9ec);border-radius:16px;text-align:center;font-size:clamp(19px,3.7vw,31px);line-height:1.75;font-weight:900;overflow-wrap:anywhere}
+.kq-catch-beats{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;margin:14px 0;min-height:34px}
+.kq-catch-beat{background:#e2e8ed;border-radius:10px;border:1px solid #a9bbc7}
+.kq-catch-beat.active{background:var(--app-main,#1976d2);border-color:var(--app-main-dark,#164c79);animation:kq250-pulse .2s ease-out}
+.kq-catch-beat-status{text-align:center;font-size:22px;font-weight:900;color:var(--app-main-dark,#164c79)}
+.kq-catch-beat-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+.kq-catch-tap-btn{grid-column:1/-1;border:2px solid var(--app-main,#1976d2);background:var(--app-main-soft,#e8f4ff);min-height:94px;border-radius:18px;font-size:23px;font-weight:900;color:var(--app-main-dark,#164c79)}
+.kq-catch-submit-btn{min-height:52px!important;border-radius:12px}
+.kq-catch-scene-label{padding:10px 14px;background:#fff;border:1px solid var(--app-border,#bdd9ec);border-radius:12px;font-size:18px;font-weight:800}
+.kq-catch-role-progress{text-align:center;font-size:15px;font-weight:900;color:var(--app-main-dark,#164c79);padding:9px}
+.kq-catch-role-scene{display:flex;flex-direction:column;gap:13px}
+.kq-catch-role-row{display:flex;align-items:flex-start;gap:12px}
+.kq-catch-role-avatar{display:grid;place-items:center;flex:0 0 52px;width:52px;height:52px;border-radius:50%;background:var(--app-main,#1976d2);color:#fff;font-size:24px;font-weight:1000}
+.kq-catch-role-bubble{flex:1;min-width:0;padding:14px 16px;background:#fff;border:2px solid var(--app-border,#bdd9ec);border-radius:17px;font-size:clamp(18px,2.4vw,23px);line-height:1.6;font-weight:800;margin:0}
+.kq-catch-role-next{min-height:60px;border:2px solid var(--app-main-dark,#1b5a90);border-radius:14px;background:var(--app-main,#1976d2);color:#fff;font-size:18px;font-weight:900}
+@keyframes kq250-drift{from{transform:translate(-7px,5px)}to{transform:translate(7px,-5px)}}
+@keyframes kq250-lane{from{background-position:100% 0}to{background-position:-100% 0}}
+@keyframes kq250-bounce{from{transform:translateY(-12px) rotate(-3deg)}to{transform:translateY(12px) rotate(3deg)}}
+@keyframes kq250-pulse{0%{transform:scale(.65)}100%{transform:scale(1)}}
+.kq-catch-game-stage.kq-catch-calm *{animation:none!important}
+@media(max-width:600px){.kq-catch-game-stage{padding:12px;border-radius:15px}.kq-catch-game-head-copy strong{font-size:17px}.kq-catch-target{min-height:75px!important;font-size:17px!important;padding:10px 6px!important}.kq-catch-track{gap:8px}.kq-catch-role-avatar{width:43px;height:43px;flex-basis:43px}.kq-catch-role-bubble{padding:10px 12px}.kq-catch-beats{gap:2px}}
+@media(prefers-reduced-motion:reduce){.kq-catch-target,.kq-catch-sprite,.kq-catch-track,.kq-catch-beat{animation:none!important}}
+
+.kq-catch-sprite{border:0;background:transparent;cursor:pointer;min-width:105px;min-height:118px;touch-action:manipulation}
+.kq-catch-sprite:focus-visible{outline:4px solid var(--app-main,#1976d2);border-radius:16px}
+.kq-catch-sprite-grabbed{animation:none!important;transform:scale(1.12);filter:drop-shadow(0 4px 8px #70b5a2)}

@@ -1,0 +1,43 @@
+/* ことばクエスト Ver2.3.9 PCブラウザ専用表示モード */
+#kqBrowserDisplayPanel[hidden]{display:none!important}
+.kq-display-choice{margin:10px 0 8px;padding:0;border:0;display:grid;gap:10px;min-width:0}
+.kq-display-choice legend{font-size:14px;font-weight:900;margin-bottom:8px;color:#365d72}
+.kq-display-option{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:2px solid #dae5ef;border-radius:14px;cursor:pointer}
+.kq-display-option:has(input:checked){border-color:#277dd0;background:#edf7ff}
+.kq-display-option input{width:22px;height:22px;accent-color:#1976d2;flex-shrink:0}
+.kq-display-option span{display:flex;flex-direction:column;gap:3px;min-width:0}
+.kq-display-option strong{font-size:16px;line-height:1.35;color:#244b66}
+.kq-display-option small{font-size:12px;line-height:1.55;color:#5b6d7c}
+/* Simulated narrow display only on an eligible desktop browser. Actual mobile/tablet devices stay unchanged. */
+html.kq-pc-mobile-view body{max-width:440px!important;min-width:0;margin:0 auto;box-shadow:0 0 0 8px #dfebf2,0 0 24px #96afc45a;overflow-x:hidden}
+html.kq-pc-mobile-view .app{width:100%!important;max-width:440px!important;min-width:0!important;min-height:100dvh;padding:12px 10px 36px!important}
+html.kq-pc-mobile-view .screen{max-width:100%;min-width:0}
+html.kq-pc-mobile-view #titleScreen.title-screen.active{min-height:100dvh;justify-content:flex-start;gap:14px;padding:16px 10px 25px!important}
+html.kq-pc-mobile-view #titleScreen .title-layout{grid-template-columns:minmax(0,1fr)!important;max-width:420px!important;gap:16px!important;align-items:center!important}
+html.kq-pc-mobile-view #titleScreen .title-identity{gap:8px!important}
+html.kq-pc-mobile-view #titleScreen .title-brand{font-size:15px!important;padding:6px 16px!important;min-height:34px!important}
+html.kq-pc-mobile-view #titleScreen .title-logo-wrap{width:110px!important;margin:2px auto!important;padding:5px!important}
+html.kq-pc-mobile-view #titleScreen .title-mark-letter{font-size:75px!important}
+html.kq-pc-mobile-view #titleScreen .title-name{font-size:36px!important}
+html.kq-pc-mobile-view #titleScreen .title-sub{font-size:13px!important}
+html.kq-pc-mobile-view #titleScreen .title-menu{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+html.kq-pc-mobile-view #titleScreen .title-menu .menu-button{grid-template-columns:50px minmax(0,1fr) 26px!important;gap:10px!important;min-height:75px!important;padding:10px 12px!important;border-radius:18px!important}
+html.kq-pc-mobile-view #titleScreen .title-menu .menu-icon{width:48px!important;height:48px!important;font-size:26px!important}
+html.kq-pc-mobile-view #titleScreen .title-menu .menu-button strong{font-size:18px!important}
+html.kq-pc-mobile-view #titleScreen .title-menu .menu-button small{font-size:12px!important;margin-top:3px!important}
+html.kq-pc-mobile-view #titleScreen .title-bottom{flex-direction:column!important;gap:10px!important;margin-top:10px!important}
+html.kq-pc-mobile-view #home .category-grid,html.kq-pc-mobile-view .category-grid{grid-template-columns:minmax(0,1fr)!important}
+html.kq-pc-mobile-view #home .genre-grid,html.kq-pc-mobile-view .genre-grid{grid-template-columns:minmax(0,1fr)!important}
+html.kq-pc-mobile-view .theme-choices{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+html.kq-pc-mobile-view .choices,html.kq-pc-mobile-view .rm-options{grid-template-columns:minmax(0,1fr)!important}
+html.kq-pc-mobile-view .artnav-v1-grid{grid-template-columns:minmax(0,1fr)!important}
+html.kq-pc-mobile-view .artnav-v4-current-card{display:grid!important;grid-template-columns:74px minmax(0,1fr)!important;text-align:left!important;min-height:100px!important;padding:10px!important}
+html.kq-pc-mobile-view .artnav-v4-current-icon{width:70px!important;height:63px!important}
+html.kq-pc-mobile-view .artnav-v5-detail-card strong{font-size:17px!important}
+html.kq-pc-mobile-view .artnav-v5-group-copy>strong{font-size:20px!important}
+html.kq-pc-mobile-view .artnav-v5-group-copy>span:last-child{font-size:12px!important}
+html.kq-pc-mobile-view #game .quiz-card,html.kq-pc-mobile-view #settings .settings-panel{padding:13px!important;min-width:0;max-width:100%}
+html.kq-pc-mobile-view .screen-head{grid-template-columns:42px minmax(0,1fr) 42px!important;min-height:54px!important;gap:5px!important}
+html.kq-pc-mobile-view .screen-head-title{font-size:19px!important}
+html.kq-pc-mobile-view .kq-plan-grid,html.kq-pc-mobile-view .rm-story-controls,html.kq-pc-mobile-view .rm-result-actions{grid-template-columns:minmax(0,1fr)!important}
+@media(max-width:480px){html.kq-pc-mobile-view body{box-shadow:none}}

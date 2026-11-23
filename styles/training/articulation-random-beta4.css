@@ -33,3 +33,44 @@
   .artnav-v4-guide-tip{font-size:12px;padding:7px 9px}
   .artnav-v4-auto-notice{min-height:50px;font-size:13px}
 }
+
+/* 2026-11-19: replace current articulation group emoji with the supplied vowel-mouth PNG. */
+.artnav-v4-current-icon { width:92px; height:82px; overflow:hidden; font-size:35px; }
+.artnav-v4-current-icon .artnav-v4-mouth-image { display:block; width:100%; height:100%; object-fit:contain; flex-shrink:0; }
+@media (orientation:portrait) {
+  .artnav-v4-current-card { grid-template-columns:76px 1fr; }
+  .artnav-v4-current-icon { width:74px; height:64px; }
+}
+@media (max-width:620px) {
+  .artnav-v4-current-card { grid-template-columns:68px 1fr; }
+  .artnav-v4-current-icon { width:64px; height:58px; }
+}
+
+/* 2026-11-19: 総称・五十音・小分類を区別した構音ナビゲーション */
+.artnav-v5-field-label{display:block;font-size:12px;font-weight:900;color:#365d72;letter-spacing:.02em}
+.artnav-v5-group-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.artnav-v5-group-copy>strong{font-size:clamp(20px,2vw,26px)}
+.artnav-v5-group-copy>span:last-child{font-size:13px;line-height:1.5;font-weight:700;color:#526879}
+.artnav-v5-mouth-note{margin:0 3px;font-size:11px;line-height:1.55;color:#5e6b77}
+.artnav-v5-sound-card,.artnav-v5-detail-card{border-radius:14px;border:1.5px solid #bdd7df;background:#f5fcff;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.artnav-v5-sound-card{background:#fff9e8;border-color:#e8c77b}
+.artnav-v5-current-kana{font-size:clamp(38px,4vw,52px);line-height:1.1;color:#4d451d}
+.artnav-v5-kana-position{font-size:13px;font-weight:800;color:#6d6652}
+.artnav-v5-detail-card strong{font-size:clamp(17px,1.8vw,22px);color:#245b6d;line-height:1.35;overflow-wrap:anywhere}
+.artnav-v5-detail-card>span:last-child{font-size:13px;font-weight:700;color:#496675}
+.artnav-v5-fifty-reference{border:1px solid #b8d6e0;border-radius:12px;background:#fff;padding:9px}
+.artnav-v5-fifty-reference summary{cursor:pointer;font-weight:900;font-size:13px;color:#176a81;line-height:1.5}
+.artnav-v5-fifty-reference summary:focus-visible{outline:3px solid #168bd5;outline-offset:3px}
+.artnav-v5-table-scroll{overflow-x:auto;max-width:100%;margin-top:9px}
+.artnav-v5-fifty-reference table{border-collapse:collapse;width:100%;min-width:230px;font-size:clamp(11px,1.15vw,14px);text-align:center}
+.artnav-v5-fifty-reference caption{font-weight:800;color:#3d6072;padding-bottom:5px}
+.artnav-v5-fifty-reference th,.artnav-v5-fifty-reference td{padding:5px 3px;border:1px solid #d1e1e9}
+.artnav-v5-fifty-reference th{background:#e9f5f8;color:#24556a}
+.artnav-v5-fifty-reference td.is-current{background:#ffdc61;color:#573b00;font-weight:900;box-shadow:inset 0 0 0 2px #d48b06}
+.artnav-v5-fifty-reference p{font-size:11px;line-height:1.55;color:#59707d;margin:9px 0 0}
+@media (max-width:620px){
+  .artnav-v4-current-card{align-items:center}
+  .artnav-v5-group-copy>strong{font-size:20px}
+  .artnav-v5-group-copy>span:last-child{font-size:12px}
+  .artnav-v5-detail-card strong{font-size:17px}
+}
