@@ -2,7 +2,7 @@
 // 移動するとキャッシュ適用範囲が変わるため、scripts/へは移していません。
 // 画像・JS・CSSのパスを変更した場合は APP_SHELL の参照先も合わせてください。
 // Previous offline cache: kotoba-quest-ver1.2.0-pc-r2
-const CACHE_NAME = 'kotoba-quest-ver2.5.2-ai-integration-20261121';
+const CACHE_NAME = 'kotoba-quest-ver2.5.4a-event-images-20261123';
 // Cache the small application shell during installation. Large photos, sound
 // and optional recognition resources are cached only when actually requested.
 // Runtime shell only. Optional 3D pages, images, media and training modes
@@ -26,6 +26,27 @@ const APP_SHELL = [
   "./scripts/games/print-drills.js?v=69",
   "./logo.html",
   "./opening-event.html",
+  "./images/story/1_oji.png",
+  "./images/story/2_neko.webp",
+  "./images/story/2_oji.png",
+  "./images/story/3_neko2.webp",
+  "./images/story/3_sirasu.webp",
+  "./images/story/avatar_default_01.png",
+  "./images/story/avatar_default_02.png",
+  "./images/story/avatar_default_03.png",
+  "./images/story/avatar_default_04.png",
+  "./images/story/back_1.jpg",
+  "./images/story/back_2.jpg",
+  "./images/story/back_3.jpg",
+  "./images/story/back_4.jpg",
+  "./images/story/back_5.jpg",
+  "./images/story/cat_05_1.png",
+  "./images/story/cat_05_2.png",
+  "./images/story/cat_1.png",
+  "./images/story/cat_1_crop.png",
+  "./images/story/cat_1_crop2.png",
+  "./images/story/cat_1_crop_2.png",
+  "./images/story/m_e1097_0.png",
   "./manifest.webmanifest?v=121-image-org",
   "./manifest-premium.webmanifest",
   "./images/app-icons/icon-premium-192.png",

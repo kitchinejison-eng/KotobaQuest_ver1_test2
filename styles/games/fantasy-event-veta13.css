@@ -44,3 +44,7 @@
 @media (prefers-reduced-motion:reduce) {
   .event-bg,.event-character,.event-character.rare-event { animation:none!important; }
 }
+
+/* Ver2.5.4a: the event can continue if all portrait URLs fail. */
+.event-character.character-load-failed::before {content:'🐈';position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(75px,16vw,135px);}
+.event-character.character-load-failed img {opacity:0;}

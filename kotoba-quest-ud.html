@@ -1210,9 +1210,9 @@ const EVENT_CHARACTER_PROFILES = [
   {name:'大根猫',image:'images/story/cat_1_crop2.png?v=69',greeting:['にゃーん！大根猫だよ！','元気いっぱい、大根猫が来たよ！'],welcome:['今日も言葉の力を試してみよう！'],advice:['ゆっくり考えれば大丈夫。'],finish:['いっしょに冒険へ行こう！']},
   {name:'かぼちゃおじいさん',image:'images/story/1_oji.png?v=69',rareImages:['images/story/2_oji.png?v=69'],greeting:['ほっほっほ、わしはかぼちゃおじいさんじゃ。','よく来たのう。わしが案内しよう。'],welcome:['言葉の冒険へようこそ。'],advice:['あわてず、よく見て考えるのじゃ。'],finish:['さあ、旅立ちの時じゃ！']},
   {name:'黒丸',image:'images/story/cat_05_1.png?v=69',rareImages:['images/story/cat_05_2.png?v=69'],greeting:['ぼくは黒丸。よろしく。','にゃっ、黒丸だよ。'],welcome:['いっしょに言葉の冒険を楽しもう。'],advice:['ひとつずつ、落ち着いて進もう。'],finish:['準備ができたら出発だよ。']},
-  {name:'こねこ',image:'images/story/2_neko.webp?v=69',greeting:['こんにちは！いっしょに冒険しよう！'],welcome:['今日も新しい言葉に出会おう！'],advice:['まちがえても大丈夫。もう一度やってみよう。'],finish:['さあ、冒険に出発だ！']},
-  {name:'しらす隊長',image:'images/story/3_sirasu.webp?v=69',greeting:['冒険者よ、よく来た！'],welcome:['一問ずつ、落ち着いて進もう。'],advice:['問題文を最後まで読もう。'],finish:['訓練開始！健闘を祈る！']},
-  {name:'クロ',image:'images/story/3_neko2.webp?v=69',greeting:['ニャッ！ことばの世界へようこそ。'],welcome:['一緒に言葉を探しに行こう。'],advice:['選択肢をゆっくり見くらべるんだ。'],finish:['さあ、冒険を始めよう！']},
+  {name:'こねこ',image:'images/story/2_neko.webp?v=254a-event',legacyImage:'images/story/2_neko.PNG?v=254a-event',greeting:['こんにちは！いっしょに冒険しよう！'],welcome:['今日も新しい言葉に出会おう！'],advice:['まちがえても大丈夫。もう一度やってみよう。'],finish:['さあ、冒険に出発だ！']},
+  {name:'しらす隊長',image:'images/story/3_sirasu.webp?v=254a-event',legacyImage:'images/story/3_sirasu.PNG?v=254a-event',greeting:['冒険者よ、よく来た！'],welcome:['一問ずつ、落ち着いて進もう。'],advice:['問題文を最後まで読もう。'],finish:['訓練開始！健闘を祈る！']},
+  {name:'クロ',image:'images/story/3_neko2.webp?v=254a-event',legacyImage:'images/story/3_neko2.PNG?v=254a-event',greeting:['ニャッ！ことばの世界へようこそ。'],welcome:['一緒に言葉を探しに行こう。'],advice:['選択肢をゆっくり見くらべるんだ。'],finish:['さあ、冒険を始めよう！']},
   {name:'ことばガイド',image:'images/story/avatar_default_03.png?v=69',greeting:['ことばクエストへようこそ！'],welcome:['見て、聞いて、考えてみましょう。'],advice:['休みながら取り組んでも大丈夫です。'],finish:['それでは、冒険を始めましょう！']}
 ];
 const KOTOBA_EVENT_BACKGROUNDS = ['back_1.jpg','back_2.jpg','back_3.jpg','back_4.jpg','back_5.jpg'];
@@ -1223,8 +1223,23 @@ function setRandomKotobaEventBackground(element){
   const options = KOTOBA_EVENT_BACKGROUNDS.filter(function(name){return name!==previous;});
   const selected = options[Math.floor(Math.random()*options.length)] || KOTOBA_EVENT_BACKGROUNDS[0];
   try{sessionStorage.setItem('kotoba-last-event-bg',selected);}catch(e){}
-  element.style.backgroundImage = 'linear-gradient(rgba(0,0,0,.08), rgba(0,0,0,.18)), url("images/story/'+selected+'?v=69")';
-  element.dataset.background = selected;
+  const candidates=[selected].concat(KOTOBA_EVENT_BACKGROUNDS.filter(function(file){return file!==selected;}));
+  function attempt(choiceIndex){
+    if(choiceIndex>=candidates.length){
+      element.style.backgroundImage='linear-gradient(140deg,#183f61,#071c31)';
+      element.dataset.background='fallback';
+      return;
+    }
+    const path='images/story/'+candidates[choiceIndex]+'?v=254a-event';
+    const check=new Image();
+    check.onload=function(){
+      element.style.backgroundImage='linear-gradient(rgba(0,0,0,.08), rgba(0,0,0,.18)), url("'+path+'")';
+      element.dataset.background=candidates[choiceIndex];
+    };
+    check.onerror=function(){attempt(choiceIndex+1);};
+    check.src=path;
+  }
+  attempt(0);
   return selected;
 }
 function chooseKotobaEventVisual(profile){
@@ -1328,12 +1343,29 @@ function renderEventStep(){
   if (activeEventCharacter) {
     const characterImage = document.getElementById('eventCharacterImage');
     if (characterImage) {
-      characterImage.onerror = function(){
-        this.onerror = null;
-        const profile = EVENT_CHARACTER_PROFILES.find(function(item){return item.name === activeEventCharacter.name;});
-        if(profile && this.src !== profile.image) { this.src = profile.image; const wrap=this.closest('.event-character'); if(wrap) wrap.classList.remove('rare-event'); }
+      // Ver2.5.4a: resolve the selected character and provide a bounded fallback chain.
+      const baseProfile = EVENT_CHARACTER_PROFILES.find(function(item){return item.name === activeEventCharacter.name;});
+      const candidateImages = [activeEventCharacter.image, baseProfile && baseProfile.image,
+        baseProfile && baseProfile.legacyImage, 'images/story/cat_1_crop.png?v=254a-event']
+        .filter(function(src,index,all){return !!src && all.indexOf(src)===index;});
+      let fallbackIndex = 0;
+      characterImage.decoding = 'async';
+      characterImage.onload = function() {
+        const wrap = this.closest('.event-character');
+        if(wrap)wrap.classList.remove('character-load-failed');
       };
-      characterImage.src = activeEventCharacter.image;
+      characterImage.onerror = function() {
+        fallbackIndex++;
+        const wrap = this.closest('.event-character');
+        if(wrap)wrap.classList.remove('rare-event');
+        if(fallbackIndex < candidateImages.length) {
+          this.src = candidateImages[fallbackIndex];
+        } else {
+          this.onerror = null;
+          if(wrap)wrap.classList.add('character-load-failed');
+        }
+      };
+      characterImage.src = candidateImages[0];
       characterImage.alt = activeEventCharacter.name;
     }
   }
@@ -1846,6 +1878,6 @@ render();
 </script>
 <script src="scripts/audio/kotoba-sound-pack-v2.js?v=22"></script>
 <script src="scripts/questions/fact-bank-veta11.js?v=2"></script>
-<script src="scripts/games/fantasy-v47.js?v=veta11-level100"></script>
+<script src="scripts/games/fantasy-v47.js?v=254a-event-images"></script>
 </body>
 </html>

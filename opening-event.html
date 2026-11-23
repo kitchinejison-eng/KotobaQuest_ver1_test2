@@ -193,6 +193,18 @@
      <script>の順番を変えると画面初期化・学習記録・3Dに影響します。docs/スクリプト読込順.md を参照してください。 -->
   <link rel="stylesheet" href="styles/ui/premium-theme-v121.css?v=121-premium-r1">
   <script src="scripts/system/premium-plan-v121.js?v=121-premium-r1" data-icon-root="images/app-icons/"></script>
+<style id="kq-event-image-recovery-v254a">
+    /* Ver2.5.4a: visible fallback on image download failures, including offline mode. */
+    .opening-app .event-character { z-index:4; }
+    .opening-app .event-character.character-load-failed::before {
+      content:'🐈'; position:absolute; inset:0; display:grid; place-items:center;
+      font-size:clamp(76px,22vw,144px); text-shadow:0 6px 12px #0008;
+    }
+    .opening-app .event-character.character-load-failed img { opacity:0; }
+    .opening-app .event-dialog-area.event-dialog-frame-fallback {
+      background:#f6f1dc; border:3px solid #c9943a; border-radius:18px;
+    }
+</style>
 </head>
 <body class="opening-body">
   <main class="app opening-app">
@@ -205,7 +217,7 @@
       </div>
       <button type="button" id="tutorialSkipBtn" class="opening-event-skip" aria-label="会話イベントをスキップしてタイトルへ">スキップ ▶</button>
       <div class="event-character" aria-hidden="true">
-        <img id="tutorialCharacterImage" src="images/story/cat_1_crop.png?v=69" alt="ねこまる" class="event-character-img">
+        <img id="tutorialCharacterImage" src="images/story/cat_1_crop.png?v=254a-event" alt="ねこまる" class="event-character-img">
       </div>
       <div class="event-dialog-area">
         <img src="images/story/m_e1097_0.png" alt="" class="event-dialog-image" aria-hidden="true">
@@ -221,56 +233,56 @@
     'use strict';
     var profiles = [
           {
-            name: 'ねこまる', image: 'images/story/cat_1_crop.png?v=69', rareImages: ['images/story/cat_1_crop_2.png?v=69', 'images/story/cat_1.png?v=69'],
+            name: 'ねこまる', image: 'images/story/cat_1_crop.png?v=254a-event', rareImages: ['images/story/cat_1_crop_2.png?v=254a-event', 'images/story/cat_1.png?v=254a-event'],
             greeting: ['やっほー！ ぼくは ねこまる。よろしくね！', 'こんにちは！ ねこまるだよ。', '会えてうれしいな！ ぼくは ねこまる。'],
             welcome: ['ことばクエストへ ようこそ！', 'ここは 言葉の冒険をする世界だよ。', 'いっしょに 言葉の冒険へ出かけよう！'],
             advice: ['自分のペースで ゆっくり進もうね。', '分からないときは、問題をもう一度聞いてみよう。', 'あわてずに、できるところから始めよう！'],
             farewell: ['さあ、冒険を はじめよう！', '準備はいい？ ぼうけんへ出発！', 'きみのことを応援しているよ！']
           },
           {
-            name: '大根猫', image: 'images/story/cat_1_crop2.png?v=69',
+            name: '大根猫', image: 'images/story/cat_1_crop2.png?v=254a-event',
             greeting: ['にゃーん！ 大根猫が やってきたよ！', 'やあやあ！ わたしは 大根猫！', '元気いっぱい、大根猫だよ！'],
             welcome: ['ことばクエストの世界へ ようこそ！', '今日も 言葉の力をためしてみよう！', '言葉の冒険を いっしょに楽しもう！'],
             advice: ['よく聞いて、ゆっくり考えてみよう。', 'すぐに分からなくても大丈夫だよ。', '迷ったら、もう一度聞いてみるのもいいね！'],
             farewell: ['よーし、一緒に冒険へ行こう！', '準備オッケー？ 進んでみよう！', 'さあ、はじめよう！ にゃーん！']
           },
           {
-            name: 'かぼちゃおじいさん', image: 'images/story/1_oji.png?v=69', rareImages: ['images/story/2_oji.png?v=69'],
+            name: 'かぼちゃおじいさん', image: 'images/story/1_oji.png?v=254a-event', rareImages: ['images/story/2_oji.png?v=254a-event'],
             greeting: ['ほっほっほ、わしは かぼちゃおじいさんじゃ。', 'おお、よく来たのう。わしが案内しよう。', 'こんにちは。今日はわしと一緒に進もう。'],
             welcome: ['言葉の冒険へ ようこそ。', '一問ずつ、ゆっくり進めばよいのじゃ。', '言葉の力は、少しずつ育てていけばよい。'],
             advice: ['迷ったときは、問題をもう一度聞くのじゃ。', 'あわてることはない。よく見て考えるのじゃ。', '自分のペースで取り組めば、それでよいのじゃ。'],
             farewell: ['では、冒険を始めるとしよう！', 'さあ、旅立ちの時じゃ！', 'よし、準備は整った。出発じゃ！']
           },
           {
-            name: '黒丸', image: 'images/story/cat_05_1.png?v=69', rareImages: ['images/story/cat_05_2.png?v=69'],
+            name: '黒丸', image: 'images/story/cat_05_1.png?v=254a-event', rareImages: ['images/story/cat_05_2.png?v=254a-event'],
             greeting: ['にゃっ。ぼくは黒丸。よろしく。', '黒丸だよ。いっしょに進もう。', '来てくれてありがとう。黒丸だよ。'],
             welcome: ['ことばクエストへようこそ。', 'ここでは自分のペースで練習できるよ。', '一緒にことばの冒険を楽しもう。'],
             advice: ['ゆっくり見て、考えてみよう。', '難しいときは、ひとつずつ進もう。', 'あせらなくて大丈夫だよ。'],
             farewell: ['それじゃあ、始めよう。', '準備ができたら出発だよ。', 'きみの挑戦を応援しているよ。']
           },
           {
-            name: 'こねこ', image: 'images/story/2_neko.webp?v=69',
+            name: 'こねこ', image: 'images/story/2_neko.webp?v=254a-event', legacyImage: 'images/story/2_neko.PNG?v=254a-event',
             greeting: ['こんにちは！ いっしょに冒険しよう！', 'やった、来てくれたね！', 'ことばの冒険へようこそ！'],
             welcome: ['今日も新しい言葉に出会おう！', 'ここでは少しずつ練習できるよ。', 'わからないときはゆっくり考えてね。'],
             advice: ['まちがえても大丈夫。もう一度やってみよう。', '大事なところを見つけてみよう。', '自分のペースで進めようね。'],
             farewell: ['さあ、冒険に出発だ！', '準備ができたら始めよう！', 'いっしょに頑張ろう！']
           },
           {
-            name: 'しらす隊長', image: 'images/story/3_sirasu.webp?v=69',
+            name: 'しらす隊長', image: 'images/story/3_sirasu.webp?v=254a-event', legacyImage: 'images/story/3_sirasu.PNG?v=254a-event',
             greeting: ['冒険者よ、よく来た！', '本日の訓練を始めよう！', 'ことばの世界へ、ようこそ！'],
             welcome: ['一問ずつ、落ち着いて進もう。', '言葉の力を試す時間だ。', 'きみの挑戦を歓迎する！'],
             advice: ['問題文を最後まで読もう。', '考える時間も大切な訓練だ。', '選択肢の意味を順番に確認しよう。'],
             farewell: ['準備完了！ 出発だ！', '訓練開始！ 健闘を祈る！', 'さあ、挑戦を始めよう！']
           },
           {
-            name: 'クロ', image: 'images/story/3_neko2.webp?v=69',
+            name: 'クロ', image: 'images/story/3_neko2.webp?v=254a-event', legacyImage: 'images/story/3_neko2.PNG?v=254a-event',
             greeting: ['ニャッ！ ことばの世界へようこそ。', '待ってたよ。今日は何問解けるかな？', 'やあ、また冒険に来たね！'],
             welcome: ['一緒に言葉を探しに行こう。', '今日も新しい問題が待っているよ。', 'ゆっくり考えながら進もう。'],
             advice: ['選択肢をゆっくり見くらべるんだ。', '大事な言葉を見つけてみよう。', 'ヒントを使って、もう一度考えてみてね。'],
             farewell: ['さあ、冒険を始めよう！', '行こう！ 新しい問題が待っているよ！', '準備はいい？ スタート！']
           },
           {
-            name: 'ことばガイド', image: 'images/story/avatar_default_03.png?v=69',
+            name: 'ことばガイド', image: 'images/story/avatar_default_03.png?v=254a-event',
             greeting: ['ことばクエストへようこそ！', '今日も言葉の練習を始めましょう。', '冒険の準備ができました！'],
             welcome: ['見て、聞いて、考えてみましょう。', '短い課題から始めても大丈夫です。', 'ご自身のペースで進めてください。'],
             advice: ['ヒントは考える手助けとして使えます。', '分からないときは、もう一度聞いてみましょう。', '休みながら取り組んでも大丈夫です。'],
@@ -289,8 +301,24 @@
       var backgroundChoices = backgroundFiles.filter(function(file){ return file !== lastBackground; });
       var backgroundName = pick(backgroundChoices.length ? backgroundChoices : backgroundFiles);
       try { window.sessionStorage.setItem('kotoba-last-event-bg', backgroundName); } catch (e) {}
-      backgroundElement.style.backgroundImage = 'linear-gradient(rgba(0,0,0,.08), rgba(0,0,0,.18)), url("images/story/' + backgroundName + '?v=69")';
-      backgroundElement.dataset.background = backgroundName;
+      var candidates = [backgroundName].concat(backgroundFiles.filter(function(file) { return file !== backgroundName; }));
+      function loadBackground(choiceIndex) {
+        if (choiceIndex >= candidates.length) {
+          backgroundElement.style.backgroundImage = 'linear-gradient(140deg,#183f61,#071c31)';
+          backgroundElement.dataset.background = 'fallback';
+          return;
+        }
+        var image = new Image();
+        var file = candidates[choiceIndex];
+        var imageUrl = 'images/story/' + file + '?v=254a-event';
+        image.onload = function() {
+          backgroundElement.style.backgroundImage = 'linear-gradient(rgba(0,0,0,.08), rgba(0,0,0,.18)), url("' + imageUrl + '")';
+          backgroundElement.dataset.background = file;
+        };
+        image.onerror = function() { loadBackground(choiceIndex + 1); };
+        image.src = imageUrl;
+      }
+      loadBackground(0);
     }
     var steps = [
       { name: profile.name, text: pick(profile.greeting) },
@@ -307,11 +335,40 @@
     var nextBtn = document.getElementById('tutorialNextBtn');
     var characterImg = document.getElementById('tutorialCharacterImage');
     if (characterImg) {
-      characterImg.src = displayImage;
+      // Ver2.5.4a: restore images even if a file is missing or the earlier PNG filenames remain on the server.
+      var imageFallbacks = [displayImage, profile.image, profile.legacyImage, 'images/story/cat_1_crop.png?v=254a-event']
+        .filter(function(src, index, all) { return !!src && all.indexOf(src) === index; });
+      var fallbackIndex = 0;
+      characterImg.decoding = 'async';
+      characterImg.loading = 'eager';
       characterImg.alt = profile.name;
-      characterImg.onerror = function(){ if (displayImage !== profile.image) { this.onerror = null; this.src = profile.image; if (this.parentElement) this.parentElement.classList.remove('rare-event'); } };
+      characterImg.onerror = function() {
+        fallbackIndex += 1;
+        if (this.parentElement) this.parentElement.classList.remove('rare-event');
+        if (fallbackIndex < imageFallbacks.length) {
+          this.src = imageFallbacks[fallbackIndex];
+        } else {
+          this.onerror = null;
+          if (this.parentElement) this.parentElement.classList.add('character-load-failed');
+        }
+      };
+      characterImg.onload = function() {
+        if (this.parentElement) this.parentElement.classList.remove('character-load-failed');
+      };
       if (characterImg.parentElement) characterImg.parentElement.classList.toggle('rare-event', isRare);
+      characterImg.src = imageFallbacks[0];
     }
+    // The dialog frame must remain legible if its separate image asset is unavailable.
+    var frameImage = document.querySelector('.event-dialog-image');
+    if (frameImage) {
+      function showFrameFallback() {
+        if (frameImage.parentElement) frameImage.parentElement.classList.add('event-dialog-frame-fallback');
+        frameImage.style.display = 'none';
+      }
+      frameImage.addEventListener('error', showFrameFallback);
+      if (frameImage.complete && !frameImage.naturalWidth) showFrameFallback();
+    }
+
 
     function stopEventSound() {
       if (window.KQEventMessageSound) window.KQEventMessageSound.stop();

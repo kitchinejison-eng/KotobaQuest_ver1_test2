@@ -1290,6 +1290,11 @@ function showClassicQuestIntro() {
     document.body.appendChild(overlay);
     var bgEl=overlay.querySelector('.kq-classic-event-bg');
     if(bgEl)bgEl.style.backgroundImage='linear-gradient(#07122630,#080c2690),url("images/story/'+background+'?v=69")';
+    var portrait = overlay.querySelector('#classicQuestIntroCharacter');
+    if (portrait) portrait.addEventListener('error', function(){
+      if (portrait.parentElement) portrait.parentElement.classList.add('kq-image-fallback');
+      portrait.style.display = 'none';
+    });
     var character=overlay.querySelector('.kq-classic-event-character');
     var nameEl = overlay.querySelector("#classicQuestIntroName");
     var textEl = overlay.querySelector("#classicQuestIntroText");

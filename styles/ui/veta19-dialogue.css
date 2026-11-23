@@ -59,3 +59,6 @@
  .kq-classic-event-text{max-height:27dvh;min-height:40px;}
 }
 @media(prefers-reduced-motion:reduce){.kq-classic-event-bg,.kq-classic-event-character img{animation:none!important;}}
+
+/* Ver2.5.4a: fallback for the classic RPG portrait */
+.kq-classic-event-character.kq-image-fallback::before {content:'📖';display:grid;place-items:center;width:100%;height:100%;font-size:clamp(75px,14vw,132px);}
