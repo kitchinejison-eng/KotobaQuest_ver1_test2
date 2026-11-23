@@ -1,8 +1,8 @@
 {
   "id": "./index.html",
-  "name": "ことばクエスト ver1.2.1",
+  "name": "ことばクエスト ver2.4.1",
   "short_name": "ことばクエスト",
-  "description": "ことばクエスト ver1.2.1：ことば・朗読・想起・発話の練習",
+  "description": "ことばクエスト ver2.4.1：ことば・朗読・想起・発話の練習",
   "lang": "ja-JP",
   "start_url": "./index.html",
   "scope": "./",

@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="images/app-icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/app-icons/icon-192.png">
   <meta name="description" content="ことば・読み・発話・会話の練習アプリ">
-  <title>ことばクエスト Ver.1.2.1｜PC・ブラウザ R15.9 テスト広告</title>
+  <title>ことばクエスト Ver.2.5.2｜PC 調整版</title>
   <link rel="stylesheet" href="styles/base/style.css?v=pc-r15-4-personal-review-20261118">
   <link rel="stylesheet" href="styles/ui/difficulty-veta11.css?v=r156">
   <link rel="stylesheet" href="styles/base/browser-responsive.css?v=pc-r15-20261117">
@@ -19,7 +19,8 @@
   <link rel="stylesheet" href="styles/ui/daily-streak.css?v=r156">
   <link rel="stylesheet" href="styles/ai/ai-quiz-v23.css?v=23">
   <link rel="stylesheet" href="styles/base/title-responsive-beta3.css?v=3">
-  <link rel="stylesheet" href="styles/training/articulation-random-beta4.css?v=4">
+  <link rel="stylesheet" href="styles/training/articulation-random-beta4.css?v=240-20261119">
+  <link rel="stylesheet" href="styles/base/browser-display-mode-v239.css?v=239-20261119">
   <link rel="stylesheet" href="styles/base/responsive-beta6.css?v=6">
   <link rel="stylesheet" href="styles/ui/veta14-ui.css?v=2">
   <link rel="stylesheet" href="styles/ui/veta17-theme.css?v=2">
@@ -34,6 +35,12 @@
   <script src="scripts/system/premium-plan-v121.js?v=121-premium-r2" data-icon-root="images/app-icons/"></script>
   <link rel="stylesheet" href="styles/ui/free-ads-v121.css?v=121-ads-r1">
   <script src="scripts/system/free-ads-v121.js?v=121-ads-r1" defer></script>
+<link rel="stylesheet" href="styles/training/catch-trial-placement-v200.css?v=210">
+<link rel="stylesheet" href="styles/base/readability-v240.css?v=240-20261119">
+  <link rel="stylesheet" href="styles/training/articulation-mobile-layout-v241.css?v=241-20261119">
+  <link rel="stylesheet" href="styles/ui/kq-theme-patterns-v250.css?v=250">
+  <link rel="stylesheet" href="styles/training/kq-catch-game-v250.css?v=250">
+  <link rel="stylesheet" href="styles/base/kq-device-layout-v250.css?v=250">
 </head>
 <body data-theme="blue">
 
@@ -53,7 +60,7 @@
         <div class="title-logo-wrap" aria-hidden="true"><img id="kqPremiumTitleIcon" alt="" src="images/app-icons/icon-premium-192.png">
           <div class="title-mark"><span class="title-mark-dot dot-a"></span><span class="title-mark-dot dot-b"></span><span class="title-mark-dot dot-c"></span><span class="title-mark-letter">こ</span><span class="title-mark-spark">✦</span></div>
         </div>
-        <h1 class="title-name" aria-label="ことばクエスト ver1.2.1">ことば<span>クエスト</span><small class="title-dev-badge">ver1.2.1 PC R15</small></h1>
+        <h1 class="title-name" aria-label="ことばクエスト ver2.5.2">ことば<span>クエスト</span><small class="title-dev-badge">ver2.5.2 PC</small></h1>
         <p class="title-sub">ことばをつないで、もっと話せる自分に</p>
         <div id="dailyStreakHomeBadge" aria-live="polite">🌸 今日の練習で1日目達成！</div>
       </div>
@@ -341,6 +348,15 @@
       <div id="resultRate" class="rate">正答率 0%</div>
       <p id="resultMessage" class="result-message"></p>
       <section id="v14MasteryResult" class="v14-mastery-result" aria-label="熟練度の結果" hidden><strong id="v14MasteryTitle">Lv.1 熟練度</strong><span id="v14MasteryText">0 / 100</span><div class="v14-mastery-track"><div id="v14MasteryBar"></div></div><p id="v14MasteryNext"></p></section>
+      <section id="kqAIResultPanel" style="margin:16px 0;padding:16px;border:1px solid #b9c7c9;border-radius:12px;line-height:1.7" class="kq-ai-result-panel" aria-label="AI学習分析" hidden>
+ <h3>🧠 AI学習分析 <small>段階式・参考値</small></h3>
+ <p id="kqAIResultStatus" role="status"></p>
+ <p id="kqAIResultProgress" class="settings-sub" aria-live="polite"></p>
+ <progress id="kqAIResultMeter" max="3" value="0" style="width:100%;height:12px" aria-label="AI学習データの次の分析段階までの進捗" hidden></progress>
+ <div id="kqAIResultPrediction" class="kq-ai-result-value"></div>
+ <p id="kqAIResultAdvice"></p>
+ <p class="kq-ai-result-disclaimer">※学習数に応じて表示段階が上がりますが、数値の正確さを保証するものではありません。医療的な診断や発音・手書きの能力評価ではありません。AIによる誤判定の可能性があります。</p>
+ </section>
       <div id="resultQuestionDetails" class="question-result-details" aria-label="問題ごとの結果"></div>
       <div class="result-actions">
         <button class="primary-button" id="retryBtn" type="button">もう一度挑戦</button>
@@ -424,11 +440,25 @@
       <button id="testSoundBtn" class="outline-button" type="button">音を試す</button>
       <label class="setting-select-row">🎵 BGM 音量 <input id="kotobaBgmVolume" type="range" min="0" max="100" step="5" value="100"><output id="kotobaBgmValue">100%</output></label>
       <label class="switch-row"><span>🔔 SE（効果音）を使う</span><input id="kotobaSeOn" type="checkbox" checked></label>
+      <button id="kqSePreviewBtn" type="button">🔊 効果音を試聴</button><p id="kqSePreviewStatus" aria-live="polite">音量設定を確認できます。音声の読み上げ中は控えめに再生します。</p>
       <label class="setting-select-row">SE 音量 <input id="kotobaSeVolume" type="range" min="0" max="100" step="5" value="100"><output id="kotobaSeValue">100%</output></label>
       <label class="switch-row"><span>🗣️ 読み上げ音声を使う</span><input id="kotobaTtsOn" type="checkbox" checked></label>
       <label class="setting-select-row">読み上げ音量 <input id="kotobaTtsVolume" type="range" min="0" max="100" step="5" value="100"><output id="kotobaTtsValue">100%</output></label>
       <label class="setting-select-row">読み上げ速度 <input id="kotobaTtsRate" type="range" min="50" max="150" step="10" value="100"><output id="kotobaTtsRateValue">100%</output></label>
       <button id="kotobaTtsTestBtn" class="outline-button" type="button">🔊 読み上げ音声をテスト</button><p id="kotobaTtsTestStatus" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="settings-panel" id="kqBrowserDisplayPanel" hidden aria-labelledby="kqBrowserDisplayTitle">
+      <h3 id="kqBrowserDisplayTitle">🖥️ 表示モード（PCブラウザ専用）</h3>
+      <p class="settings-sub">PCのChrome・Edgeなどで、画面の幅と配置を切り替えられます。スマホ・タブレット・iOS／Androidアプリ版には表示されません。</p>
+      <fieldset class="kq-display-choice" id="kqBrowserDisplayChoices">
+        <legend>表示方法を選択</legend>
+        <label class="kq-display-option"><input type="radio" name="kqBrowserDisplayMode" value="desktop" checked><span><strong>🖥️ デスクトップモード</strong><small>PCの横幅を生かした標準表示</small></span></label>
+        <label class="kq-display-option"><input type="radio" name="kqBrowserDisplayMode" value="mobile"><span><strong>📱 モバイルモード</strong><small>PC画面にスマホに近い縦長レイアウトを再現（表示確認用）</small></span></label>
+        <label class="kq-display-option"><input type="radio" name="kqBrowserDisplayMode" value="tablet"><span><strong>📟 タブレットモード</strong><small>PC画面にタブレット向け2列表示を再現（表示確認用）</small></span></label>
+      </fieldset>
+      <p id="kqBrowserDisplayStatus" class="settings-sub" aria-live="polite">デスクトップモード</p>
+      <p class="settings-sub">変更後は、下の「設定を保存」で確定します。端末そのものの機能・タッチ操作・音声認識方式は切り替わりません。</p>
     </div>
 
     <div class="settings-panel">
@@ -478,15 +508,27 @@
 
     <div class="settings-panel" id="learningModePanel">
       <h3>🧠 学習モード</h3>
-      <label class="switch-row"><span><strong>学習モード ON / OFF</strong></span><input id="learningModeEnabled" type="checkbox"></label>
+      <label class="switch-row"><span><strong>学習モード（初期ON・任意でOFF）</strong></span><input id="learningModeEnabled" type="checkbox" checked></label>
       <p id="learningModeStatus" class="settings-sub" role="status">読み込み中…</p>
       <p id="personalReviewStatus" class="settings-sub" role="status">個別学習の履歴を読み込み中…</p>
-      <p class="settings-sub">ONの場合、通常トレーニングの正誤・回答時間・ヒント利用を端末内に保存し、課題ごとに5問以上の履歴が集まると苦手問題の復習を優先します。3Dなどのゲームでは対応する正誤データだけを保存します。自動難易度変更や外部AI分析はまだ実装していません。OFFでも通常の練習やLv.1〜10の手動選択、記録の保存は利用できます。</p>
+      <label class="switch-row"><span><strong>学習履歴に基づく難易度の自動調整（試験機能）</strong></span><input id="autoDifficultyEnabled" type="checkbox" aria-describedby="autoDifficultyExplanation"></label>
+      <p id="autoDifficultyStatus" class="settings-sub" role="status">自動調整の設定を読み込み中…</p>
+      <p id="autoDifficultyExplanation" class="settings-sub">初期設定はOFF。ONにすると、採点済み5問以上の学習履歴から、次の練習のLvを最大1段階調整します。</p>
+      <p class="settings-sub">未解放Lvには進みません。手動で選んだLvは、さらに10問採点するまで維持します。発音の正確さや障害の有無を判定する機能ではありません。</p>
+      <p class="settings-sub">ONの場合、通常トレーニングの正誤・回答時間・ヒント利用を端末内に保存し、課題ごとに5問以上の履歴が集まると苦手問題の復習を優先します。3Dなどのゲームでは対応する正誤データだけを保存します。統計的な難易度自動調整は上の別スイッチで有効化できます。外部AIによる診断や発音の精密採点は行いません。OFFでも通常の練習やLv.1〜10の手動選択、記録の保存は利用できます。</p>
       <p class="settings-sub">獲得済みの熟練度・レベル・メダル・記録は、ON/OFFを変更しても消えません。分析は参考値であり、医学的な診断ではありません。</p>
       <button id="learningModeReload" type="button" class="outline-button" hidden>変更を反映してアプリを再読み込み</button>
     </div>
 
-    <div class="settings-panel" id="handwritingSettingsPanel">
+    <div class="settings-panel" id="aiJudgePanel">
+        <h3>🧠 AI判定・学習（試験機能）</h3>
+        <label class="switch-row"><span><strong>AI判定・学習（初期ON・任意でOFF）</strong></span><input id="aiJudgeEnabled" type="checkbox" checked aria-describedby="aiJudgeExplanation"></label>
+        <p id="aiJudgeStatus" class="settings-sub" role="status" aria-live="polite">読み込み中…</p>
+        <p id="aiJudgeExplanation" class="settings-sub">初回の選択式回答だけを端末内で学習します。最初は3問から初期分析を表示し、6問・12問・24問・40問と段階的に分析表示を更新します。おすすめLvと出題順のAI補助は12問以上の履歴が必要です。</p>
+        <p class="settings-sub">AIは正解・不正解そのものを採点する機能ではなく、採点済みの学習履歴を使う補助分析です。新しいプロフィールでは初期ONですが、設定からOFFにできます。既にOFFにした設定は保持します。AIの提案だけでLvを変更しません。発音の正確さ、音声認識の文字一致、手書きの運動能力や障害を採点しません。外部AIに回答を送信しません。</p>
+        <button id="aiJudgeReset" type="button" class="outline-button">AIの学習データを初期化</button>
+      </div>
+          <div class="settings-panel" id="handwritingSettingsPanel">
       <h3>✍️ 写字・見写し｜手書き入力</h3>
       <p class="settings-sub">見本を見て1文字ずつ自分で書き、認識された「もしかして、この字ですか？」の候補を選んで回答します。</p>
       <p class="settings-sub">結果は選択した文字と見本を比較したものです。筆跡の正確さ・書き順を自動採点するものではありません。手書き補助OCRを初めて使う場合、モデルの取得に通信が必要です。</p>
@@ -523,8 +565,10 @@
 <script src="scripts/audio/kotoba-audio-common-r5.js?v=r5"></script>
 <script src="scripts/audio/kotoba-sound-pack-v2.js?v=22"></script>
 <script src="scripts/audio/kotoba-sound-design-v19.js?v=23"></script>
-<script src="scripts/learning/learning-mode-veta12.js?v=r154"></script>
-<script src="scripts/learning/adaptive-learning.js?v=veta12"></script>
+<script src="scripts/learning/learning-mode-veta12.js?v=254"></script>
+<script src="scripts/learning/adaptive-learning.js?v=251"></script>
+<script src="scripts/learning/kotoba-ai-judge.js?v=254"></script>
+<script src="scripts/learning/kotoba-ai-integration-v252.js?v=254"></script>
 <script src="scripts/learning/personal-review-r154.js?v=20261118"></script>
 <script src="scripts/system/daily-streak.js?v=r156"></script>
 <script src="scripts/audio/event-message-sound.js?v=22"></script>
@@ -532,13 +576,251 @@
 <script src="scripts/conversation/ai-answer-v23.js?v=23"></script>
 <!-- 【構音ナビ】録音音声のファイルと文字の対応表。app.jsより先に読み込む。 -->
 <script src="scripts/audio/articulation-recorded-examples-v121.js?v=mi-20261116"></script>
-<script src="scripts/application/app.js?v=r156"></script>
+<script src="scripts/training/catch-integrated-v210.js?v=210"></script>
+<script src="question-data/articulationNavigator/lv01.js?v=level-split-1"></script>
+<script src="question-data/articulationNavigator/lv02.js?v=level-split-1"></script>
+<script src="question-data/articulationNavigator/lv03.js?v=level-split-1"></script>
+<script src="question-data/articulationNavigator/lv04.js?v=level-split-1"></script>
+<script src="question-data/articulationNavigator/lv05.js?v=level-split-1"></script>
+<script src="question-data/naming/lv01.js?v=level-split-1"></script>
+<script src="question-data/naming/lv02.js?v=level-split-1"></script>
+<script src="question-data/naming/lv03.js?v=level-split-1"></script>
+<script src="question-data/naming/lv04.js?v=level-split-1"></script>
+<script src="question-data/naming/lv05.js?v=level-split-1"></script>
+<script src="question-data/naming/lv06.js?v=level-split-1"></script>
+<script src="question-data/naming/lv07.js?v=level-split-1"></script>
+<script src="question-data/naming/lv08.js?v=level-split-1"></script>
+<script src="question-data/naming/lv09.js?v=level-split-1"></script>
+<script src="question-data/naming/lv10.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv01.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv02.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv03.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv04.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv05.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv06.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv07.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv08.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv09.js?v=level-split-1"></script>
+<script src="question-data/repeat/lv10.js?v=level-split-1"></script>
+<script src="question-data/cue/lv01.js?v=level-split-1"></script>
+<script src="question-data/cue/lv02.js?v=level-split-1"></script>
+<script src="question-data/cue/lv03.js?v=level-split-1"></script>
+<script src="question-data/cue/lv04.js?v=level-split-1"></script>
+<script src="question-data/cue/lv05.js?v=level-split-1"></script>
+<script src="question-data/cue/lv06.js?v=level-split-1"></script>
+<script src="question-data/cue/lv07.js?v=level-split-1"></script>
+<script src="question-data/cue/lv08.js?v=level-split-1"></script>
+<script src="question-data/cue/lv09.js?v=level-split-1"></script>
+<script src="question-data/cue/lv10.js?v=level-split-1"></script>
+<script src="question-data/fill/lv01.js?v=level-split-1"></script>
+<script src="question-data/fill/lv02.js?v=level-split-1"></script>
+<script src="question-data/fill/lv03.js?v=level-split-1"></script>
+<script src="question-data/fill/lv04.js?v=level-split-1"></script>
+<script src="question-data/fill/lv05.js?v=level-split-1"></script>
+<script src="question-data/fill/lv06.js?v=level-split-1"></script>
+<script src="question-data/fill/lv07.js?v=level-split-1"></script>
+<script src="question-data/fill/lv08.js?v=level-split-1"></script>
+<script src="question-data/fill/lv09.js?v=level-split-1"></script>
+<script src="question-data/fill/lv10.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv01.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv02.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv03.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv04.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv05.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv06.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv07.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv08.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv09.js?v=level-split-1"></script>
+<script src="question-data/mouth/lv10.js?v=level-split-1"></script>
+<script src="question-data/sound/lv01.js?v=level-split-1"></script>
+<script src="question-data/sound/lv02.js?v=level-split-1"></script>
+<script src="question-data/sound/lv03.js?v=level-split-1"></script>
+<script src="question-data/sound/lv04.js?v=level-split-1"></script>
+<script src="question-data/sound/lv05.js?v=level-split-1"></script>
+<script src="question-data/sound/lv06.js?v=level-split-1"></script>
+<script src="question-data/sound/lv07.js?v=level-split-1"></script>
+<script src="question-data/sound/lv08.js?v=level-split-1"></script>
+<script src="question-data/sound/lv09.js?v=level-split-1"></script>
+<script src="question-data/sound/lv10.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv01.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv02.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv03.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv04.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv05.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv06.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv07.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv08.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv09.js?v=level-split-1"></script>
+<script src="question-data/stepup/lv10.js?v=level-split-1"></script>
+<script src="question-data/mora/lv01.js?v=level-split-1"></script>
+<script src="question-data/mora/lv02.js?v=level-split-1"></script>
+<script src="question-data/mora/lv03.js?v=level-split-1"></script>
+<script src="question-data/mora/lv04.js?v=level-split-1"></script>
+<script src="question-data/mora/lv05.js?v=level-split-1"></script>
+<script src="question-data/mora/lv06.js?v=level-split-1"></script>
+<script src="question-data/mora/lv07.js?v=level-split-1"></script>
+<script src="question-data/mora/lv08.js?v=level-split-1"></script>
+<script src="question-data/mora/lv09.js?v=level-split-1"></script>
+<script src="question-data/mora/lv10.js?v=level-split-1"></script>
+<script src="question-data/accent/lv01.js?v=level-split-1"></script>
+<script src="question-data/accent/lv02.js?v=level-split-1"></script>
+<script src="question-data/accent/lv03.js?v=level-split-1"></script>
+<script src="question-data/accent/lv04.js?v=level-split-1"></script>
+<script src="question-data/accent/lv05.js?v=level-split-1"></script>
+<script src="question-data/accent/lv06.js?v=level-split-1"></script>
+<script src="question-data/accent/lv07.js?v=level-split-1"></script>
+<script src="question-data/accent/lv08.js?v=level-split-1"></script>
+<script src="question-data/accent/lv09.js?v=level-split-1"></script>
+<script src="question-data/accent/lv10.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv01.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv02.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv03.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv04.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv05.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv06.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv07.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv08.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv09.js?v=level-split-1"></script>
+<script src="question-data/sentenceRhythm/lv10.js?v=level-split-1"></script>
+<script src="question-data/listen/lv01.js?v=level-split-1"></script>
+<script src="question-data/listen/lv02.js?v=level-split-1"></script>
+<script src="question-data/listen/lv03.js?v=level-split-1"></script>
+<script src="question-data/listen/lv04.js?v=level-split-1"></script>
+<script src="question-data/listen/lv05.js?v=level-split-1"></script>
+<script src="question-data/listen/lv06.js?v=level-split-1"></script>
+<script src="question-data/listen/lv07.js?v=level-split-1"></script>
+<script src="question-data/listen/lv08.js?v=level-split-1"></script>
+<script src="question-data/listen/lv09.js?v=level-split-1"></script>
+<script src="question-data/listen/lv10.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv01.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv02.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv03.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv04.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv05.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv06.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv07.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv08.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv09.js?v=level-split-1"></script>
+<script src="question-data/instruction/lv10.js?v=level-split-1"></script>
+<script src="question-data/tf/lv01.js?v=level-split-1"></script>
+<script src="question-data/tf/lv02.js?v=level-split-1"></script>
+<script src="question-data/tf/lv03.js?v=level-split-1"></script>
+<script src="question-data/tf/lv04.js?v=level-split-1"></script>
+<script src="question-data/tf/lv05.js?v=level-split-1"></script>
+<script src="question-data/tf/lv06.js?v=level-split-1"></script>
+<script src="question-data/tf/lv07.js?v=level-split-1"></script>
+<script src="question-data/tf/lv08.js?v=level-split-1"></script>
+<script src="question-data/tf/lv09.js?v=level-split-1"></script>
+<script src="question-data/tf/lv10.js?v=level-split-1"></script>
+<script src="question-data/matching/lv01.js?v=level-split-1"></script>
+<script src="question-data/matching/lv02.js?v=level-split-1"></script>
+<script src="question-data/matching/lv03.js?v=level-split-1"></script>
+<script src="question-data/matching/lv04.js?v=level-split-1"></script>
+<script src="question-data/matching/lv05.js?v=level-split-1"></script>
+<script src="question-data/matching/lv06.js?v=level-split-1"></script>
+<script src="question-data/matching/lv07.js?v=level-split-1"></script>
+<script src="question-data/matching/lv08.js?v=level-split-1"></script>
+<script src="question-data/matching/lv09.js?v=level-split-1"></script>
+<script src="question-data/matching/lv10.js?v=level-split-1"></script>
+<script src="question-data/copy/lv01.js?v=level-split-1"></script>
+<script src="question-data/copy/lv02.js?v=level-split-1"></script>
+<script src="question-data/copy/lv03.js?v=level-split-1"></script>
+<script src="question-data/copy/lv04.js?v=level-split-1"></script>
+<script src="question-data/copy/lv05.js?v=level-split-1"></script>
+<script src="question-data/copy/lv06.js?v=level-split-1"></script>
+<script src="question-data/copy/lv07.js?v=level-split-1"></script>
+<script src="question-data/copy/lv08.js?v=level-split-1"></script>
+<script src="question-data/copy/lv09.js?v=level-split-1"></script>
+<script src="question-data/copy/lv10.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv01.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv02.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv03.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv04.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv05.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv06.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv07.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv08.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv09.js?v=level-split-1"></script>
+<script src="question-data/anagram/lv10.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv01.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv02.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv03.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv04.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv05.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv06.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv07.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv08.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv09.js?v=level-split-1"></script>
+<script src="question-data/gesture/lv10.js?v=level-split-1"></script>
+<script src="question-data/board/lv01.js?v=level-split-1"></script>
+<script src="question-data/board/lv02.js?v=level-split-1"></script>
+<script src="question-data/board/lv03.js?v=level-split-1"></script>
+<script src="question-data/board/lv04.js?v=level-split-1"></script>
+<script src="question-data/board/lv05.js?v=level-split-1"></script>
+<script src="question-data/board/lv06.js?v=level-split-1"></script>
+<script src="question-data/board/lv07.js?v=level-split-1"></script>
+<script src="question-data/board/lv08.js?v=level-split-1"></script>
+<script src="question-data/board/lv09.js?v=level-split-1"></script>
+<script src="question-data/board/lv10.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv01.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv02.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv03.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv04.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv05.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv06.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv07.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv08.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv09.js?v=level-split-1"></script>
+<script src="question-data/roleplay/lv10.js?v=level-split-1"></script>
+<script src="question-data/aac/lv01.js?v=level-split-1"></script>
+<script src="question-data/aac/lv02.js?v=level-split-1"></script>
+<script src="question-data/aac/lv03.js?v=level-split-1"></script>
+<script src="question-data/aac/lv04.js?v=level-split-1"></script>
+<script src="question-data/aac/lv05.js?v=level-split-1"></script>
+<script src="question-data/aac/lv06.js?v=level-split-1"></script>
+<script src="question-data/aac/lv07.js?v=level-split-1"></script>
+<script src="question-data/aac/lv08.js?v=level-split-1"></script>
+<script src="question-data/aac/lv09.js?v=level-split-1"></script>
+<script src="question-data/aac/lv10.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv01.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv02.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv03.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv04.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv05.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv06.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv07.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv08.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv09.js?v=level-split-1"></script>
+<script src="question-data/voiceRead/lv10.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv01.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv02.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv03.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv04.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv05.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv06.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv07.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv08.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv09.js?v=level-split-1"></script>
+<script src="question-data/kotobaQuestClassic/lv10.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv01.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv02.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv03.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv04.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv05.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv06.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv07.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv08.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv09.js?v=level-split-1"></script>
+<script src="question-data/aiConversation/lv10.js?v=level-split-1"></script>
+<script src="question-data/level-loader.js?v=level-split-1"></script>
+<script src="scripts/application/app.js?v=253-20261121"></script>
 <script src="scripts/system/user-profile.js?v=veta17-id"></script>
 <script src="scripts/learning/unified-learning-veta1.js?v=r154"></script>
 <script src="scripts/training/aphasia-modes.js?v=pc-r15-1-20261117"></script>
 <script src="scripts/conversation/generative-ai-chat.js?v=ver120r2"></script>
 <script src="scripts/conversation/ai-download-gate.js?v=99"></script>
 <script src="scripts/system/app-ui.js?v=veta17-save-theme"></script>
+<script src="scripts/system/browser-display-mode-v239.js?v=239-20261119"></script>
 <script src="scripts/system/community-board.js?v=pc-r15-3-no-replies-20261118"></script>
 <script src="scripts/training/reading-memory-mode.js?v=104"></script>
 <script src="scripts/questions/copy-handwriting-bank-v2.js?v=jlect-choice-1"></script>
@@ -586,6 +868,14 @@
       } catch(e) { console.warn('3Dゲーム一覧へ戻れませんでした', e); }
     }
     if (window.location.hash === '#records') { try { if (typeof openRecords === 'function') openRecords(); } catch(e) {} }
+    // Ver.2.1.0：古い試作ページのブックマークも通常の学習画面で開く。
+    try {
+      var legacy=new URLSearchParams(window.location.search).get('catch');
+      var modes={image:['brain','catchImage'],category:['brain','catchCategory'],tongue:['basic','catchTongue'],word:['aphasia','catchWord'],conversation:['test','catchConversation']};
+      if (modes[legacy] && typeof selectCategory==='function' && typeof startActivity==='function') {
+        selectCategory(modes[legacy][0]);startActivity(modes[legacy][1]);return;
+      }
+    } catch (err) { console.warn('旧試作ページの移行に失敗しました',err); }
     // 初回起動時は、ロゴと会話イベントのあとにユーザー設定を表示します。
     var needsProfile = false;
     try {
@@ -602,8 +892,9 @@
 </script>
 <script>
 if (!window.KotobaNativeBridge && 'serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-  navigator.serviceWorker.register('service-worker.js?v=121-pc-r15-5-level-auto-20261118').catch(function(e){ console.warn('オフライン画面用キャッシュを登録できませんでした', e); });
+  navigator.serviceWorker.register('service-worker.js?v=253-20261121').catch(function(e){ console.warn('オフライン画面用キャッシュを登録できませんでした', e); });
 }
 </script>
+<script src="scripts/audio/kq-se-preview-v250.js?v=250"></script>
 </body>
 </html>

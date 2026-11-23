@@ -88,10 +88,11 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}
      <script>の順番を変えると画面初期化・学習記録・3Dに影響します。docs/スクリプト読込順.md を参照してください。 -->
   <link rel="stylesheet" href="styles/ui/premium-theme-v121.css?v=121-premium-r1">
   <script src="scripts/system/premium-plan-v121.js?v=121-premium-r1" data-icon-root="images/app-icons/"></script>
+<style>#npcCoach2D{display:none!important}</style>
 </head>
 <body>
 <div id="view"></div>
-<div id="npcCoach2D" aria-label="ねこまる"><img src="images/story/cat_1_crop.png" alt="ねこまる"><span>ねこまるが応援中！</span></div>
+
 <div id="hud">
  <div class="top"><div class="pill">問題 <span id="qnum">0 / 5</span></div><div class="pill">スコア <span id="score">0</span></div><div class="pill">PICTOGRAM 3D</div><button class="pill pause-pill" id="pauseBtn" type="button" disabled>Ⅱ 一時停止・設定</button></div>
  <div id="qbox"><small id="worldTypeLabel">RANDOM WORLD · ○× QUIZ</small><div id="question">3Dワールドを準備中…</div><div id="hint">正しいと思うエリアへ走っていこう！</div><div id="answerExplanation3d" class="hidden" role="status" aria-live="polite"></div></div>

@@ -2,17 +2,27 @@
 // 移動するとキャッシュ適用範囲が変わるため、scripts/へは移していません。
 // 画像・JS・CSSのパスを変更した場合は APP_SHELL の参照先も合わせてください。
 // Previous offline cache: kotoba-quest-ver1.2.0-pc-r2
-const CACHE_NAME = 'kotoba-quest-ver1.2.1-pc-r15-9-free-ads-test-20261118';
+const CACHE_NAME = 'kotoba-quest-ver2.5.2-ai-integration-20261121';
 // Cache the small application shell during installation. Large photos, sound
 // and optional recognition resources are cached only when actually requested.
 // Runtime shell only. Optional 3D pages, images, media and training modes
 // are fetched and cached when requested, rather than all during installation.
 const APP_SHELL = [
+  "./styles/training/articulation-mobile-layout-v241.css?v=241-20261119",
+  "./styles/base/kq-device-layout-v250.css?v=250",
+  "./styles/ui/kq-theme-patterns-v250.css?v=250",
+  "./styles/training/kq-catch-game-v250.css?v=250",
+  "./scripts/audio/kq-se-preview-v250.js?v=250",
   "./",
   "./index.html",
   "./START_HERE.html",
   "./credits.html",
   "./print-drills.html",
+  "./kotoba-catch-lab.html",
+  "./scripts/training/catch-integrated-v210.js?v=210",
+  "./styles/training/catch-trial-placement-v200.css?v=210",
+  "./kotoba-catch-lab.js?v=4",
+  "./kotoba-catch-lab.css?v=4",
   "./scripts/games/print-drills.js?v=69",
   "./logo.html",
   "./opening-event.html",
@@ -34,7 +44,15 @@ const APP_SHELL = [
   "./styles/ui/daily-streak.css?v=r156",
   "./styles/ai/ai-quiz-v23.css?v=23",
   "./styles/base/title-responsive-beta3.css?v=3",
-  "./styles/training/articulation-random-beta4.css?v=4",
+  "./styles/training/articulation-random-beta4.css?v=240-20261119",
+  "./styles/base/browser-display-mode-v239.css?v=239-20261119",
+  "./styles/base/readability-v240.css?v=240-20261119",
+  "./images/practice/articulation/vowel_a.png",
+  "./images/practice/articulation/vowel_i.png",
+  "./images/practice/articulation/vowel_u.png",
+  "./images/practice/articulation/vowel_e.png",
+  "./images/practice/articulation/vowel_o.png",
+
   "./styles/base/responsive-beta6.css?v=6",
   "./styles/ui/veta14-ui.css?v=2",
   "./styles/ui/veta17-theme.css?v=2",
@@ -47,15 +65,18 @@ const APP_SHELL = [
   "./scripts/audio/kotoba-audio-common-r5.js?v=r5",
   "./scripts/audio/kotoba-sound-pack-v2.js?v=22",
   "./scripts/audio/kotoba-sound-design-v19.js?v=23",
-  "./scripts/learning/learning-mode-veta12.js?v=r154",
-  "./scripts/learning/adaptive-learning.js?v=veta12",
+  "./scripts/learning/learning-mode-veta12.js?v=251",
+  "./scripts/learning/adaptive-learning.js?v=251",
+  "./scripts/learning/kotoba-ai-judge.js?v=253",
+  "./scripts/learning/kotoba-ai-integration-v252.js?v=253",
   "./scripts/learning/personal-review-r154.js?v=20261118",
   "./scripts/system/daily-streak.js?v=r156",
   "./scripts/audio/event-message-sound.js?v=22",
   "./scripts/conversation/offline-conversation-engine.js?v=91",
   "./scripts/conversation/ai-answer-v23.js?v=23",
   "./scripts/audio/articulation-recorded-examples-v121.js?v=mi-20261116",
-  "./scripts/application/app.js?v=r156",
+  "./scripts/application/app.js?v=252-20261121",
+  "./scripts/system/browser-display-mode-v239.js?v=239-20261119",
   "./scripts/system/user-profile.js?v=veta17-id",
   "./scripts/learning/unified-learning-veta1.js?v=r154",
   "./scripts/training/aphasia-modes.js?v=pc-r15-1-20261117",
