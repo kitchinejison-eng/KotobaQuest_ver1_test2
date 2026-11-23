@@ -36,9 +36,9 @@
       },
       // The native bridge already provides Android TextToSpeech. Expose it to
       // the same API that app.js uses for all manually requested audio cues.
-      speak: function (text) {
+      speak: function (text, rateOverride) {
         if (typeof bridge.speak !== 'function') throw new Error('Native TTS is unavailable');
-        bridge.speak(String(text || ''), 0.88 * (window.KotobaAudio ? window.KotobaAudio.ttsRate() : 1),
+        bridge.speak(String(text || ''), (Number.isFinite(Number(rateOverride)) && rateOverride != null ? Math.max(0.5,Math.min(1.5,Number(rateOverride))) : 0.88) * (window.KotobaAudio ? window.KotobaAudio.ttsRate() : 1),
           1.0, window.KotobaAudio ? window.KotobaAudio.effectiveTts() : 1.0, 'kotoba-manual-' + Date.now());
       },
       stopTts: function () { if (typeof bridge.cancelSpeech === 'function') bridge.cancelSpeech(); },

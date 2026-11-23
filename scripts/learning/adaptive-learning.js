@@ -101,14 +101,15 @@
   }
   function begin(genre, activity) {
     if (!learningOn()) {currentSession=null;return false;}
-    currentSession={genre:String(genre||''), activity:skillId(activity), responses:[], startedAt:Date.now()};
+    currentSession={genre:String(genre||''), activity:skillId(activity), responses:[], startedAt:Date.now(),
+      trainingLevel:window.KotobaLevels ? window.KotobaLevels.get(activity).selected : 1};
     return true;
   }
   // 【recordAnswer】回答を学習推定へ記録します。学習モードOFF時の動作にも注意してください。
   function recordAnswer(q,correct) {
     if(!learningOn() || !currentSession || !q || String(q.answer||'')==='できた') return;
     currentSession.responses.push({id:questionId(q),
-      difficulty:difficulty(q), correct:!!correct});
+      difficulty:difficulty(q), trainingLevel:currentSession.trainingLevel, correct:!!correct});
   }
   function finish(genre,activity,score,total) {
     if(!learningOn()) {currentSession=null;return null;}
@@ -122,9 +123,11 @@
       rec.total++; if(r.correct)rec.correct++;
       rec.recent.push(r.correct?1:0); if(rec.recent.length>16)rec.recent.shift();
       rec.probability=updateBKT(rec.probability,r.correct);
-      var lv=Math.round(clamp(Number(r.difficulty)||1,1,10));
-      var by=rec.byLevel[lv] || {total:0,correct:0,probability:.35};
+      var lv=Math.round(clamp(Number(r.trainingLevel)||Number(r.difficulty)||1,1,10));
+      var by=rec.byLevel[lv] || {total:0,correct:0,probability:.35,recent:[]};
+      if(!Array.isArray(by.recent))by.recent=[];
       by.total++; if(r.correct)by.correct++;
+      by.recent.push(r.correct?1:0);if(by.recent.length>12)by.recent.shift();
       by.probability=updateBKT(by.probability,r.correct);
       rec.byLevel[lv]=by;
     });

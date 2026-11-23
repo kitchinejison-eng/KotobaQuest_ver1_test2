@@ -20,6 +20,7 @@
   var mixing = {tap:0.47,gacha:0.63,clear:0.62,record:0.47,footsteps:0.27};
   function play(kind) {
     if (!files[kind]) return false;
+    if (root.KotobaAudio && root.KotobaAudio.isSeOn && !root.KotobaAudio.isSeOn()) return true;
     var volume = root.__appMasterVolume;
     if (typeof volume !== 'number') {
       try { volume = Number(localStorage.getItem('kotobaquest_volume_v3') || 60) / 100; }

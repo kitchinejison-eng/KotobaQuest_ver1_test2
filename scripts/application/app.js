@@ -162,7 +162,7 @@ var GENRES = [
         name: "構音・発声",
         description: "口の準備、発音部位、単語から短文への段階的な発声課題。",
         activities: [
-            ["mouth", "口・発声ウォームアップ", "口を大きく動かす・母音を選ぶ"],
+            ["mouth", "口・発声の基礎練習", "口を大きく動かす・母音を選ぶ"],
             ["sound", "発音部位別", "指定された音が入る言葉を選ぶ"],
             ["stepup", "単語→短文", "単語から短文へ段階的に練習する"]
         ]
@@ -182,7 +182,7 @@ var GENRES = [
         name: "音律・リズム",
         description: "拍・モーラ、アクセント、文章リズムなどを意識する課題。",
         activities: [
-            ["mora", "手拍子・モーラ", "手拍子か画面タップで音の拍数を数えます"],
+            ["mora", "モーラ・手拍子練習", "手拍子か画面タップで音の拍数を数えます"],
             ["accent", "アクセント", "どこを強く読むかを選ぶ"],
             ["sentenceRhythm", "文章リズム", "自然な文章を選んで読む"]
         ]
@@ -217,7 +217,7 @@ var GENRES = [
         activities: [
             ["gesture", "ジェスチャー", "場面に合う伝え方を選ぶ"],
             ["board", "コミュニケーションボード", "場面に合う絵カードを4択から選ぶ"],
-            ["roleplay", "実生活ロールプレイ", "カフェ・買い物などの場面で答える"],
+            ["roleplay", "日常会話・場面別練習", "カフェ・買い物などの場面で答える"],
             ["aac", "この言葉で伝える", "場面に合う言葉を選び、判定を確認する練習"]
         ]
     },
@@ -253,14 +253,15 @@ var TRAINING_CATEGORIES = [
         activities: [
             ["articulationNavigator","構音筋ビジュアルナビゲーション","口の断面図で舌や唇の位置を確認しながら練習します。"],
             ["pronunciationTraining","発音トレーニング","発音する場所・仕方・問題タイプを選び、達成度と復習を記録します。"],
-            ["mouth","口・発声ウォームアップ","口を大きく動かし、母音などを練習します。"],
+            ["mouth","口・発声の基礎練習","口を大きく動かし、母音などを練習します。"],
             ["sound","発音の練習","指定された音が入る言葉を選んで練習します。"],
             ["stepup","単語→短文","単語から短い文章へ段階的に練習します。"],
             ["repeat","復唱・唱和","聞いた言葉を声に出してまねします。"],
-            ["mora","手拍子・モーラ","手拍子か画面タップで拍数を数えます。"],
+            ["mora","モーラ・手拍子練習","手拍子か画面タップで拍数を数えます。"],
             ["accent","アクセント","自然なアクセントを意識して読みます。"],
             ["sentenceRhythm","文章リズム","意味のまとまりを意識して文章を読みます。"],
-            ["voiceRead","音読・音声認識テスト","表示された言葉を読み、音声認識で確認します。"]
+            ["voiceRead","音読・音声認識テスト","表示された言葉を読み、音声認識で確認します。"],
+            ["catchTongue","早口言葉とリズム（試作途中）","音読と拍数タップを練習します。"]
         ]
     },
     {
@@ -274,7 +275,9 @@ var TRAINING_CATEGORIES = [
             ["tf","○×・意味理解","文章の内容が合っているか考えます。"],
             ["matching","文字・絵マッチング","文字に合う絵を選びます。"],
             ["copy","写字・見写し","見本を見て実際に書き、認識候補の文字を選んで答えます。"],
-            ["anagram","文字並べ替え","文字を正しい順に並べます。"]
+            ["anagram","文字並べ替え","文字を正しい順に並べます。"],
+            ["catchImage","イメージキャッチ（試作途中）","絵と質問を比べて○×で答えます。"],
+            ["catchCategory","カテゴリーキャッチ（試作途中）","同じカテゴリーの仲間を見つけます。"]
         ]
     },
     {
@@ -285,7 +288,8 @@ var TRAINING_CATEGORIES = [
         activities: [
             ["naming","絵・実物の呼称","絵や写真を見て名前を選びます。"],
             ["cue","ヒントで言葉を出す","語頭音や特徴のヒントから言葉を探します。"],
-            ["fill","穴埋め・自動言語","定型句や数字の続きを完成させます。"]
+            ["fill","穴埋め・自動言語","定型句や数字の続きを完成させます。"],
+            ["catchWord","ワードキャッチ（試作途中）","ヒントから正しいことばを選びます。"]
         ]
     },
     {
@@ -296,9 +300,10 @@ var TRAINING_CATEGORIES = [
         activities: [
             ["gesture","ジェスチャー","言葉以外の伝え方を選びます。"],
             ["board","コミュニケーションボード","4つの絵カードから選び、正誤を確認します。"],
-            ["roleplay","実生活ロールプレイ","カフェ・買い物などの場面で練習します。"],
+            ["roleplay","日常会話・場面別練習","カフェ・買い物などの場面で練習します。"],
             ["aac","この言葉で伝える","場面に合う言葉を選び、正解・不正解を確認します。"],
-            ["localAIConversation","AI会話・自由会話","チャット形式で自由に会話を練習します。"]
+            ["localAIConversation","AI会話・自由会話","チャット形式で自由に会話を練習します。"],
+            ["catchConversation","会話キャッチ（役割交代）（試作途中）","会話の役割を交代して、内容を思い出します。"]
         ]
     },
     {
@@ -346,6 +351,11 @@ var TRAINING_CATEGORIES = [
         ]
     }
 ];
+// Ver.2.1.0: 5つの試作課題は通常課題と同じTRAINING_CATEGORIES内に登録。
+// 旧「試作専用ページ」への別画面遷移は廃止し、共通の問題数・熟練度・記録を利用します。
+function isKqCatchTrialActivity(id) {
+    return !!(window.KotobaCatchIntegrated && window.KotobaCatchIntegrated.isCatch(id));
+}
 // 各課題のカードに、内容が一目で伝わる個別アイコンを表示します。
 // ジャンルの絵文字と課題アイコンは別々に設定でき、ゲーム本体の動作には影響しません。
 var TRAINING_ACTIVITY_ICONS = {
@@ -382,7 +392,12 @@ var TRAINING_ACTIVITY_ICONS = {
     shibaBurger: "🍔",
     cardMemory: "🃏",
     kotobaQuest: "⚔️",
-    kotobaQuestClassic: "🛡️"
+    kotobaQuestClassic: "🛡️",
+    catchTongue: "🥁",
+    catchImage: "🍎",
+    catchCategory: "🚌",
+    catchWord: "☂️",
+    catchConversation: "💬"
 };
 // V115.1: ジャンル・課題と関連する練習分野の説明。
 // これは診断名による受講制限や治療効果の表示ではありません。
@@ -427,7 +442,12 @@ var TRAINING_ACTIVITY_NEEDS = {
     catWordPuzzle: [["higher", "aphasia", "intellectual", "cognitive"], "文字の並び、単語の想起、語彙・意味の理解、注意"],
     shibaBurger: [["higher", "aphasia", "intellectual", "cognitive"], "聞いた注文の記憶、理解、選択、注意・想起"],
     kotobaQuest: [["higher", "aphasia", "cognitive"], "言葉の理解と判断"],
-    kotobaQuestClassic: [["higher", "aphasia", "cognitive"], "言葉の理解と判断"]
+    kotobaQuestClassic: [["higher", "aphasia", "cognitive"], "言葉の理解と判断"],
+    catchTongue: [["aphasia", "stuttering"], "拍数・速度を意識して発声する（音声の採点なし）"],
+    catchImage: [["aphasia", "higher"], "意味やカテゴリーを判断する"],
+    catchCategory: [["aphasia", "higher"], "意味やカテゴリーを判断する"],
+    catchWord: [["aphasia", "intellectual"], "ヒントから言葉を思い出す"],
+    catchConversation: [["aphasia", "intellectual"], "会話の役割を交代して内容を思い出す"]
 };
 function trainingNeedBadges(activityIds) {
     return activityIds.map(function(id) { return TRAINING_NEEDS[id]; }).filter(Boolean)
@@ -443,31 +463,168 @@ function categoryNeedIds(category) {
 }
 // 構音ナビゲーション：口腔側面図へ連動する構音グループ（教育用の概略分類）。
 // 外来語の f/v と日本語の「ふ」、硬口蓋と歯茎硬口蓋の違いも明記します。
+// 構音ナビゲーション Ver2.3.9：指定の6つの総称を固定した出題グループ。
+// 「ファ行」と「ヴァ」、および「や行」と「し・ち」は音ごとに図示・案内を分ける。
+// このグループ分けは出題上の分類であり、国際音声記号の厳密な単一調音点分類ではない。
 var ARTICULATION_GROUPS = [
     { id:"bilabial", name:"両唇音", icon:"👄", place:"lips", letters:["ま","み","む","め","も"],
-      instruction:"上下の唇をそっと閉じ、鼻に響かせるように声を出します。",
-      action:"上下の唇を閉じる", focus:"唇", note:"「ま行」は唇を使う鼻音です。無理に強く閉じなくて大丈夫です。" },
-    { id:"labiodental", name:"唇歯音", icon:"🦷", place:"labiodental", letters:["ファ","フィ","フェ","フォ","ヴァ"],
-      instruction:"外国語の f/v の口の形の参考練習です。上の前歯を下唇に軽く近づけます。",
-      action:"上の歯を下唇に近づける", focus:"唇と歯",
-      note:"※日本語の「ふ」は通常、両唇摩擦音 [ɸ] として説明されます。この分類は外来語の口の形を比べる参考です。" },
+      instruction:"上下の唇を使って作る音の総称です。閉じて開く音や、鼻に息を通す音などがあります。",
+      action:"上下の唇を使って発音する", focus:"上下の唇", note:"両唇音は総称です。この練習のま行は、その一種の両唇鼻音です。" },
+    { id:"labiodental", name:"唇歯音", icon:"👄", place:"lips", letters:["ファ","フィ","フェ","フォ","ヴァ"],
+      instruction:"唇歯音は上の前歯と下唇を使う音の総称です。ただし、この練習のファ行は通常、両唇摩擦音であり、厳密には唇歯音ではありません。",
+      action:"各音の発音方法に合わせて唇や歯を動かす", focus:"唇・上の前歯・息", note:"この出題グループは便宜的なまとめです。日本語のファ行[ɸ]は両唇摩擦音、英語の[f][v]は唇歯摩擦音です。" },
     { id:"alveolar", name:"歯音・歯茎音", icon:"😁", place:"alveolar", letters:["た","て","と","な","ね"],
-      instruction:"舌先を上の前歯の後ろや歯茎の近くに動かして発音します。",
-      action:"舌先を上の歯茎へ近づける", focus:"舌先・歯茎",
-      note:"「た行」の一部と「な行」の一部を例にしています。音によって接触位置は異なります。" },
+      instruction:"舌先や舌の前側を上の前歯・歯茎付近で使う音の総称です。音によって息の出し方が変わります。",
+      action:"舌を歯茎付近につける", focus:"舌先・歯茎", note:"「た・て・と」は閉鎖後に息を開放する破裂音、「な・ね」は鼻へ息を通す鼻音です。" },
     { id:"palatal", name:"硬口蓋音", icon:"🗣️", place:"palatal", letters:["や","ゆ","よ","し","ち"],
-      instruction:"舌の前側を上あごの前の方へ近づける感覚を確かめます。",
-      action:"舌の前側を上あごへ近づける", focus:"硬口蓋付近",
-      note:"「し」「ち」は厳密には歯茎硬口蓋付近の音です。図は位置の比較用です。" },
+      instruction:"硬口蓋音は舌の前側と硬い上あご付近で作る音です。なお、このグループの「し・ち」は厳密には歯茎硬口蓋音です。",
+      action:"各音に合わせて舌の前側を動かす", focus:"硬口蓋・歯茎硬口蓋", note:"この出題グループは便宜的なまとめです。や行は硬口蓋接近音、し・ちは歯茎硬口蓋音です。" },
     { id:"velar", name:"軟口蓋音", icon:"👅", place:"velar", letters:["か","き","く","け","こ"],
-      instruction:"舌の奥を上あごの奥の柔らかい部分へ近づけて発音します。",
-      action:"舌の奥を持ち上げる", focus:"舌の奥・軟口蓋",
-      note:"「か行」を例にしています。母音に合わせて舌の位置は変わります。" },
+      instruction:"舌の奥を上あごの奥の柔らかい軟口蓋へつけ、一度息を止めてから離します。",
+      action:"舌の奥で閉じてから離す", focus:"舌の奥・軟口蓋", note:"「か行」の子音は通常、軟口蓋の破裂音です。「き」などでは舌の位置が前寄りになることがあります。" },
     { id:"glottal", name:"声門音", icon:"🎵", place:"glottal", letters:["は","へ","ほ"],
-      instruction:"のどの奥から、息を無理なく流すイメージで発音します。",
-      action:"のどの奥から息を流す", focus:"声門付近",
-      note:"日本語の「ひ」は硬口蓋付近、「ふ」は両唇付近で作るため、ここでは「は・へ・ほ」を例にします。" }
+      instruction:"のどに力を入れすぎず、声門付近で息の摩擦を作ります。",
+      action:"のどに無理な力をかけず息を出す", focus:"声門付近", note:"「は・へ・ほ」は一般に[h]の音です。「ひ」は硬口蓋付近、「ふ」は両唇付近で作るためこの組では扱いません。" }
 ];
+// 各音の発音位置と方法を明示。音数・グループ数・出題順・採点IDは変更しない。
+var ARTICULATION_SOUND_GUIDES = Object.create(null);
+function registerArticulationGuide(letters, guide) {
+    letters.forEach(function(letter) { ARTICULATION_SOUND_GUIDES[letter] = guide; });
+}
+registerArticulationGuide(["ファ","フィ","フェ","フォ"], {
+    name:"日本語のファ行（両唇摩擦音）", place:"lips", focus:"上下の唇", 
+    action:"上下の唇を軽く近づけ、すき間から息を出す",
+    instruction:"上下の唇を完全には閉じず、少し近づけて息を流し、摩擦を作ります。上の歯で下唇をかむ必要はありません。",
+    note:"日本語の「ファ・フィ・フェ・フォ」の子音は通常[ɸ]です。英語の[f]は上の歯と下唇を使う別の音です。" 
+});
+registerArticulationGuide(["ヴァ"], {
+    name:"外来語のヴァ（参考）", place:"labiodental", focus:"唇と上の前歯（参考）",
+    action:"英語の[v]を練習する場合、上の前歯を下唇に軽く近づけて声を出す",
+    instruction:"「ヴァ」は外来語表記で、実際の日本語発音には「バ」に近い音など個人差があります。図は外国語の[v]を目標とする場合の参考です。",
+    note:"「ヴァ」と表記されても、必ず唇歯音[v]で発音するとは限りません。お手本音声と比較してください。"
+});
+registerArticulationGuide(["た","て","と"], {
+    name:"歯茎破裂音（た・て・と）", place:"alveolar", focus:"舌先・歯茎",
+    action:"舌を上の歯茎付近につけて閉じ、離す",
+    instruction:"舌先または舌の前側を上の歯茎付近につけ、空気を一度止めてから離します。",
+    note:"「た・て・と」の子音は一般に[t]です。「な・ね」の鼻音とは異なる息の通し方です。"
+});
+registerArticulationGuide(["な","ね"], {
+    name:"歯茎鼻音（な・ね）", place:"alveolar", focus:"舌先・歯茎・鼻への息",
+    action:"舌を上の歯茎付近につけ、鼻へ息を通す",
+    instruction:"舌先または舌の前側を上の歯茎付近につけ、声を出しながら鼻に息を通します。",
+    note:"「な・ね」の子音は一般に[n]です。舌を離すときに強く息を破裂させる必要はありません。"
+});
+registerArticulationGuide(["や","ゆ","よ"], {
+    name:"硬口蓋接近音（や行）", place:"palatal", focus:"舌の前側・硬口蓋",
+    action:"舌の前側を硬口蓋に近づける（触れさせずに）",
+    instruction:"舌の前側を上あごの硬い部分に近づけ、完全にはふさがず、なめらかに母音へつなぎます。",
+    note:"「や・ゆ・よ」の子音は一般に[j]（硬口蓋接近音）です。「し・ち」とは調音方法も異なります。"
+});
+registerArticulationGuide(["し"], {
+    name:"歯茎硬口蓋摩擦音（し）", place:"alveolopalatal", focus:"歯茎の後ろ・舌の前側",
+    action:"舌の前側を歯茎の後ろへ近づけ、すき間から息を出す",
+    instruction:"舌の前側を歯茎の後ろから硬口蓋の前あたりに近づけ、すき間から息を流します。舌で完全には閉じません。",
+    note:"「し」の子音は一般に[ɕ]（歯茎硬口蓋摩擦音）です。硬口蓋接近音[j]とは異なります。"
+});
+registerArticulationGuide(["ち"], {
+    name:"歯茎硬口蓋破擦音（ち）", place:"alveolopalatal", focus:"歯茎の後ろ・舌の前側",
+    action:"舌で一度閉じてから、すき間を作って摩擦させる",
+    instruction:"舌の前側を歯茎の後ろ付近につけて一度息を止め、その後すき間から息を摩擦させながら出します。",
+    note:"「ち」の子音は一般に[tɕ]（歯茎硬口蓋破擦音）です。「し」と違い、最初に一度閉鎖します。"
+});
+// 【総称と細分類の分離】出題中の全28音に、音声学上の分類名を設定。
+// 既存の詳細ガイド（例：し・ち・や行・外来語）も維持し、表示名だけを補足する。
+registerArticulationGuide(["ま","み","む","め","も"], {
+    name:"有声両唇鼻音", place:"lips", focus:"上下の唇・鼻への息",
+    action:"上下の唇を軽く閉じ、鼻から息を通す",
+    instruction:"上下の唇を軽く閉じたまま声を出し、鼻から息を通します。唇に力を入れすぎる必要はありません。",
+    note:"ま行の子音は両唇鼻音です。「み」は後続の母音の影響で舌が前寄りになることがあります。"
+});
+registerArticulationGuide(["か","き","く","け","こ"], {
+    name:"無声軟口蓋破裂音", place:"velar", focus:"舌の奥・軟口蓋",
+    action:"舌の奥を上あごの奥につけて、離す",
+    instruction:"舌の奥を上あごの奥の柔らかい部分につけて息を一度止め、離して発音します。",
+    note:"か行の子音は通常[k]です。「き」では舌が前寄りになることがあります。"
+});
+registerArticulationGuide(["は","へ","ほ"], {
+    name:"無声声門摩擦音", place:"glottal", focus:"声門付近・息",
+    action:"のどに無理な力を入れず、息を通す",
+    instruction:"のどに力を入れすぎず、声門付近から息を流して発音します。",
+    note:"は・へ・ほの子音は通常[h]です。ひ[ç]・ふ[ɸ]とは発音位置が異なります。"
+});
+// 表示用の細分類。外来音のヴァは[v]を常に意味するわけではありません。
+var ARTICULATION_DETAIL_LABELS = Object.create(null);
+[
+    [["ま","み","む","め","も"], "有声両唇鼻音"],
+    [["ファ","フィ","フェ","フォ"], "無声両唇摩擦音"],
+    [["ヴァ"], "外来語のヴァ（[v]は唇歯摩擦音）"],
+    [["た","て","と"], "無声歯茎破裂音"],
+    [["な","ね"], "有声歯茎鼻音"],
+    [["や","ゆ","よ"], "有声硬口蓋接近音"],
+    [["し"], "無声歯茎硬口蓋摩擦音"],
+    [["ち"], "無声歯茎硬口蓋破擦音"],
+    [["か","き","く","け","こ"], "無声軟口蓋破裂音"],
+    [["は","へ","ほ"], "無声声門摩擦音"]
+].forEach(function(row) {
+    row[0].forEach(function(letter) { ARTICULATION_DETAIL_LABELS[letter] = row[1]; });
+});
+// 「五十音表」は参照表。全音が出題・採点できるという意味ではない。
+var ARTICULATION_FIFTY_ROWS = [
+    ["あ行", "あ", "い", "う", "え", "お"],
+    ["か行", "か", "き", "く", "け", "こ"],
+    ["さ行", "さ", "し", "す", "せ", "そ"],
+    ["た行", "た", "ち", "つ", "て", "と"],
+    ["な行", "な", "に", "ぬ", "ね", "の"],
+    ["は行", "は", "ひ", "ふ", "へ", "ほ"],
+    ["ま行", "ま", "み", "む", "め", "も"],
+    ["や行", "や", "", "ゆ", "", "よ"],
+    ["ら行", "ら", "り", "る", "れ", "ろ"],
+    ["わ行", "わ", "", "", "", "を"]
+];
+var ARTICULATION_FIFTY_LOOKUP = Object.create(null);
+ARTICULATION_FIFTY_ROWS.forEach(function(row) {
+    row.slice(1).forEach(function(letter, index) {
+        if (letter) ARTICULATION_FIFTY_LOOKUP[letter] = { row:row[0], column:["あ型","い型","う型","え型","お型"][index] };
+    });
+});
+function buildArticulationFiftyTable(activeSound) {
+    var heads = ["行", "あ型", "い型", "う型", "え型", "お型"].map(function(head) {
+        return '<th scope="col">' + head + '</th>';
+    }).join("");
+    var rows = ARTICULATION_FIFTY_ROWS.map(function(row) {
+        return '<tr><th scope="row">' + row[0] + '</th>' + row.slice(1).map(function(letter) {
+            var match = letter && letter === activeSound;
+            return '<td' + (match ? ' class="is-current" aria-current="true"' : '') + '>' + (letter || '—') + '</td>';
+        }).join('') + '</tr>';
+    }).join('');
+    return '<details class="artnav-v5-fifty-reference"><summary>五十音表を確認する（参考）</summary>' +
+        '<div class="artnav-v5-table-scroll"><table><caption>あ行〜わ行の五十音表</caption><thead><tr>' + heads + '</tr></thead><tbody>' + rows + '</tbody></table></div>' +
+        '<p>黄色は今回の練習音です。出題対象は録音済みの28音のみで、表の全音が練習できるわけではありません。ファ行・ヴァは五十音表の外来音です。</p></details>';
+}
+
+// 構音ナビ口型アイコン：母音の静止画を、出題中の音に合わせて切り替えます。
+// 調音点の説明や口腔側面図は従来のままです。母音の絵は子音の発音姿勢そのものではありません。
+var ARTICULATION_VOWEL_MOUTH_MAP = Object.create(null);
+[
+    { vowel:"a", sounds:["ま","か","た","な","や","は","ファ","ヴァ"] },
+    { vowel:"i", sounds:["み","き","し","ち","フィ"] },
+    { vowel:"u", sounds:["む","く","ゆ"] },
+    { vowel:"e", sounds:["め","け","て","ね","へ","フェ"] },
+    { vowel:"o", sounds:["も","こ","と","よ","ほ","フォ"] },
+
+].forEach(function(item) {
+    item.sounds.forEach(function(sound) { ARTICULATION_VOWEL_MOUTH_MAP[sound] = item.vowel; });
+});
+function getArticulationVowelMouthIcon(sound, fallbackIcon) {
+    var vowel = ARTICULATION_VOWEL_MOUTH_MAP[sound];
+    if (!vowel) return fallbackIcon;
+    // Only fixed ASCII file names are possible. Never create URLs from user-entered text.
+    var vowelLabel = { a:"あ", i:"い", u:"う", e:"え", o:"お" }[vowel];
+    return '<img class="artnav-v4-mouth-image" src="images/practice/articulation/vowel_' + vowel + '.png"' +
+        ' alt="" decoding="async" title="母音「' + vowelLabel + '」の口型の目安" />';
+}
+
 var articulationSelectedGroup = "bilabial";
 var articulationAttemptedIndexes = new Set();
 var articulationCorrectIndexes = new Set();
@@ -479,11 +636,16 @@ function getArticulationGroup(id) {
 function buildArticulationGroupQuestions(groupId) {
     var group = getArticulationGroup(groupId);
     return group.letters.map(function(letter, index) {
-        return { question:"「" + letter + "」の音が出る場所を見ながら、発音してみましょう。",
-            answer:letter, voiceText:letter, navPlace:group.place, navGroup:group.id,
-            navTitle:group.name + "「" + letter + "」", navLabel:group.focus, navGuide:group.instruction,
-            navSteps:[group.action + "感覚を確かめます。","お手本を聞き、「" + letter + "」とゆっくり声を出します。"],
-            navSequence:index, hint:group.note };
+        var guide = ARTICULATION_SOUND_GUIDES[letter] || group;
+        return { question:"「" + letter + "」の発音位置を見ながら、声に出してみましょう。",
+            answer:letter, voiceText:letter, navPlace:guide.place || group.place, navGroup:group.id,
+            navTitle:(guide.name || group.name) + "「" + letter + "」", navDisplayName:guide.name || group.name,
+            navGroupName:group.name, navDetailName:ARTICULATION_DETAIL_LABELS[letter] || (guide.name || group.name),
+            navKanaInfo:ARTICULATION_FIFTY_LOOKUP[letter] || null,
+            navLabel:guide.focus || group.focus, navGuide:guide.instruction || group.instruction,
+            navAction:guide.action || group.action, navNote:guide.note || group.note,
+            navSteps:["今回のポイント：" + (guide.action || group.action),"お手本を聞き、「" + letter + "」とゆっくり声を出します。"],
+            navSequence:index, hint:guide.note || group.note };
     });
 }
 // Ver_beta_4: 6種類から5種類を無作為に選び、各種類から1音ずつ抽選。
@@ -543,176 +705,7 @@ var FOUNDATION_VOICE_ACTIVITIES = new Set(["mouth", "sound", "stepup", "accent",
 // ------------------------------------------------------------
 // 共通項目：question / answer / choices / hint / voiceText / emoji / image
 // type：quiz = 選択、speak = 声に出して練習、complete = 「できた」で進む、anagram = 並べ替え
-var QUESTIONS = {
-    articulationNavigator: [
-        { question: "口の開き方を見ながら「あ」を練習しましょう。", answer: "あ", voiceText: "あ", navPlace: "mouth", navTitle: "母音「あ」", navLabel: "口の開き", navGuide: "口を開き、あごや舌に力を入れすぎず、自然に声を出します。", navSteps: ["口を開く様子を鏡で確認します。", "「あ」と短く、無理のない声で言います。"], hint: "痛みや疲れがあるときは無理をせず休みましょう。" },
-        { question: "唇と舌の前の方を意識して「い」を練習しましょう。", answer: "い", voiceText: "い", navPlace: "front", navTitle: "母音「い」", navLabel: "口の前の方", navGuide: "口を横に軽く開き、舌の前の方を意識して声を出します。", navSteps: ["口を軽く横に開きます。", "「い」とゆっくり声に出します。"], hint: "口の形を見ながら、自分のペースで行います。" },
-        { question: "唇の形を意識して「う」を練習しましょう。", answer: "う", voiceText: "う", navPlace: "lips", navTitle: "母音「う」", navLabel: "唇の形", navGuide: "唇を軽くすぼめます。強く突き出しすぎなくて大丈夫です。", navSteps: ["唇を軽くすぼめます。", "「う」と短く声に出します。"], hint: "唇の形には個人差があります。楽な動かし方で練習しましょう。" },
-        { question: "上下の唇を使う「ぱ」を練習しましょう。", answer: "ぱ", voiceText: "ぱ", navPlace: "lips", navTitle: "唇を使う音「ぱ」", navLabel: "上下の唇", navGuide: "上下の唇を一度閉じ、軽く開くときに「ぱ」と声を出します。", navSteps: ["上下の唇を軽く閉じます。", "唇を開きながら「ぱ」と言います。"], hint: "息を強く出しすぎず、楽に発音します。" },
-        { question: "唇を閉じて出す「ま」を練習しましょう。", answer: "ま", voiceText: "ま", navPlace: "lips", navTitle: "唇を使う音「ま」", navLabel: "上下の唇", navGuide: "唇を閉じ、声を鼻に響かせるように「ま」と言います。", navSteps: ["上下の唇を軽く閉じます。", "力を抜いて「ま」と声に出します。"], hint: "音声認識の結果は目安です。聞き取りにくい場合はお手本と聞き比べましょう。" },
-        { question: "舌先を意識して「た」を練習しましょう。", answer: "た", voiceText: "た", navPlace: "front", navTitle: "舌先を使う音「た」", navLabel: "舌先", navGuide: "舌先を上の歯のすぐ後ろ付近につけ、離す動きを意識します。", navSteps: ["舌先を上の歯のすぐ後ろ付近へ近づけます。", "舌先を離しながら「た」と言います。"], hint: "舌の位置は音や人によって異なることがあります。無理に動かさないでください。" },
-        { question: "舌先を軽く使う「ら」を練習しましょう。", answer: "ら", voiceText: "ら", navPlace: "front", navTitle: "舌先を使う音「ら」", navLabel: "舌先", navGuide: "舌先を上の歯のすぐ後ろ付近に軽く触れて、すぐ離すイメージです。", navSteps: ["舌先を軽く上へ動かします。", "「ら」と声に出します。"], hint: "舌先を強く押しつける必要はありません。" },
-        { question: "舌の奥を意識して「か」を練習しましょう。", answer: "か", voiceText: "か", navPlace: "back", navTitle: "舌の奥を使う音「か」", navLabel: "舌の奥", navGuide: "舌の奥の方を口の天井の奥へ近づけるイメージで声を出します。", navSteps: ["舌の奥の方を意識します。", "「か」とゆっくり声に出します。"], hint: "図は位置の目安です。実際の舌の動きは音によって異なります。" },
-        { question: "息の通り道を意識して「さ」を練習しましょう。", answer: "さ", voiceText: "さ", navPlace: "air", navTitle: "息を使う音「さ」", navLabel: "息の通り道", navGuide: "舌と歯の間の狭いすき間を息が通るイメージで「さ」と言います。", navSteps: ["口の中に小さなすき間を作るイメージを持ちます。", "息を強くしすぎず「さ」と言います。"], hint: "この画面は発音の練習を助ける目安で、医学的な評価・診断ではありません。" },
-        { question: "口の形と音をまとめて「あ・い・う・え・お」と練習しましょう。", answer: "あいうえお", voiceText: "あ、い、う、え、お", navPlace: "mouth", navTitle: "母音をつなげる", navLabel: "口の形を切り替える", navGuide: "口の形を少しずつ変えながら、5つの母音を自分のペースで言います。", navSteps: ["あ・い・う・え・おを見ながら準備します。", "ひとつずつ区切って声に出します。"], hint: "途中で休んでも大丈夫です。" }
-    ],
-    naming: [
-        { question: "これは何でしょう？", image: "images/questions/naming/apple.jpg", answer: "りんご", hint: "赤や緑の果物です。", choices: ["りんご", "みかん", "バナナ", "ぶどう"], voiceText: "これは、りんごです。" },
-        { question: "これは何でしょう？", image: "images/questions/naming/banana.jpg", answer: "バナナ", hint: "黄色くて、皮をむいて食べます。", choices: ["りんご", "バナナ", "もも", "すいか"], voiceText: "これは、バナナです。" },
-        { question: "これは何でしょう？", image: "images/questions/naming/orenge.jpg", answer: "みかん", hint: "オレンジ色の小さな果物です。", choices: ["ぶどう", "みかん", "なし", "りんご"], voiceText: "これは、みかんです。" },
-        { question: "これは何でしょう？", image: "images/questions/naming/inu.jpg", answer: "いぬ", hint: "「ワンワン」と鳴く動物です。", choices: ["ねこ", "いぬ", "うさぎ", "さる"], voiceText: "これは、いぬです。" },
-        { question: "これは何でしょう？", image: "images/questions/naming/neko.jpg", answer: "ねこ", hint: "「ニャー」と鳴く動物です。", choices: ["いぬ", "ねこ", "きつね", "くま"], voiceText: "これは、ねこです。" },
-        { question: "これは何でしょう？", image: "images/questions/naming/cofe.jpg", answer: "コーヒー", hint: "黒っぽい飲み物です。", choices: ["おちゃ", "コーヒー", "ぎゅうにゅう", "ジュース"], voiceText: "これは、コーヒーです。" }
-    ],
-    repeat: [
-        { question: "聞いた言葉を声に出してまねしてみましょう。", answer: "できた", prompt: "りんご", image: "images/practice/voice/apple.svg", hint: "ゆっくり、はっきり言ってみましょう。", choices: ["できた", "もう一度"], voiceText: "りんご" },
-        { question: "聞いた言葉を声に出してまねしてみましょう。", answer: "できた", prompt: "ありがとう", hint: "自然な速さで言ってみましょう。", choices: ["できた", "もう一度"], voiceText: "ありがとう" },
-        { question: "聞いた言葉を声に出してまねしてみましょう。", answer: "できた", prompt: "おはようございます", hint: "区切ってから言っても大丈夫です。", choices: ["できた", "もう一度"], voiceText: "おはようございます" },
-        { question: "聞いた言葉を声に出してまねしてみましょう。", answer: "できた", prompt: "コーヒーください", hint: "短い文章を続けて言ってみましょう。", choices: ["できた", "もう一度"], voiceText: "コーヒーください" }
-    ],
-    cue: [
-        { question: "ヒントを見て言葉を選びましょう。", answer: "りんご", prompt: "赤くて、丸くて、食べる果物。『り』から始まります。", hint: "最初の音は『り』です。", choices: ["りんご", "みかん", "パン", "くつ"] },
-        { question: "ヒントを見て言葉を選びましょう。", answer: "とけい", prompt: "時間を確認するもの。『と』から始まります。", hint: "最初の音は『と』です。", choices: ["テレビ", "とけい", "電話", "ほん"] },
-        { question: "ヒントを見て言葉を選びましょう。", answer: "かさ", prompt: "雨の日に使うもの。『か』から始まります。", hint: "雨の日に使います。", choices: ["かさ", "くつ", "かばん", "ぼうし"] }
-    ],
-    fill: [
-        { question: "文の続きを選びましょう。", answer: "たべます", image: "images/questions/fill/mesi.jpg", prompt: "ごはんを（　　）。", hint: "口に入れて食べる動作です。", choices: ["たべます", "のみます", "ねます", "みます"] },
-        { question: "文の続きを選びましょう。", answer: "はいります", image: "images/questions/fill/furo.jpg", prompt: "おふろに（　　）。", hint: "お風呂の中に入ることです。", choices: ["はいります", "かいます", "よみます", "かきます"] },
-        { question: "数字を順番に言ってみましょう。", image: "images/questions/fill/1.2.3.jpg", answer: "1・2・3", prompt: "1 → 2 → ？", hint: "次の数字です。", choices: ["1・2・3", "3・2・1", "1・3・2"] },
-        { question: "あいさつの続きを選びましょう。", answer: "おはよう", image: "images/questions/fill/morning.jpg", prompt: "（　　）ございます。", hint: "朝、人に会ったときに使うあいさつです。", choices: ["おはよう", "こんにちは", "こんばんは", "さようなら"] },],
-    mouth: [
-        { question: "大きく口を動かす母音です。どれを練習しますか？", answer: "あ・い・う・え・お", hint: "5つの母音を順番に言います。", choices: ["あ・い・う・え・お", "か・き・く・け・こ", "さ・し・す・せ・そ"], voiceText: "あ、い、う、え、お" },
-        { question: "次の練習をまねしてみましょう。", answer: "できた", prompt: "『あ・い・う・え・お』を口を大きく動かして言う", hint: "無理のない範囲で行います。", choices: ["できた", "もう一度"], voiceText: "あ、い、う、え、お" },
-        { question: "舌を前に出す練習をしてみましょう。", answer: "できた", prompt: "ゆっくり舌を前に出して戻す", hint: "痛みがある場合は無理をしません。", choices: ["できた", "もう一度"] }
-    ],
-    sound: [
-        { question: "『と』の音が入る言葉を選びましょう。", answer: "とけい", hint: "最初の一音を声に出して比べましょう。", choices: ["とけい", "りんご", "さかな", "くま"] },
-        { question: "『か』の音が入る言葉を選びましょう。", answer: "かさ", hint: "最初の一音をよく確かめましょう。", choices: ["かさ", "ねこ", "ほん", "いぬ"] },
-        { question: "『ら』の音が入る言葉を選びましょう。", answer: "さくら", hint: "言葉の最後の方にも注目しましょう。", choices: ["さくら", "ばなな", "とけい", "いぬ"] }
-    ],
-    stepup: [
-        { question: "まず単語を言ってから、短文にしてみましょう。", answer: "できた", prompt: "単語：りんご → 短文：りんごを食べます。", hint: "単語だけでも、文章まで言えてもOKです。", choices: ["できた", "もう一度"], voiceText: "りんご。りんごを食べます。" },
-        { question: "まず単語を言ってから、短文にしてみましょう。", answer: "できた", prompt: "単語：さくら → 短文：さくらが咲いています。", hint: "ゆっくり言ってみましょう。", choices: ["できた", "もう一度"], voiceText: "さくら。さくらが咲いています。" }
-    ],
-    mora: [
-        { question: "『さ・く・ら』を1拍ずつ手拍子しましょう。", answer: "3拍", prompt: "さ・く・ら", moraCount: 3, hint: "『さ・く・ら』の3回に合わせて、1回ずつ手を叩きます。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "さくら" },
-        { question: "『り・ん・ご』を1拍ずつ手拍子しましょう。", answer: "3拍", prompt: "り・ん・ご", moraCount: 3, hint: "『り・ん・ご』の3回に合わせて、1回ずつ手を叩きます。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "りんご" },
-        { question: "『ひ・ま・わ・り』を1拍ずつ手拍子しましょう。", answer: "4拍", prompt: "ひ・ま・わ・り", moraCount: 4, hint: "4つの音に合わせて、4回手を叩きます。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "ひまわり" },
-        { question: "『た・ん・ぽ・ぽ』を1拍ずつ手拍子しましょう。", answer: "4拍", prompt: "た・ん・ぽ・ぽ", moraCount: 4, hint: "『た・ん・ぽ・ぽ』に合わせて4回です。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "たんぽぽ" },
-        { question: "『え・ん・ぴ・つ』を1拍ずつ手拍子しましょう。", answer: "4拍", prompt: "え・ん・ぴ・つ", moraCount: 4, hint: "4つの音に合わせて、4回手を叩きます。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "えんぴつ" },
-        { question: "『た・ま・ご』を1拍ずつ手拍子しましょう。", answer: "3拍", prompt: "た・ま・ご", moraCount: 3, hint: "『た・ま・ご』の3回です。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "たまご" },
-        { question: "『く・る・ま』を1拍ずつ手拍子しましょう。", answer: "3拍", prompt: "く・る・ま", moraCount: 3, hint: "『く・る・ま』に合わせて3回です。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "くるま" },
-        { question: "『パ・ン』を1拍ずつ手拍子しましょう。", answer: "2拍", prompt: "パ・ン", moraCount: 2, hint: "『パ・ン』の2回です。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "パン" },
-        { question: "『か・さ』を1拍ずつ手拍子しましょう。", answer: "2拍", prompt: "か・さ", moraCount: 2, hint: "『か・さ』の2回です。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "かさ" },
-        { question: "『テ・レ・ビ』を1拍ずつ手拍子しましょう。", answer: "3拍", prompt: "テ・レ・ビ", moraCount: 3, hint: "『テ・レ・ビ』に合わせて3回です。", choices: ["2拍", "3拍", "4拍", "5拍"], voiceText: "テレビ" }
-    ],
-    accent: [
-        { question: "アクセントを意識して読んでみましょう。", answer: "できた", prompt: "さくら（自然な日本語のアクセントを意識）", hint: "正しさだけでなく、声に出してみることを大切にします。", choices: ["できた", "もう一度"], voiceText: "さくら" },
-        { question: "アクセントを意識して読んでみましょう。", answer: "できた", prompt: "ひまわり（自然な日本語のアクセントを意識）", hint: "ゆっくりで大丈夫です。", choices: ["できた", "もう一度"], voiceText: "ひまわり" }
-    ],
-    sentenceRhythm: [
-        { question: "文章を声に出して読んでみましょう。", answer: "できた", prompt: "お昼を食べます。", hint: "助詞『を』も含めて、ゆっくり読みます。", choices: ["できた", "もう一度"], voiceText: "お昼を食べます。" },
-        { question: "文章を声に出して読んでみましょう。", answer: "できた", prompt: "きのう買い物に行きました。", hint: "意味のまとまりで区切って読んでも大丈夫です。", choices: ["できた", "もう一度"], voiceText: "きのう買い物に行きました。" }
-    ],
-    listen: [
-        { question: "音声を聞いて、合うものを選びましょう。", answer: "りんご", emoji: "🍎", hint: "赤い果物です。", choices: ["りんご", "くつ", "でんしゃ", "かさ"], voiceText: "りんご" },
-        { question: "音声を聞いて、合うものを選びましょう。", answer: "くつ", emoji: "👟", hint: "足にはきます。", choices: ["ほん", "くつ", "とけい", "パン"], voiceText: "くつ" },
-        { question: "音声を聞いて、合うものを選びましょう。", answer: "でんしゃ", emoji: "🚃", hint: "線路の上を走ります。", choices: ["ひこうき", "くるま", "でんしゃ", "ふね"], voiceText: "でんしゃ" }
-    ],
-    instruction: [
-        { question: "指示を読んで、行うべき動作を選びましょう。", answer: "手をあげる", hint: "そのままの動作を選びます。", prompt: "『手をあげる』", choices: ["手をあげる", "目を閉じる", "立ち上がる", "座る"] },
-        { question: "指示を読んで、行うべき動作を選びましょう。", answer: "ペンを置く", hint: "手に持っている筆記用具を、机の上へ移す動作を考えましょう。", prompt: "『ペンを置く』", choices: ["ペンを持つ", "ペンを置く", "ペンを投げる", "本を閉じる"] },
-        { question: "指示を読んで、行うべき動作を選びましょう。", answer: "座る", hint: "立っているときと比べて、体の位置や姿勢がどう変わるかを考えましょう。", prompt: "『座る』", choices: ["歩く", "座る", "走る", "手をあげる"] }
-    ],
-    tf: [
-        { question: "文の内容が正しいか答えましょう。", answer: "○", prompt: "『バナナは食べ物です。』", hint: "バナナについて考えます。", choices: ["○", "×"] },
-        { question: "文の内容が正しいか答えましょう。", answer: "×", prompt: "『魚は空を飛びます。』", hint: "魚がいる場所を考えます。", choices: ["○", "×"] },
-        { question: "文の内容が正しいか答えましょう。", answer: "○", prompt: "『雨の日に傘を使います。』", hint: "傘を使う場面を考えます。", choices: ["○", "×"] }
-    ],
-    matching: [
-        { question: "文字に合う絵を選びましょう。", answer: "🍎 りんご", prompt: "りんご", hint: "赤い果物です。", choices: ["🍎 りんご", "🐶 いぬ", "🚃 でんしゃ", "☕ コーヒー"] },
-        { question: "文字に合う絵を選びましょう。", answer: "🐶 いぬ", prompt: "いぬ", hint: "ワンワンと鳴きます。", choices: ["🐱 ねこ", "🐶 いぬ", "🐟 さかな", "🌸 さくら"] },
-        { question: "文字に合う絵を選びましょう。", answer: "☕ コーヒー", prompt: "コーヒー", hint: "飲み物です。", choices: ["🍞 パン", "☕ コーヒー", "👟 くつ", "📖 ほん"] }
-    ],
-    copy: [
-        { question: "見本と同じ文字を1文字ずつ書き写しましょう。", answer: "山", prompt: "山", hint: "文字の形をよく見ます。", voiceText: "山" },
-        { question: "見本と同じ文字を1文字ずつ書き写しましょう。", answer: "学校", prompt: "学校", hint: "文字の形をよく見ます。", voiceText: "学校" },
-        { question: "見本と同じ文字を1文字ずつ書き写しましょう。", answer: "りんご", prompt: "りんご", hint: "文字の形をよく見ます。", voiceText: "りんご" }
-    ],
-    anagram: [
-        { question: "文字を正しい順番に並べましょう。", answer: "ゆうき", prompt: "『き・ゆ・う』", hint: "正しい言葉は人の名前にも使われます。", choices: ["ゆうき"], tokens: ["き", "ゆ", "う"] },
-        { question: "文字を正しい順番に並べましょう。", answer: "りんご", prompt: "『ご・り・ん』", hint: "赤い果物です。", choices: ["りんご"], tokens: ["ご", "り", "ん"] },
-        { question: "文字を正しい順番に並べましょう。", answer: "さくら", prompt: "『ら・さ・く』", hint: "春の花です。", choices: ["さくら"], tokens: ["ら", "さ", "く"] }
-    ],
-    gesture: [
-        { question: "言葉が出にくいとき、どう伝える方法がありますか？", answer: "指さしする", hint: "言葉以外の方法も立派なコミュニケーションです。", choices: ["指さしする", "黙るだけ", "伝えるのをあきらめる", "どこにも示さない"] },
-        { question: "『ありがとう』を言葉以外で伝える方法として選びましょう。", answer: "おじぎをする", hint: "日本でよく使われる身振りです。", choices: ["おじぎをする", "背を向ける", "目を閉じる", "逃げる"] }
-    ],
-    board: [
-        { question: "のどがかわいて、飲み物が必要なときはどのカードを選びますか？", answer: "💧 水", hint: "今の体に必要な飲み物を選びましょう。", choices: ["💧 水", "🛏️ 休みたい", "🚽 トイレ", "🍚 ごはん"] },
-        { question: "お手洗いに行きたいときに、どのカードを選びますか？", answer: "🚽 トイレ", hint: "施設の中で行きたい場所を表すカードです。", choices: ["🚽 トイレ", "💧 水", "📞 電話", "☕ コーヒー"] },
-        { question: "体のどこかがつらいとき、状態を伝えるカードはどれですか？", answer: "🤕 痛い", hint: "元気な状態ではないことを知らせるカードです。", choices: ["🤕 痛い", "😊 元気", "🍎 食べる", "🛏️ 寝る"] }
-    ],
-    roleplay: [
-        { question: "カフェでコーヒーを注文します。何と言いますか？", answer: "コーヒーください", hint: "『ください』を使って伝えます。", choices: ["コーヒーください", "コーヒーは走ります", "コーヒーを閉めます", "コーヒーを読みます"], voiceText: "コーヒーください" },
-        { question: "買い物で支払いをするとき、どんな言葉が使えますか？", answer: "お願いします", hint: "店員さんに丁寧に伝えます。", choices: ["お願いします", "おやすみなさい", "いただきます", "いってきます"], voiceText: "お願いします" },
-        { question: "困ったとき、相手に助けを求めるなら？", answer: "手伝ってください", hint: "助けを依頼する言葉です。", choices: ["手伝ってください", "いただきます", "おかえりなさい", "おやすみなさい"], voiceText: "手伝ってください" }
-    ],
-    // デジタル・AAC活用：正解例の自動読み上げや、答えそのものを示すヒントは設定しません。
-    // promptは場面、hintは考え方の支援だけを示します。voiceTextは意図的に持たせません。
-    aac: [
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "のどがかわいて、飲み物が必要です。", emoji: "🥤", answer: "水がほしいです", hint: "今、体に必要なものは何かを考えてみましょう。", choices: ["水がほしいです", "少し休みたいです", "大丈夫です", "ありがとう"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "外出中、トイレに行きたくなりました。", emoji: "🚻", answer: "トイレに行きたいです", hint: "行きたい場所や、今したいことに注目しましょう。", choices: ["少し休みたいです", "トイレに行きたいです", "おなかがすきました", "大丈夫です"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "頭が痛くて、つらいと感じています。", emoji: "🤕", answer: "頭が痛いです", hint: "今の体の状態を、相手に知らせる言葉を考えましょう。", choices: ["頭が痛いです", "おなかがすきました", "こんにちは", "帰ります"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "ふたが固くて開けられず、困っています。", emoji: "🫙", answer: "手伝ってください", hint: "自分だけでは難しいとき、相手に何をお願いできるか考えましょう。", choices: ["手伝ってください", "もう大丈夫です", "おいしいです", "さようなら"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "作業を続けて、疲れを感じています。今の状態を伝えたいです。", emoji: "🪑", answer: "少し休みたいです", hint: "今の気持ちと、これからどうしたいかを考えましょう。", choices: ["少し休みたいです", "もっと大きな声で", "ありがとう", "水をください"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "相手の説明がよく分かりませんでした。", emoji: "💬", answer: "もう一度お願いします", hint: "分からないときは、相手に説明を繰り返してもらう方法があります。", choices: ["もう一度お願いします", "わかりました", "帰ります", "おなかがすきました"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "店員さんに商品をすすめられましたが、必要ありません。", emoji: "🛍️", answer: "いりません", hint: "ほしいときと、必要ないときで伝え方を考えましょう。", choices: ["いりません", "ください", "助けてください", "おはようございます"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "相手の声が小さくて、言葉が聞き取れません。", emoji: "👂", answer: "もう一度言ってください", hint: "聞き取りにくいときに、相手にお願いできることを考えましょう。", choices: ["もう一度言ってください", "よく聞こえます", "おいしいです", "休みたいです"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "用事が終わり、家に帰りたいと思っています。", emoji: "🏠", answer: "帰りたいです", hint: "今いる場所から、次にどうしたいかを考えましょう。", choices: ["帰りたいです", "ここにいたいです", "水がほしいです", "もう一度お願いします"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "近くの機械の音が大きく、気になります。", emoji: "🔊", answer: "音が大きいです", hint: "周りの環境で困っていることを、相手に知らせる方法を考えましょう。", choices: ["音が大きいです", "静かでいいです", "おなかがすきました", "ありがとう"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "おなかがすいて、何か食べたいと思っています。", emoji: "🍽️", answer: "何か食べたいです", hint: "今ほしいものが、食べ物・飲み物・休憩のどれに近いか考えましょう。", choices: ["何か食べたいです", "トイレに行きたいです", "もう大丈夫です", "さようなら"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "相手が荷物を運ぶのを手伝ってくれました。", emoji: "🤝", answer: "ありがとうございます", hint: "相手がしてくれたことへの気持ちを考えましょう。", choices: ["ありがとうございます", "いりません", "もう一度お願いします", "頭が痛いです"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "相手から話しかけられ、あいさつを返したいです。", emoji: "👋", answer: "こんにちは", hint: "人と会ったときに使う、短いあいさつを考えましょう。", choices: ["こんにちは", "おやすみなさい", "手伝ってください", "音が大きいです"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "返事を考えるのに、少し時間が必要です。", emoji: "⏳", answer: "少し待ってください", hint: "すぐに返事ができないとき、相手にどうお願いできるでしょう。", choices: ["少し待ってください", "もう帰ります", "ありがとう", "いりません"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "説明を聞くより、文字を見たほうが分かりやすいです。", emoji: "📝", answer: "文字で書いてください", hint: "自分にとって分かりやすい伝え方を相手にお願いしましょう。", choices: ["文字で書いてください", "もっと早く話してください", "帰りたいです", "おなかがすきました"] },
-        { question: "場面を考えて、相手に伝えたいことを選びましょう。", prompt: "今は手伝いが必要なく、自分でできそうです。", emoji: "👍", answer: "自分でできます", hint: "助けが必要なときと、自分でできるときの違いを考えましょう。", choices: ["自分でできます", "手伝ってください", "もう一度お願いします", "少し休みたいです"] }
-    ],
-    voiceRead: [
-        { question: "表示された言葉を読んでみましょう。", prompt: "りんご", image: "images/questions/naming/apple.jpg", hint: "ゆっくり、はっきり読んでみましょう。", voiceText: "りんご" },
-        { question: "表示された言葉を読んでみましょう。", prompt: "コーヒー", image: "images/questions/naming/cofe.jpg", hint: "声に出して、そのまま読みます。", voiceText: "コーヒー" },
-        { question: "表示された言葉を読んでみましょう。", prompt: "さくら", image: "images/questions/matching/sakura.jpg", hint: "一文字ずつ確認しながら読みます。", voiceText: "さくら" },
-        { question: "表示された言葉を読んでみましょう。", prompt: "ありがとう", image: "images/practice/vocabulary/arigatou.jpg", hint: "落ち着いて、ゆっくり話してみましょう。", voiceText: "ありがとう" },
-        { question: "表示された言葉を読んでみましょう。", prompt: "おはようございます", image: "images/practice/vocabulary/oha.jpg", hint: "区切って読んでも大丈夫です。", voiceText: "おはようございます" },
-        { question: "表示された言葉を読んでみましょう。", prompt: "コーヒーください", image: "images/practice/vocabulary/cofe2.jpg", hint: "文章として声に出してみましょう。", voiceText: "コーヒーください" },
-        { question: "表示された言葉を読んでみましょう。", prompt: "今日は晴れです", image: "images/practice/vocabulary/hare.jpg", hint: "意味を思い浮かべながら読みます。", voiceText: "今日は晴れです" },
-        { question: "表示された言葉を読んでみましょう。", prompt: "手を洗います", image: "images/questions/matching/handwash.jpg", hint: "ゆっくり一文を読みます。", voiceText: "手を洗います" }
-    ],
-    // ============================================================
-    // クラシック版ことばクエスト用の問題
-    // answer = 正解、choices = 選択肢、enemy = 敵の見た目、
-    // enemyName = 敵の名前、image = 問題画像です。
-    // imageには images/xxx.jpg のようにJPGも指定できます。
-    // ============================================================
-    kotobaQuestClassic: [
-        { question: "赤くて丸い果物はどれ？", answer: "りんご", choices: ["りんご", "バナナ", "みかん", "ぶどう"], image: "images/questions/naming/apple.jpg", enemy: "👹", enemyName: "ことばおに" },
-        { question: "黄色くて、皮をむいて食べる果物は？", answer: "バナナ", choices: ["りんご", "バナナ", "さくら", "コーヒー"], enemy: "👾", enemyName: "もじモンスター" },
-        { question: "飲み物の名前はどれ？", answer: "コーヒー", choices: ["さくら", "コーヒー", "りんご", "くつ"], image: "images/questions/naming/cofe.jpg", enemy: "🧟", enemyName: "ことばゾンビ" },
-        { question: "春の花の名前はどれ？", answer: "さくら", choices: ["コーヒー", "くつ", "さくら", "バナナ"], image: "images/questions/matching/sakura.jpg", enemy: "🐲", enemyName: "ことばドラゴン" },
-        { question: "朝のあいさつはどれ？", answer: "おはようございます", choices: ["おやすみなさい", "こんにちは", "おはようございます", "いただきます"], image: "images/practice/vocabulary/oha.jpg", enemy: "👺", enemyName: "あいさつおに" },
-        { question: "カフェで注文するときの言葉は？", answer: "コーヒーください", choices: ["コーヒーください", "コーヒーを読みます", "コーヒーは走ります", "コーヒーを閉めます"], image: "images/practice/vocabulary/cofe2.jpg", enemy: "🧌", enemyName: "ことばゴーレム" },
-        { question: "雨の日に使うものはどれ？", answer: "かさ", choices: ["かさ", "くつ", "とけい", "パン"], enemy: "👻", enemyName: "ことばおばけ" },
-        { question: "体調や状態を伝える言葉はどれ？", answer: "痛い", choices: ["痛い", "りんご", "コーヒー", "さくら"], enemy: "🦹", enemyName: "ことばナイト" },
-        { question: "相手にお礼を伝える言葉はどれ？", answer: "ありがとう", choices: ["ありがとう", "おやすみ", "さようなら", "ただいま"], image: "images/practice/vocabulary/arigatou.jpg", enemy: "🐺", enemyName: "ことばウルフ" },
-        { question: "手をきれいにする動作はどれ？", answer: "手を洗います", choices: ["手を洗います", "本を読みます", "コーヒーを飲みます", "電車に乗ります"], image: "images/questions/matching/handwash.jpg", enemy: "🦖", enemyName: "ことばティラノ" }
-    ],
-    aiConversation: [
-        { question: "AI会話：カフェで注文", prompt: "カフェで飲み物を注文する場面", hint: "短い言葉でも大丈夫です。自分の言葉で答えてみましょう。", scene: "カフェで飲み物を注文" },
-        { question: "AI会話：買い物", prompt: "お店で買い物をする場面", hint: "欲しいものやお願いを伝えてみましょう。", scene: "お店で買い物" },
-        { question: "AI会話：あいさつ", prompt: "初対面の人にあいさつする場面", hint: "あいさつや簡単な受け答えをしてみましょう。", scene: "初対面の人にあいさつ" },
-        { question: "AI会話：道を聞く", prompt: "駅で道を聞く場面", hint: "場所や行き方を短く伝えてみましょう。", scene: "駅で道を聞く" }
-    ]
-};
+var QUESTIONS = window.KotobaLevelBankBuild();
 // ------------------------------------------------------------
 // 3. ゲームの状態
 // ------------------------------------------------------------
@@ -804,6 +797,7 @@ function show(id) {
     $(id).classList.add("active");
     // R15.6: タイトル/ジャンルへ戻ったとき、日数と解放メーターを最新記録で更新。
     if (id === "home") renderCategories();
+    if (id === "records") migrateLegacyCatchTrialRecords();
     if ((id === "home" || id === "titleScreen") && window.KotobaDailyStreak)
         window.KotobaDailyStreak.refreshBadge();
     document.body.classList.toggle("title-home-mode", id === "titleScreen");
@@ -882,7 +876,7 @@ function playCorrectSound() {
 }
 function announceCorrect() {
     // すべての正解判定で使う統一メッセージです。
-    if (voiceEnabled) speak("正解です。できました。");
+    if (voiceEnabled) speak(selectedActivity === "articulationNavigator" ? "音声認識が一致しました。" : "正解です。できました。");
 }
 function playWrongSound() {
     if (!playFeedbackAudio("wrong")) playFeedbackToneFallback("wrong");
@@ -893,7 +887,7 @@ function playWrongSound() {
         if (!wrongAnnouncementPending) return;
         wrongAnnouncementPending = false;
         wrongAnnouncementTimer = null;
-        speak("不正解です。");
+        speak(selectedActivity === "articulationNavigator" ? "音声認識が一致しませんでした。" : "不正解です。");
     }, 100);
 }
 function playButtonSound() {
@@ -913,7 +907,7 @@ function cancelCurrentSpeech() {
     try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (_) {}
     try { if (window.AndroidSpeech && typeof window.AndroidSpeech.stopTts === 'function') window.AndroidSpeech.stopTts(); } catch (_) {}
 }
-function speak(text, force) {
+function speak(text, force, rateOverride) {
     // 【構音ナビ】お手本以外の標準TTS（設問・ヒント・正誤案内）は読み上げない。
     // 正誤の効果音・画面表示・マイクの判定は既存のまま。
     // The separate pronunciation-training screen may be open above the main
@@ -945,7 +939,7 @@ function speak(text, force) {
     }
     // AndroidアプリではOS標準のTextToSpeechを優先します。
     if (window.AndroidSpeech && typeof window.AndroidSpeech.speak === "function") {
-        try { window.AndroidSpeech.speak(String(text)); return; } catch (_) { }
+        try { window.AndroidSpeech.speak(String(text), rateOverride); return; } catch (_) { }
     }
     if (!("speechSynthesis" in window)) {
         if ($("voiceStatus")) $("voiceStatus").textContent = "この端末では読み上げ機能を利用できません。";
@@ -954,7 +948,7 @@ function speak(text, force) {
     window.speechSynthesis.cancel();
     var utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "ja-JP";
-    utterance.rate = 0.88 * (window.KotobaAudio ? window.KotobaAudio.ttsRate() : 1);
+    utterance.rate = (Number.isFinite(Number(rateOverride)) && rateOverride != null ? Math.max(0.5,Math.min(1.5,Number(rateOverride))) : 0.88) * (window.KotobaAudio ? window.KotobaAudio.ttsRate() : 1);
     utterance.volume = window.KotobaAudio ? window.KotobaAudio.effectiveTts() : 1;
     utterance.pitch = 1.0;
     utterance.onstart = function () { if (generation === v17SpeechGeneration && $("voiceStatus")) $("voiceStatus").textContent = "音声再生中…"; };
@@ -1023,10 +1017,11 @@ function renderCategories() {
                     '<span class="v156-genre-progress-track" role="progressbar" aria-label="難易度解放の進捗" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + percent + '">' +
                     '<span class="v156-genre-progress-fill" style="width:' + percent + '%"></span></span></span>';
             })() : '') +
-            '<span class="category-count">' + category.activities.length + 'つの課題</span>';
+            '<span class="category-count">' + category.activities.length + 'つの課題' + (category.activities.some(function(a){return isKqCatchTrialActivity(a[0]);}) ? '（試作途中の課題あり）' : '') + '</span>';
         button.addEventListener("click", function () { return selectCategory(category.id); });
         grid.appendChild(button);
     });
+    // 試作5課題も既存のTRAINING_CATEGORIESの通常課題として描画します。
 }
 function selectCategory(categoryId) {
     // 3Dゲームは独立した2課題を選べるカテゴリです。
@@ -1056,13 +1051,14 @@ function selectCategory(categoryId) {
             var id=item[0], title=item[1], description=item[2];
             var b=document.createElement("button");
             b.type="button";
-            b.className="activity-card-native";
+            b.className="activity-card-native" + (isKqCatchTrialActivity(id) ? " kq-trial-activity-card" : "");
             var needInfo = TRAINING_ACTIVITY_NEEDS[id] || [[], ""];
             var progress = window.KotobaLevels ? window.KotobaLevels.get(id) : null;
             var suggestion = progress && window.KotobaLearningMode ? window.KotobaLearningMode.recommendation(id, progress.selected) : null;
             b.innerHTML='<span class="activity-card-icon" aria-hidden="true">' + escapeHtml(TRAINING_ACTIVITY_ICONS[id] || '🎯') + '</span><span class="activity-card-text"><strong>' + escapeHtml(title) + '</strong><small>' + escapeHtml(description) + '</small>' +
                 (progress ? '<span class="v11-activity-level">達成 Lv.' + progress.unlocked + ' ／ 選択Lv.' + progress.selected + 'の熟練度 ' + progress.selectedMastery + '/100</span>' : '') +
-                (suggestion ? '<span class="v11-activity-level">🧠 学習分析：推定 ' + suggestion.estimate + '% ／ おすすめ Lv.' + suggestion.level + '</span>' : '') +
+                (suggestion ? '<span class="v11-activity-level">🧠 学習分析：推定 ' + suggestion.estimate + '% ／ おすすめ Lv.' + suggestion.level + (suggestion.level > progress.unlocked ? '（未解放）' : '') + '</span>' : '') +
+                (isKqCatchTrialActivity(id) ? '<span class="kq-trial-status">（試作途中） 共通学習システムに統合</span>' : '') +
                 '<span class="activity-card-focus">練習すること：' + escapeHtml(needInfo[1]) + '</span><span class="activity-card-needs">' + trainingNeedBadges(needInfo[0]) + '</span></span><span class="activity-card-arrow">›</span>';
             b.addEventListener("click", function(){ startActivity(id); });
             if (progress) {
@@ -1080,6 +1076,8 @@ function selectCategory(categoryId) {
                 levelSelect.value = String(progress.selected);
                 levelSelect.addEventListener('change', function() {
                     var selectedProgress = window.KotobaLevels.select(id, Number(levelSelect.value));
+                    if (window.KotobaLearningMode && window.KotobaLearningMode.noteManualSelection)
+                        window.KotobaLearningMode.noteManualSelection(id, selectedProgress.selected);
                     var label = b.querySelector('.v11-activity-level');
                     if (label) label.textContent = '達成 Lv.' + selectedProgress.unlocked +
                         ' ／ 選択Lv.' + selectedProgress.selected + 'の熟練度 ' + selectedProgress.selectedMastery + '/100';
@@ -1089,7 +1087,7 @@ function selectCategory(categoryId) {
             } else cards.appendChild(b);
         });
     }
-    var select=$("activitySelect");
+    var select=("activitySelect");
     if(select){
         select.innerHTML='<option value="">課題を選んでください</option>';
         selectedCategory.activities.forEach(function(item){
@@ -1137,6 +1135,12 @@ var activityRunToken = 0;
 // ------------------------------------------------------------
 // 【startActivity】選択した課題の画面へ進みます。ジャンルID・画面遷移・記録を対応させています。
 function startActivity(activityId) {
+    // Ver.2.1.0: 試作課題も同じtraining/main画面で実行する。
+    // 旧URLの catch:image 等は過去のブックマーク用に受け付ける。
+    var catchLegacyIds={image:'catchImage',category:'catchCategory',tongue:'catchTongue',word:'catchWord',conversation:'catchConversation'};
+    if (typeof activityId==='string' && activityId.indexOf('catch:')===0) {
+        activityId=catchLegacyIds[activityId.slice(6)] || activityId;
+    }
     if (activityId === 'pictogram3d') {
         window.location.href = 'pictogram-3d.html?v=veta25-landscapes';
         return;
@@ -1182,12 +1186,14 @@ function startActivity(activityId) {
         return;
     }
     selectedActivity = activityId;
+    if(isKqCatchTrialActivity(activityId))migrateLegacyCatchTrialRecords();
     questionResults = [];
     activityRunToken++;
     cancelArticulationAutoNext();
     var gameElement = $("game");
     if (gameElement) gameElement.classList.toggle("ai-quiz-mode", activityId === "aiConversation" || activityId === "localAIConversation");
     if (gameElement) gameElement.classList.toggle("articulation-nav-mode", activityId === "articulationNavigator");
+    if (gameElement) gameElement.classList.toggle("kq-catch-integrated-mode", isKqCatchTrialActivity(activityId));
     if (moraLaunchTimer) { clearTimeout(moraLaunchTimer); moraLaunchTimer = null; }
     if (activityId === "mora") {
         cleanupBrowserClapDetection(false);
@@ -1204,7 +1210,7 @@ function startActivity(activityId) {
     var levelSelected = window.KotobaLevels ? window.KotobaLevels.get(activityId).selected : 1;
     var bank = activityId === "articulationNavigator"
         ? buildRandomArticulationQuiz(levelSelected)
-        : (QUESTIONS[activityId] || []);
+        : (isKqCatchTrialActivity(activityId) ? window.KotobaCatchIntegrated.bank(activityId) : (QUESTIONS[activityId] || []));
     var count = pref.count;
     var levelBank = window.KotobaLevels ? window.KotobaLevels.pool(bank, levelSelected) : bank;
     if (activityId === "aiConversation" || activityId === "localAIConversation") {
@@ -1238,7 +1244,11 @@ function startActivity(activityId) {
         alert("この課題にはまだ問題が入っていません。");
         return;
     }
-    if (window.KotobaAdaptive) window.KotobaAdaptive.begin(selectedGenre ? selectedGenre.name : "", activityId);
+    if (window.KotobaAIIntegration) {
+        var kqAIPreferredLevel = window.KotobaLevels ? window.KotobaLevels.get(activityId) : {selected:levelSelected,unlocked:levelSelected};
+        questions = window.KotobaAIIntegration.beginSession(activityId, questions, levelSelected, kqAIPreferredLevel.unlocked || levelSelected);
+    }
+    if (window.KotobaAdaptive) window.KotobaAdaptive.begin(selectedGenre ? selectedGenre.name : (selectedCategory ? selectedCategory.name : ""), activityId);
     $("trainingTitle").textContent = "".concat(selectedCategory ? selectedCategory.name : "トレーニング", "\uFF5C").concat(getActivityName(activityId));
     show("game");
     renderQuestion();
@@ -1438,15 +1448,19 @@ function renderArticulationNavigator(q) {
     if (globalSkip) globalSkip.classList.add("hidden");
     var group = getArticulationGroup(q.navGroup || articulationSelectedGroup);
     articulationSelectedGroup = group.id;
+    var kanaInfo = q.navKanaInfo || null;
+    var soundKind = kanaInfo ? '五十音（今回の音）' : '外来音（今回の音）';
+    var kanaPosition = kanaInfo ? kanaInfo.row + '・' + kanaInfo.column : '五十音表の対象外';
     var positions = {
         lips:       { x:263, y:323, rx:70, ry:82 },
         labiodental:{ x:302, y:319, rx:78, ry:65 },
+        alveolopalatal:{ x:474, y:269, rx:86, ry:49 },
         alveolar:   { x:421, y:298, rx:90, ry:51 },
         palatal:    { x:517, y:256, rx:120, ry:47 },
         velar:      { x:692, y:309, rx:99, ry:60 },
         glottal:    { x:765, y:573, rx:80, ry:72 }
     };
-    var m = positions[group.place] || positions.lips;
+    var m = positions[q.navPlace || group.place] || positions.lips;
     // 未出題の答えは先に見せない。音の一覧は進捗表示専用です。
     var sounds = questions.map(function(item, index) {
         return '<span class="artnav-v1-sound ' + (index === current ? 'is-selected' : '') +
@@ -1467,38 +1481,59 @@ function renderArticulationNavigator(q) {
         '<div>' +
         '<h2>構音筋ビジュアルナビゲーション</h2><p>音の出る場所を見ながら、発音を練習しよう</p></div><span aria-hidden="true" class="artnav-v1-spark">✦</span></header>' +
         '<div class="artnav-v1-grid">' +
-          '<aside class="artnav-v1-groups artnav-v4-current" aria-label="今回の構音の説明">' +
-            '<h3>今回の構音</h3>' +
-            '<div class="artnav-v4-current-card"><span class="artnav-v4-current-icon" aria-hidden="true">' + group.icon + '</span>' +
-              '<strong>' + escapeHtml(group.name) + '</strong><span>' + escapeHtml(group.focus) + '</span></div>' +
-            '<p class="artnav-v4-guide-description">' + escapeHtml(group.instruction) + '</p>' +
-            '<p class="artnav-v4-guide-tip">📍 この表示は選択ボタンではありません。出題された音に合わせて自動で切り替わります。</p>' +
+          '<aside class="artnav-v1-groups artnav-v4-current" aria-label="発音グループと五十音の説明">' +
+            '<h3>発音の分類</h3>' +
+            '<div class="artnav-v4-current-card"><span class="artnav-v4-current-icon" aria-hidden="true">' + getArticulationVowelMouthIcon(q.answer, group.icon) + '</span>' +
+              '<div class="artnav-v5-group-copy"><span class="artnav-v5-field-label">① 発音グループ（総称）</span>' +
+              '<strong>' + escapeHtml(group.name) + '</strong><span>' + escapeHtml(group.instruction) + '</span></div></div>' +
+            '<p class="artnav-v5-mouth-note">※画像は後に続く母音の口型の目安で、子音の調音をそのまま表したものではありません。</p>' +
+            '<div class="artnav-v5-sound-card"><span class="artnav-v5-field-label">② ' + soundKind + '</span>' +
+              '<strong class="artnav-v5-current-kana">' + escapeHtml(q.answer) + '</strong>' +
+              '<span class="artnav-v5-kana-position">' + escapeHtml(kanaPosition) + '</span></div>' +
+            '<div class="artnav-v5-detail-card"><span class="artnav-v5-field-label">③ 詳しい発音分類</span>' +
+              '<strong>' + escapeHtml(q.navDetailName || q.navDisplayName || group.name) + '</strong>' +
+              '<span>意識する場所：' + escapeHtml(q.navLabel || group.focus) + '</span></div>' +
+            '<p class="artnav-v4-guide-description"><b>発音のポイント：</b>' + escapeHtml(q.navGuide || group.instruction) + '</p>' +
+            buildArticulationFiftyTable(q.answer) +
+            '<p class="artnav-v4-guide-tip">📍 グループは出題上のまとめです。硬口蓋付近の音や外来音には複数の調音位置が含まれます。</p>' +
           '</aside>' +
-          '<section class="artnav-v1-middle" aria-label="口腔の側面図"><h3>👄 ' + escapeHtml(group.name) + 'のしくみ</h3>' +
+          '<section id="artnavDiagram" class="artnav-v1-middle" aria-label="口腔の側面図"><h3>👄 ' + escapeHtml(group.name) + '：発音する場所</h3>' +
             '<div class="articulation-nav-real-diagram artnav-v1-diagram">' +
               '<div class="articulation-nav-image-stage"><img class="articulation-nav-anatomy" src="images/practice/articulation/articulation-mouth-unlabelled.jpg" alt="口・歯・舌・上あご・のどの側面図">' +
                 '<svg class="articulation-nav-overlay" viewBox="0 0 1379 752" preserveAspectRatio="none" aria-hidden="true">' +
                   '<ellipse class="nav-real-highlight" cx="' + m.x + '" cy="' + m.y + '" rx="' + m.rx + '" ry="' + m.ry + '"></ellipse>' +
                   '<circle class="nav-real-dot" cx="' + m.x + '" cy="' + m.y + '" r="12"></circle>' +
                 '</svg>' + partLabels + '</div>' +
-              '<p class="artnav-v1-action">💡 ' + escapeHtml(group.action) + '</p>' +
-              '<p class="artnav-v1-guide">' + escapeHtml(group.instruction) + '</p>' +
+              '<p class="artnav-v1-action">💡 ' + escapeHtml(q.navAction || group.action) + '</p>' +
+              '<p class="artnav-v1-guide">' + escapeHtml(q.navGuide || group.instruction) + '</p>' +
               '<div id="articulationNavLiveStatus" class="articulation-nav-live-status" aria-live="polite">お手本を聞いてから、マイクで練習しましょう。</div>' +
             '</div></section>' +
-          '<section class="artnav-v1-practice"><h3>🎙️ 発音してみよう</h3>' +
+          '<section class="artnav-v1-practice">' +
+            '<div class="artnav-mobile-quick" aria-label="今回の発音">' +
+              '<span class="artnav-mobile-mouth" aria-hidden="true">' + getArticulationVowelMouthIcon(q.answer, group.icon) + '</span>' +
+              '<div class="artnav-mobile-quick-body">' +
+                '<span class="artnav-mobile-quick-kicker">今回の音</span>' +
+                '<strong class="artnav-mobile-kana">' + escapeHtml(q.answer) + '</strong>' +
+                '<span class="artnav-mobile-group">' + escapeHtml(group.name) + '</span>' +
+                '<span class="artnav-mobile-action">' + escapeHtml(q.navAction || group.action) + '</span>' +
+                '<span class="artnav-mobile-quick-progress">問題 ' + (current + 1) + ' / ' + questions.length + '</span>' +
+                '<p class="artnav-mobile-quick-hint">口形は後に続く母音の目安です。</p>' +
+                '<a class="artnav-mobile-quick-link" href="#artnavDiagram">発音する場所の図を見る ↓</a>' +
+              '</div></div>' +
+            '<h3>🎙️ 発音してみよう</h3>' +
             '<div class="artnav-v1-flow-label" id="artnavFlowLabel" aria-live="polite">Lv.' +
               (window.KotobaLevels ? window.KotobaLevels.get('articulationNavigator').selected : 1) +
               ' / 5　・　問題 ' + (current + 1) + ' / ' + questions.length + '</div>' +
             '<div class="artnav-v1-sounds" role="list" aria-label="問題の順番">' + sounds + '</div>' +
-            '<p class="artnav-v1-target">「' + escapeHtml(q.answer) + '」を発音してみよう</p>' +
+            '<p class="artnav-v1-target">' + (kanaInfo ? '五十音' : '外来音') + '「' + escapeHtml(q.answer) + '」を発音してみよう</p>' +
             '<div class="artnav-v1-voice-slot"></div>' +
             '<div class="artnav-v4-auto-notice" id="artnavAutoNextNotice" role="status" aria-live="polite">マイクで答えると自動的に次の問題へ進みます。</div>' +
             '<button type="button" id="artnavSkipQuestion" class="artnav-v1-skip">この問題をスキップ</button>' +
             '<div class="artnav-v1-progress"><div><strong>トレーニング進捗</strong><span id="artnavProgressCount">0 / ' + questions.length + '</span></div>' +
             '<div id="artnavProgressDots" class="artnav-v1-progress-dots" aria-label="練習済みの音"></div></div>' +
           '</section></div>' +
-          '<p class="artnav-v1-footnote">※音声認識は言葉を文字にする補助機能です。舌や唇の実際の動き、発音の正確さを医学的に判定するものではありません。<br>' +
-          escapeHtml(group.note) + '<br>問題は6種類の構音から5問をランダムに出題します。構音の種類を自分で選ぶ操作はありません。</p>';
+          '<p class="artnav-v1-footnote">※総称は主に調音位置、細かい分類は調音位置と方法を表します。五十音は文字の並びであり、調音分類と一対一には対応しません。<br>※色のついた位置は静止画像上の概略です。実際の舌の運動を測定・再現していません。音声認識は文字の一致を見る補助であり、発音の良し悪しを診断しません。<br>' +
+          escapeHtml(q.navNote || group.note) + '<br>問題は6種類の構音から5問をランダムに出題します。構音の種類を自分で選ぶ操作はありません。</p>';
     area.appendChild(panel);
     renderFoundationVoiceTest(q);
     var voicePanel = area.querySelector(".foundation-voice-panel");
@@ -1551,7 +1586,7 @@ function updateArticulationProgressUI() {
                 (articulationSkippedIndexes.has(index) ? "is-skipped" :
                     (articulationAttemptedIndexes.has(index) ? "is-practiced" : ""));
             return '<span class="artnav-v1-dot ' + state + '" aria-label="' + escapeHtml(q.answer) +
-                '：' + (state === "is-correct" ? "認識できました" : (state === "is-skipped" ? "スキップ" : (state ? "練習済み" : "未練習"))) + '">' +
+                '：' + (state === "is-correct" ? "音声認識が一致しました" : (state === "is-skipped" ? "スキップ" : (state ? "練習済み" : "未練習"))) + '">' +
                 (state === "is-correct" ? "✓" : (state === "is-skipped" ? "－" : (index + 1))) + '</span>';
         }).join("");
     }
@@ -1616,7 +1651,13 @@ function renderQuestion() {
         image.src = q.image;
     }
     // クラシック版だけ旧式の敵バトル画面を使用します。新しいUD版は別画面のままです。
-    if (selectedActivity === "aac") {
+    if (isKqCatchTrialActivity(selectedActivity)) {
+        window.KotobaCatchIntegrated.render(selectedActivity,q,{
+            answer:function(button,choice){ answer(button,choice); },
+            speak:function(text,rate){ speak(text, true, rate); }
+        });
+    }
+    else if (selectedActivity === "aac") {
         renderAACPractice(q);
     }
     else if (selectedActivity === "board") {
@@ -2547,7 +2588,7 @@ function renderFoundationVoiceTest(q) {
     var target = practice.target;
     var titles = {
         articulationNavigator: q.navTitle || "構音筋ビジュアルナビゲーション",
-        mouth: "口・発声ウォームアップ",
+        mouth: "口・発声の基礎練習",
         sound: "発音の練習",
         stepup: "単語→短文",
         mora: "拍・モーラ",
@@ -2956,34 +2997,34 @@ function startFoundationVoiceRecognition(q, practice, repeatMode) {
                                     score++;
                                     if (selectedActivity === "repeat") repeatQuestionScored = true;
                                 }
-                                showVoiceTestStatus("\u2B55 \u5408\u3063\u3066\u3044\u307E\u3059\uFF01\uFF08".concat(Math.round(judged.similarity * 100), "%\uFF09"), "ok");
+                                showVoiceTestStatus(navWasNavigator ? "○ 音声認識の文字が一致しました（発音の正確さの評価ではありません）。" : "\u2B55 \u5408\u3063\u3066\u3044\u307E\u3059\uFF01\uFF08".concat(Math.round(judged.similarity * 100), "%\uFF09"), "ok");
                                 if (judgement) {
-                                    judgement.textContent = "⭕ 合っています！";
+                                    judgement.textContent = navWasNavigator ? "○ 音声認識が一致しました" : "⭕ 合っています！";
                                     judgement.className = "voice-read-judgement ok";
                                 }
                                 if (transcript)
                                     transcript.className = "voice-transcript ok";
-                                $("feedback").textContent = "正解です。できました。 声をしっかり認識できました。";
+                                $("feedback").textContent = navWasNavigator ? "音声認識の文字が一致しました。発音の精度は判定していません。" : "正解です。できました。 声をしっかり認識できました。";
                                 $("feedback").className = "feedback ok";
                                 playCorrectSound();
                                 announceCorrect();
                             }
                             else {
                                 showVoiceTestStatus(selectedActivity === "articulationNavigator"
-                                    ? "△ 認識された音が異なりました。次の問題へ進みます。"
+                                    ? "△ 音声認識が一致しませんでした。聞き取りの誤りもあります。次の問題へ進みます。"
                                     : "\u274C \u3082\u3046\u4E00\u5EA6\u8A71\u3057\u3066\u307F\u307E\u3057\u3087\u3046\uFF08".concat(Math.round(judged.similarity * 100), "%\uFF09"), "ng");
                                 if (judgement) {
-                                    judgement.textContent = "\u274C \u304A\u624B\u672C\u306F\u300C".concat(practice.target, "\u300D\u3067\u3059\u3002");
+                                    judgement.textContent = navWasNavigator ? "△ 音声認識が一致しませんでした（発音の誤りとは限りません）。" : "\u274C \u304A\u624B\u672C\u306F\u300C".concat(practice.target, "\u300D\u3067\u3059\u3002");
                                     judgement.className = "voice-read-judgement ng";
                                 }
                                 if (transcript)
                                     transcript.className = "voice-transcript ng";
-                                $("feedback").textContent = "❌ 認識した答えとお手本が違います。";
+                                $("feedback").textContent = navWasNavigator ? "認識文字が一致しませんでした。聞き取りの誤りの可能性もあります。" : "❌ 認識した答えとお手本が違います。";
                                 $("feedback").className = "feedback ng";
-                                showWrongAnswerGuide(questions[current]);
+                                if (!navWasNavigator) showWrongAnswerGuide(questions[current]);
                                 playWrongSound();
                             }
-                            $("score").textContent = "\u6B63\u89E3 ".concat(score);
+                            $("score").textContent = navWasNavigator ? "認識一致 " + score : "\u6B63\u89E3 ".concat(score);
                             if (selectedActivity === "articulationNavigator") updateArticulationProgressUI();
                             // ナビゲーションは自動進行のみ。手動の「次へ」は表示しない。
                             $("nextBtn").classList.toggle("hidden", selectedActivity === "articulationNavigator");
@@ -3414,7 +3455,7 @@ function answerKotobaQuest(button, choice) {
     var buttons = document.querySelectorAll(".quest-choice");
     buttons.forEach(function (b) { return b.disabled = true; });
     var correct = String(choice).trim() === String(q.answer).trim();
-    recordQuestionOutcome(q, correct, choice);
+    recordQuestionOutcome(q, correct, choice, {answerMode:"objective-choice"});
     var enemyCard = $("questEnemyCard");
     var feedback = $("questFeedback");
     if (correct) {
@@ -3501,7 +3542,7 @@ function renderMoraModeSelection(q) {
     if (!area) return;
     var game = $("game");
     if (game) game.classList.add("mora-mode-select-active");
-    if ($("trainingTitle")) $("trainingTitle").textContent = "手拍子・モーラ";
+    if ($("trainingTitle")) $("trainingTitle").textContent = "モーラ・手拍子練習";
     if ($("progress")) $("progress").textContent = (current + 1) + " / " + questions.length;
     var wrap = document.createElement("div");
     wrap.className = "mora-mode-picker mora-mode-simple";
@@ -3562,7 +3603,7 @@ function renderMoraModePractice(q, mode) {
     var game = $("game");
     if (game) game.classList.remove("mora-mode-select-active");
     if ($('skipQuestionBtn')) { $('skipQuestionBtn').classList.remove('hidden'); $('skipQuestionBtn').disabled=false; }
-    if ($("trainingTitle")) $("trainingTitle").textContent = "手拍子・モーラ";
+    if ($("trainingTitle")) $("trainingTitle").textContent = "モーラ・手拍子練習";
     if ($("progress")) $("progress").textContent = (current + 1) + " / " + questions.length;
     var progressPercent = Math.round(((current + 1) / Math.max(1, questions.length)) * 100);
     var wrap = document.createElement("div");
@@ -4006,6 +4047,13 @@ function recordQuestionOutcome(q, correct, given, options) {
         return;
     }
     questionResults.push(entry);
+    // Ver.2.5.2: only the initial graded button answer enters the optional AI model.
+    // Voice recognition, handwriting, retry, self-report, skip, and non-objective tasks are excluded.
+    if (window.KotobaAIIntegration) {
+        window.KotobaAIIntegration.observeFirst({activityId:selectedActivity, question:q,
+            questionIndex:current, correct:!!correct, answerMode:opts.answerMode,
+            afterRetry:!!opts.afterRetry, level:window.KotobaLevels ? window.KotobaLevels.get(selectedActivity).selected : 1});
+    }
     var explanationQuestionIndex = current;
     setTimeout(function(){
         var feedback = $('feedback');
@@ -4051,7 +4099,7 @@ function answer(button, choice) {
     document.querySelectorAll(".choice").forEach(function (b) { return b.disabled = true; });
     document.querySelectorAll(".token").forEach(function (b) { return b.disabled = true; });
     var correct = choice === q.answer;
-    recordQuestionOutcome(q, correct, choice);
+    recordQuestionOutcome(q, correct, choice, isKqCatchTrialActivity(selectedActivity) ? {answerMode:q.catchAnswerMode || "catch-selection-trial"} : {answerMode:"objective-choice"});
     if (correct) {
         score++;
         button.classList.add("correct");
@@ -4224,6 +4272,9 @@ function finishGame(gameOver) {
     var levelResult = !allSkipped && window.KotobaLevels ? window.KotobaLevels.finish(selectedActivity, rate, !gameOver, answeredCount) : null;
     var adaptiveSummary = !allSkipped && window.KotobaAdaptive ? window.KotobaAdaptive.finish(
         selectedGenre ? selectedGenre.name : "", selectedActivity, score, answeredCount) : null;
+    var autoDifficultyChange = window.KotobaLearningMode && window.KotobaLearningMode.applyAutoDifficulty
+        ? window.KotobaLearningMode.applyAutoDifficulty(selectedActivity, levelResult, adaptiveSummary,
+            !gameOver && answeredCount>0) : null;
     var isClassicQuest = selectedActivity === "kotobaQuestClassic";
     if (isClassicQuest && gameOver) {
         $("resultIcon") && ($("resultIcon").textContent = "💀");
@@ -4246,6 +4297,13 @@ function finishGame(gameOver) {
         $("resultRate").textContent = "初回一致率 " + rate + "%";
         $("resultMessage").textContent = "手書き後に選択した候補と見本が一致した数：" + writingStats.matched + "問（初回一致：" + writingStats.firstTryCorrect + "問、書き直し後：" + writingStats.afterRetryCorrect + "問）。この結果は筆跡そのものの品質を判定するものではありません。";
     }
+    else if (selectedActivity === "articulationNavigator") {
+        $("resultIcon") && ($("resultIcon").textContent = "🎤");
+        $("resultTitle").textContent = "構音筋ビジュアルナビゲーション｜練習結果";
+        $("resultScore").textContent = "音声認識の一致 " + score + " / " + answeredCount;
+        $("resultRate").textContent = "認識一致率 " + rate + "%";
+        $("resultMessage").textContent = "これは音声認識の文字が一致した回数です。発音や舌・唇の動きの正確さ、構音障害の有無は判定していません。";
+    }
     else {
         $("resultIcon") && ($("resultIcon").textContent = "🎉");
         $("resultTitle").textContent = "".concat(selectedCategory ? selectedCategory.name : (selectedGenre ? selectedGenre.name : "トレーニング"), "｜").concat(getActivityName(selectedActivity));
@@ -4257,11 +4315,27 @@ function finishGame(gameOver) {
                     rate >= 60 ? "よく取り組みました。もう一度挑戦してみましょう。" :
                         "お疲れさまでした。無理のないペースで取り組みましょう。";
     }
+    if (isKqCatchTrialActivity(selectedActivity)) {
+        $('resultTitle').textContent += '｜試作途中';
+        $('resultMessage').textContent += '（試作途中）採点は絵・言葉の選択、拍数タップ、会話の想起の正誤に限ります。発音・構音の正確さや医学的な改善は測定しません。';
+    }
     if (allSkipped) {
         $('resultMessage').textContent = '全問スキップのため、正答率・熟練度・連続学習記録は更新されません。';
-        $('resultRate').textContent = '正答率：未測定 ／ スキップ ' + skipCount + '問';
+        $('resultRate').textContent = (selectedActivity === 'articulationNavigator' ? '認識一致率：未測定 ／ スキップ ' : '正答率：未測定 ／ スキップ ') + skipCount + '問';
     } else if (skipCount > 0) {
         $('resultMessage').textContent += '　スキップ ' + skipCount + '問は採点対象外です。';
+    }
+    if (window.KotobaAIIntegration && window.KotobaAIIntegration.renderResult) {
+        var aiProgress = window.KotobaLevels ? window.KotobaLevels.get(selectedActivity) : {selected:1,unlocked:1};
+        window.KotobaAIIntegration.renderResult(selectedActivity, aiProgress.selected, aiProgress.unlocked);
+    }
+    if (!allSkipped && !gameOver && window.KotobaAIIntegration && $('resultMessage')) {
+        var progressForAI = window.KotobaLevels ? window.KotobaLevels.get(selectedActivity) : {selected:1,unlocked:1};
+        var aiSummaryText = window.KotobaAIIntegration.finishSummary(selectedActivity, progressForAI.selected, progressForAI.unlocked);
+        if (aiSummaryText) $('resultMessage').textContent += '　' + aiSummaryText;
+    }
+    if (autoDifficultyChange && $('resultMessage')) {
+        $('resultMessage').textContent += '　学習履歴から次回の難易度をLv.' + autoDifficultyChange.from + ' → Lv.' + autoDifficultyChange.to + 'に自動調整しました（参考値）。';
     }
     if (levelResult && !gameOver) {
         $('resultMessage').textContent += '　Lv.' + levelResult.level + 'の熟練度：' + levelResult.points + '/100' +
@@ -4309,12 +4383,13 @@ function finishGame(gameOver) {
         masteryBefore: levelResult ? levelResult.before : 0,
         masteryAfter: levelResult ? levelResult.points : 0,
         category: selectedCategory ? selectedCategory.name : "",
-        genre: selectedGenre ? selectedGenre.name : "トレーニング",
+        genre: selectedGenre ? selectedGenre.name : (selectedCategory ? selectedCategory.name : "トレーニング"),
         activity: getActivityName(selectedActivity),
         kind: isCopyPractice ? "writingPractice" : (selectedActivity === "aiConversation" || selectedActivity === "localAIConversation") ? "aiConversation" : "training",
         writing: writingStats,
         questionResults: details,
         adaptive: adaptiveSummary,
+        autoDifficultyChange: autoDifficultyChange,
         turns: Number(aiConversationState.turnCount || 0),
         recall: (["naming", "cue", "gesture", "roleplay"].indexOf(selectedActivity) >= 0) ? window.kotobaRecallRunStats || null : null,
         articulation: selectedActivity === "articulationNavigator" ? {
@@ -4412,7 +4487,7 @@ document.addEventListener("click", function () {
     if (ctx && ctx.state === "suspended")
         ctx.resume();
 }, { once: true });
-// 7ジャンル・30課題を表示します。
+// 7ジャンルと既存課題・5つの統合試作課題を表示します。
 renderCategories();
 // ============================================================
 // 12. 記録・カレンダー・Excel出力
@@ -4455,6 +4530,50 @@ function loadRecords() {
 }
 function saveRecords(records) {
     localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
+}
+// 旧独立ページの履歴を「過去の試作記録」として通常の記録一覧へ移行する。
+// 正誤の原データを保持し、自己確認・音声文字一致を採点正解に変換しない。
+function migrateLegacyCatchTrialRecords() {
+    var profile=getActiveUserProfile();
+    var pid=String(profile && profile.profileId || 'unconfigured');
+    var oldId=pid==='unconfigured'?'guest':pid;
+    var oldKey='kotobaquest_catch_trial_v1_'+oldId;
+    var old;
+    try { old=JSON.parse(localStorage.getItem(oldKey)||'null'); } catch (_) {return 0;}
+    if(!old || !Array.isArray(old.sessions)||!old.sessions.length)return 0;
+    var map={image:['catchImage','認知・理解トレーニング','イメージキャッチ'],category:['catchCategory','認知・理解トレーニング','カテゴリーキャッチ'],
+      tongue:['catchTongue','発音・発声トレーニング','早口言葉とリズム'],word:['catchWord','失語症・言語トレーニング','ワードキャッチ'],
+      conversation:['catchConversation','日常会話・コミュニケーション','会話キャッチ（役割交代）']};
+    var records=loadRecords();if(!Array.isArray(records))records=[];
+    var seen={};records.forEach(function(r){seen[r.id]=true;});var imported=0;
+    old.sessions.forEach(function(s,i){
+      var mode=map[s.mode];if(!mode)return;
+      var at=Number(s.at)||0;if(!at || !isFinite(at))return;
+      var date=new Date(at);if(isNaN(date.getTime()))return;
+      var id='kq-catch-archive-'+oldId+'-'+s.mode+'-'+at+'-'+i;
+      if(seen[id])return;
+      var sourceResults=Array.isArray(s.questionResults)?s.questionResults:[];
+      var choices=sourceResults.filter(function(q){return q.source==='choice';});
+      var objective=choices.filter(function(q){return q.correct===true;}).length;
+      var results=sourceResults.map(function(q,j){
+        var skip=q.source==='skip',self=q.source==='self',voice=q.source==='voice';
+        return {number:j+1,question:String(q.question||'試作課題'),answer:'',given:'',
+          correct:skip||self||voice?null:!!q.correct,
+          status:skip?'スキップ':self?'自己確認（採点外）':voice?'文字一致（採点外）':q.correct?'正解':'不正解',
+          answerMode:'archived-trial-'+String(q.source||''),hintUsed:!!q.hintUsed};
+      });
+      records.push({id:id,date:formatDateKey(date),time:date.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}),
+       startedAt:new Date(Math.max(0,at-Math.max(0,Number(s.durationSec)||0)*1000)).toISOString(),finishedAt:date.toISOString(),
+       durationSec:Number(s.durationSec)||0,category:mode[1],genre:mode[1],activity:mode[2]+'（旧試作記録）',
+       score:objective,total:choices.length,skipped:sourceResults.filter(function(q){return q.source==='skip';}).length,
+       presented:sourceResults.length,rate:choices.length?Math.round(objective/choices.length*100):null,
+       activityId:mode[0],difficultyLevel:1,masteryBefore:0,masteryAfter:0,
+       kind:'trialArchived',questionResults:results,userProfileId:pid,
+       userName:profile && profile.displayName || '名前未登録',userCode:profile && profile.recordCode || ''});
+      seen[id]=true;imported++;
+    });
+    if(imported){records.sort(function(a,b){return new Date(a.finishedAt)-new Date(b.finishedAt);});try{saveRecords(records);}catch(_){return 0;}}
+    return imported;
 }
 function loadNotes() {
     var e_3, _a;
@@ -4550,6 +4669,7 @@ function saveTrainingRecord(data) {
     if (data.recall) record.recall = data.recall;
     if (data.writing) record.writing = data.writing;
     if (data.adaptive) record.adaptive = data.adaptive;
+    if (data.autoDifficultyChange) record.autoDifficultyChange = data.autoDifficultyChange;
     if (Array.isArray(data.questionResults)) record.questionResults = data.questionResults.slice(0, 100);
     var records = loadRecords();
     records.push(record);

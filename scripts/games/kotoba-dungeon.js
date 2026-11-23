@@ -19,8 +19,8 @@
     { id: 4, label: 'ねこ', src: 'images/story/avatar_default_04.png', reward: false },
     { id: 5, label: 'ねこまる', src: 'images/story/cat_1_crop.png', reward: true },
     { id: 6, label: '黒丸', src: 'images/story/cat_05_1.png', reward: true },
-    { id: 7, label: 'こねこ', src: 'images/story/2_neko.PNG', reward: true },
-    { id: 8, label: 'しらす隊長', src: 'images/story/3_sirasu.PNG', reward: true },
+    { id: 7, label: 'こねこ', src: 'images/story/2_neko.webp', reward: true },
+    { id: 8, label: 'しらす隊長', src: 'images/story/3_sirasu.webp', reward: true },
     { id: 9, label: 'かぼちゃおじいさん', src: 'images/story/1_oji.png', reward: true }
   ];
   var OUTFITS = [

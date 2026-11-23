@@ -220,6 +220,7 @@
     var active=document.querySelector('.screen.active');
     if(active && active.id!=='settings') settingsReturnScreen=active.id;
     showScreen('settings'); updateMicStatus();
+    if(window.KotobaAIIntegration)window.KotobaAIIntegration.updateStatus();
   }
   // 起動ロゴと会話イベントは独立ページで管理します。
 
